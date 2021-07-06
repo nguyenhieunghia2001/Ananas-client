@@ -5,3 +5,11 @@ $bg-Black: #222;
 $bg-Gray-second: #bdbdbd;
 $bg-Gray-third: #4c4c4c;
 $f-gray: #CCCCCC;
+
+.img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-position: 50%, 50%;
+  }

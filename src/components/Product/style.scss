@@ -1,0 +1,43 @@
+@import '../../assets/variable.scss';
+
+.thumbnail{
+    padding: 0 10px;
+    img{
+        @extend .img-cover;
+        margin-bottom: 10px;
+    }
+    &__caption{
+        h4, p, a{
+            margin: 0;
+            padding: 5px 0;
+            font-size: 16px;
+            text-align: center;
+            color: $bg-Black;
+        }
+        a{
+            text-decoration: none;
+            font-weight: 800;
+            &:hover{
+                color: $bg-Orange;
+            }
+        }
+    }
+}
+
+.carousel-product{
+    .slick-arrow{
+        color: $f-gray;
+        &:hover{
+            color: $bg-Orange;
+        }
+        &::before{
+            content: '';
+        }
+    }
+}
+.carousel-control{
+    font-size: 55px;
+    margin: -105px 0 0 -18px ;
+    
+
+}
