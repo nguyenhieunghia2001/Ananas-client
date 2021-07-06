@@ -1,0 +1,76 @@
+@import "../../../assets/variable.scss";
+
+.foo {
+  background: $bg-Gray-third;
+  padding: 60px 0;
+  &__store {
+    img {
+      padding-bottom: 20px;
+    }
+    .btn-search-shop {
+      width: 270px;
+      background: $bg-Orange;
+      border-radius: 0;
+      font-size: 20px;
+      font-weight: 800;
+      color: $bg-White;
+    }
+  }
+  &__menu {
+    
+  }
+  &__item {
+    &-title {
+      font-size: 22px;
+      font-weight: 800;
+      padding-bottom: 15px;
+      color: $bg-White;
+    }
+    &-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        padding-bottom: 5px;
+      }
+      a {
+        color: $f-gray;
+        font-size: 16px;
+        text-decoration: none;
+
+        &:hover {
+          color: $bg-Orange;
+        }
+      }
+    }
+    &-icon {
+      font-size: 40px;
+      color: $f-gray;
+    }
+    &-form {
+      display: flex;
+      input {
+        width: 170px;
+        height: auto;
+        display: inline-block;
+        border-radius: 0px;
+      }
+      a {
+        background: $bg-Black;
+        color: $bg-White;
+        font-size: 30px;
+        text-align: center;
+        padding: 0;
+        border-radius: 0;
+        width: 80px;
+        margin: 0 0 0 2px;
+      }
+    }
+  }
+}
+.copyright{
+  font-size: 20px;
+  color: #818181;
+  margin-top: 50px;  
+  text-align: center;
+}
