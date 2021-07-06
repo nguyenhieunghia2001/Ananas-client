@@ -1,3 +1,4 @@
+@import "../../assets/variable.scss";
 .home {
   &__banner {
     img {
@@ -5,6 +6,68 @@
       height: 100vh;
       max-width: 1920px;
       object-fit: cover;
+    }
+  }
+}
+
+//CATEGORY
+.home {
+  &__cat {
+    padding: 40px 0;
+    &-title {
+      font-size: 30px;
+      padding-bottom: 35px;
+      font-weight: 800;
+      text-align: center;
+    }
+    .col-lg-4 {
+      padding: 0 5px;
+    }
+
+    .cat__item {
+      position: relative;
+
+      .item__group {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        a {
+          display: block;
+          text-decoration: none;
+          color: $bg-White;
+          text-align: center;
+          &:hover {
+            color: $bg-Orange;
+          }
+        }
+        &-title {
+          font-size: 23px;
+          font-weight: 900;
+          line-height: 1.6rem;
+          padding-bottom: 20px;
+        }
+        &-sub {
+          font-size: 16px;
+          font-weight: 900;
+          padding: 3px 0;
+        }
+      }
+
+      .item__bg-black {
+        background-color: rgba(0, 0, 0, 0.3);
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-position: 50%, 50%;
+      }
     }
   }
 }
