@@ -1,4 +1,4 @@
-@import '../../../assets/variable.scss';
+@import "../../../assets/variable.scss";
 $background: #303030;
 $colorFont-priary: #fff;
 .headerTop {
@@ -66,8 +66,10 @@ $colorFont-priary: #fff;
   padding: 17px 0;
   &__menu {
     &-item {
+      cursor: pointer;
       border-right: 1px solid $bg-Gray-second;
       padding: 0 20px;
+      color: $bg-Black;
       &:last-child {
         border-right: none;
       }
@@ -76,8 +78,15 @@ $colorFont-priary: #fff;
         font-size: 23px;
         font-weight: 800;
         padding-right: 5px;
+        a {
+          text-decoration: none;
+          color: $bg-Black;
+          &:hover {
+            color: $bg-Orange;
+          }
+        }
       }
-      &:hover{
+      &:hover {
         color: $bg-Orange;
       }
     }

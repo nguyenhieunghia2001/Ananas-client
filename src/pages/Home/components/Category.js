@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import Cat1Img from '../../../assets/images/cat/cat-1.jpg'
 import Cat2Img from '../../../assets/images/cat/cat-2.jpg'
 import Cat3Img from '../../../assets/images/cat/cat-3.jpg'
+import { Link } from "react-router-dom";
 
 const Category = () => {
   return (
@@ -17,10 +18,11 @@ const Category = () => {
                         <img src={Cat1Img} alt="cat" />
                     </div>
                     <div className="item__group">
-                        <a href="" className="item__group-title">GIÀY NAM</a>
-                        <a href="" className="item__group-sub">New Arrivals</a>
-                        <a href="" className="item__group-sub">Best Seller</a>
-                        <a href="" className="item__group-sub">Sale-off</a>
+                        {/* <a href="" className="item__group-title">GIÀY NAM</a> */}
+                        <Link to="" className="item__group-title">GIÀY NAM</Link>
+                        <Link to="" className="item__group-sub">New Arrivals</Link>
+                        <Link to="" className="item__group-sub">Best Seller</Link>
+                        <Link to="" className="item__group-sub">Sale-off</Link>
                     </div>
                 </div>
             </Col>
@@ -31,10 +33,10 @@ const Category = () => {
                         <img src={Cat2Img} alt="cat" />
                     </div>
                     <div className="item__group">
-                        <a href="" className="item__group-title">GIÀY NỮ</a>
-                        <a href="" className="item__group-sub">New Arrivals</a>
-                        <a href="" className="item__group-sub">Best Seller</a>
-                        <a href="" className="item__group-sub">Sale-off</a>
+                        <Link to="" className="item__group-title">GIÀY NỮ</Link>
+                        <Link to="" className="item__group-sub">New Arrivals</Link>
+                        <Link to="" className="item__group-sub">Best Seller</Link>
+                        <Link to="" className="item__group-sub">Sale-off</Link>
                     </div>
                 </div>
             </Col>
@@ -45,11 +47,11 @@ const Category = () => {
                         <img src={Cat3Img} alt="cat" />
                     </div>
                     <div className="item__group">
-                        <a href="" className="item__group-title">DÒNG SẢN PHẨM</a>
-                        <a href="" className="item__group-sub">Basas</a>
-                        <a href="" className="item__group-sub">Vintas</a>
-                        <a href="" className="item__group-sub">Urbar</a>
-                        <a href="" className="item__group-sub">Pattas</a>
+                        <Link to="" className="item__group-title">DÒNG SẢN PHẨM</Link>
+                        <Link to="" className="item__group-sub">Basas</Link>
+                        <Link to="" className="item__group-sub">Vintas</Link>
+                        <Link to="" className="item__group-sub">Urbar</Link>
+                        <Link to="" className="item__group-sub">Pattas</Link>
                     </div>
                 </div>
             </Col>

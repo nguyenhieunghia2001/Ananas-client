@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container} from "reactstrap";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { FaUserAlt } from "react-icons/fa";

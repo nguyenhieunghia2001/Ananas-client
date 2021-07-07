@@ -4,6 +4,7 @@ import { Container } from "reactstrap";
 import LogoSvg from "../../../../assets/images/logo.svg";
 import { FaChevronDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -14,7 +15,7 @@ const Navbar = () => {
         </div>
         <div className="nav__menu d-flex">
           <div className="nav__menu-item d-flex align-items-end">
-            <h4>SẢN PHẨM</h4>
+            <h4><Link to="/products">SẢN PHẨM</Link></h4>
             <FaChevronDown className="icon" />
           </div>
           <div className="nav__menu-item d-flex align-items-end">

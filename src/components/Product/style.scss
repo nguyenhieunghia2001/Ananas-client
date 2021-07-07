@@ -1,43 +1,93 @@
-@import '../../assets/variable.scss';
+@import "../../assets/variable.scss";
 
-.thumbnail{
-    padding: 0 10px;
-    img{
-        @extend .img-cover;
-        margin-bottom: 10px;
+.thumbnail {
+  padding: 0 10px;
+  img {
+    @extend .img-cover;
+    margin-bottom: 10px;
+  }
+  &__caption {
+    h4,
+    p,
+    a {
+      margin: 0;
+      padding: 2px 0;
+      font-size: 16px;
+      text-align: center;
+      color: $bg-Black;
     }
-    &__caption{
-        h4, p, a{
-            margin: 0;
-            padding: 5px 0;
-            font-size: 16px;
-            text-align: center;
-            color: $bg-Black;
-        }
-        a{
-            text-decoration: none;
-            font-weight: 800;
-            &:hover{
-                color: $bg-Orange;
-            }
-        }
+    h4 {
+      font-weight: 800;
     }
+    a {
+      text-decoration: none;
+      font-weight: 800;
+      &:hover {
+        color: $bg-Orange;
+      }
+    }
+  }
 }
 
-.carousel-product{
-    .slick-arrow{
-        color: $f-gray;
-        &:hover{
-            color: $bg-Orange;
-        }
-        &::before{
-            content: '';
-        }
+.carousel-product {
+  .slick-arrow {
+    color: $f-gray;
+    &:hover {
+      color: $bg-Orange;
     }
+    &::before {
+      content: "";
+    }
+  }
 }
-.carousel-control{
-    font-size: 55px;
-    margin: -105px 0 0 -18px ;
-    
+.carousel-control {
+  font-size: 55px;
+  margin: -105px 0 0 -18px;
+}
 
+//product list basic
+.product-right {
+  .thumbnail {
+    &__bg {
+      position: relative;
+
+      &-icon {
+        position: absolute;
+        top: 87%;
+        left: 90%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: $bg-Orange;
+        cursor: pointer;
+      }
+      .btn-thumbnail {
+        position: absolute;
+        top: 88%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $bg-Orange;
+        color: $bg-White;
+        font-weight: 900;
+        padding: 12px 26px;
+        border-radius: 0;
+        transition: 0.5s;
+        display: none;
+      }
+    }
+    &:hover {
+      .btn-thumbnail {
+        display: block;
+      }
+    }
+    &__caption {
+      &-type {
+        color: $bg-Orange;
+      }
+    }
+  }
+  .divider {
+    background: url("../../assets//images/bg_divider.png") repeat-x 7px;
+    margin: 7px 0;
+    height: 1px;
+  }
 }

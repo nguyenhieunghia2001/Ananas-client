@@ -26,7 +26,6 @@ function SamplePrevArrow(props) {
     />
   );
 }
-const dots = () => {};
 
 const Banner = () => {
   const settings = {

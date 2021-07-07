@@ -1,0 +1,85 @@
+@import "../../assets/variable.scss";
+.sidebar {
+  margin: 30px 0 25px 0;
+  &__header {
+    display: flex;
+    justify-content: center;
+  }
+  .nav-tabs {
+    border: none;
+    align-items: center;
+    a {
+      font-size: 22px;
+      color: $f-gray;
+      padding: 10px 22px;
+      text-decoration: none;
+      font-weight: 900;
+    }
+    &-active a {
+      color: $bg-Black;
+    }
+  }
+  &__divider {
+    height: 2px;
+    border-top: 2px solid $bg-Gray;
+    margin: 2px 0px;
+  }
+
+  &__pane,
+  &__cat {
+    margin: 20px 0;
+    ul {
+      margin: 0;
+      padding: 0;
+      flex-direction: column;
+      li {
+        float: none;
+        padding: 3px 15px;
+        margin: 2px 0;
+        position: relative;
+      }
+      .active {
+        background-color: #f1f1f1;
+        &::before {
+          position: absolute;
+          content: "x";
+          right: 20px;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+  &__title {
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 900;
+    color: $bg-Black;
+    padding-bottom: 15px;
+    .caret {
+      margin-left: 5px;
+      font-size: 13px;
+    }
+    &-open {
+      color: $bg-Orange;
+    }
+  }
+}
+.type-divider {
+  height: 60%;
+  width: 1px;
+  border-left: 1px solid $bg-Gray-second;
+}
+
+//right
+.product {
+  padding: 30px 0;
+  &-right {
+    &--banner {
+      margin-bottom: 40px;
+      img {
+        @extend .img-cover;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
