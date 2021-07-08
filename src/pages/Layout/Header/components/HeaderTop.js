@@ -4,6 +4,7 @@ import { RiSearchEyeLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { FaUserAlt } from "react-icons/fa";
 import { AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import "../header.scss";
 
 const HeaderTop = () => {
@@ -21,7 +22,7 @@ const HeaderTop = () => {
           </div>
           <div className="headerTop__item">
             <AiFillHeart className="icon-sm" />
-            <span>Yêu thích</span>
+            <span><Link to="/love">Yêu thích</Link></span>
           </div>
           <div className="headerTop__item">
             <FaUserAlt className="icon-sm" />

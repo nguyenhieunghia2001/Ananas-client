@@ -1,0 +1,29 @@
+@import '../../assets/variable.scss';
+
+.love{
+    margin: 30px 0;
+    &__title h4{
+        @extend .in-title;
+    }
+    &__empty{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p{
+            font-size: 16px;
+            color: $bg-Black;
+            padding: 40px 0;
+        }
+    }
+    .btn-love{
+        background-color: $bg-Black;
+        color: $bg-White;
+        font-weight: 900;
+        font-size: 16px;
+        padding: 8px 30px;
+        border-radius: 0;
+    }
+    &__btn-group{
+        margin-top: 30px;
+    }
+}

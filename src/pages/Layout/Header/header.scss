@@ -11,6 +11,13 @@ $colorFont-priary: #fff;
     color: $bg-White;
     font-size: 13px;
     padding: 6px 12px;
+    a {
+      color: $bg-White;
+      text-decoration: none;
+      &:hover{
+        color: $bg-Orange;
+      }
+    }
   }
 }
 .icon-sm {

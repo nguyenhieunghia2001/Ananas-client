@@ -21,7 +21,7 @@ const ProductItem = () => {
         <p className="thumbnail__caption-type">Pre-order</p>
         <div className="divider-img"></div>
         <h4 className="thumbnail__caption-name">
-          <Link to="">Baseball Cap - Be Positive</Link>
+          <Link to="/products/id">Baseball Cap - Be Positive</Link>
         </h4>
         <p className="thumbnail__caption-color">Pink</p>
         <h4 className="thumbnail__caption-price">275.000 VND</h4>
