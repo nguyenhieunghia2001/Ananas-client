@@ -10,6 +10,7 @@ import HomePage from "../../pages/Home/HomePage";
 import ProductPage from "../../pages/Product/ProductPage";
 import ProductDetailPage from "../../pages/ProductDetail/ProductDetailPage";
 import LovePage from "../../pages/Love/LovePage";
+import CartPage from "../../pages/Cart/CartPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/love" exact>
             <LovePage />
+          </Route>
+          <Route path="/cart" exact>
+            <CartPage />
           </Route>
           
         </Switch>

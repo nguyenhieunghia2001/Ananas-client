@@ -30,7 +30,7 @@ const HeaderTop = () => {
           </div>
           <div className="headerTop__item">
             <AiOutlineShoppingCart className="icon-sm" />
-            <span>Giỏ hàng</span>
+            <span><Link to="/cart">Giỏ hàng</Link></span>
           </div>
         </div>
       </Container>
