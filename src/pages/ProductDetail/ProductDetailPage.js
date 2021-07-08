@@ -6,17 +6,20 @@ import ProductLove from "../../components/LoveList/ProductLove";
 import "./style.scss";
 import Expander from "../../components/Properties/Expander";
 import ProductSeen from "./Components/ProductSeen";
+import ImageGroup from "./Components/ImageGroup";
 
 const PrdDetail = () => {
   return (
     <>
-      <div className="prdDetail">
         <Container>
+      <div className="prdDetail">
           <div className="prdDetail__header">
             <p className="prdDetail__header-name">Urbas Borderless - Low Top</p>
           </div>
           <Row>
-            <Col lg="7"></Col>
+            <Col lg="7">
+              <ImageGroup />
+            </Col>
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
@@ -99,8 +102,8 @@ const PrdDetail = () => {
               </div>
             </Col>
           </Row>
-        </Container>
       </div>
+        </Container>
 
       <div className="divider-img"></div>
       <ProductSeen />

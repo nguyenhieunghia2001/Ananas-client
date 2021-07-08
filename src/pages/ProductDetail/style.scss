@@ -49,13 +49,13 @@
           &--orange {
             background-color: $bg-Orange;
           }
-          &:nth-child(2){
-              padding: 17px 0;
+          &:nth-child(2) {
+            padding: 17px 0;
           }
         }
       }
-      &-select--group{
-        h5{
+      &-select--group {
+        h5 {
           font-size: $font-big;
           color: $bg-Black;
           font-weight: 800;
@@ -64,15 +64,50 @@
     }
   }
 }
-.products-seen{
+.products-seen {
   margin: 30px 0;
-  
-  &--title h4{
+
+  &--title h4 {
     text-align: center;
     font-size: $font-big;
     font-weight: 900;
     color: $bg-Black;
     padding-bottom: 30px;
+  }
+}
 
+//CAROUSEL IMAGE
+.imggroup {
+  margin-right: 40px;
+  &__primary {
+    margin-bottom: 20px;
+    img{
+    @extend .img-cover;
+  }}
+  &__carousel {
+    img {
+      @extend .img-cover;
+      padding: 1px;
+    }
+    .slick-arrow {
+      color: $f-gray;
+      &:hover {
+        color: $bg-Orange;
+      }
+      &::before {
+        content: "";
+      }
+    }
+    .carousel-control {
+      font-size: 55px;
+      margin: -23px 0 0 -18px;
+    }
+    .slick-prev {
+      left: 20px;
+      z-index: 10;
+    }
+    .slick-next {
+      right: 20px;
+    }
   }
 }
