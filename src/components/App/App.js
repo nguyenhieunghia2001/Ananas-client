@@ -8,6 +8,7 @@ import "./lib.scss";
 import Layout from "../../pages/Layout/index";
 import HomePage from "../../pages/Home/HomePage";
 import ProductPage from "../../pages/Product/ProductPage";
+import ProductDetailPage from "../../pages/ProductDetail/ProductDetailPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/products" exact>
             <ProductPage />
+          </Route>
+          <Route path="/products/:id" exact>
+            <ProductDetailPage />
           </Route>
         </Switch>
       </Layout>

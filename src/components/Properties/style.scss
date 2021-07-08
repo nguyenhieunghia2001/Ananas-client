@@ -1,0 +1,28 @@
+@import "../../assets/variable.scss";
+//EXPANDER
+.expander {
+  &-title {
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    padding: 30px 0;
+    h4 {
+      line-height: 20px;
+      font-size: $font-big;
+      font-weight: 800;
+      margin: 0;
+      padding-right: 5px;
+    }
+  }
+  &-des {
+    padding: 20px 0;
+    font-size: 16px;
+    display: none;
+  }
+  .open {
+    color: $bg-Orange;
+  }
+  .openDes {
+    display: block;
+  }
+}

@@ -4,7 +4,7 @@ const ProductLove = () => {
   const [toggleState, setToggleState] = useState(false);
   return (
     <>
-      <div onClick={() => setToggleState(!toggleState)}>
+      <div onClick={() => setToggleState(!toggleState)} className="icon-love">
         {toggleState ? <AiFillHeart /> : <AiOutlineHeart />}
       </div>
     </>

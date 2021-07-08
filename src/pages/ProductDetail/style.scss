@@ -1,0 +1,78 @@
+@import "../../assets/variable.scss";
+
+.prdDetail {
+  margin: 30px 0;
+  &__header {
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid $bg-Black;
+    p {
+      font-size: 16px;
+      color: $bg-Black;
+      font-weight: 800;
+      margin: 0;
+    }
+  }
+  &__right {
+    .detail-space {
+      margin: 30px 0;
+    }
+    .prdDetail {
+      &-name {
+        font-size: $font-giant;
+        color: $bg-Black;
+        margin-bottom: 10px;
+        font-weight: 800;
+      }
+      &-detail {
+        display: flex;
+        justify-content: space-between;
+      }
+      &-price {
+        color: $bg-Orange;
+        h5 {
+          font-weight: 900;
+        }
+      }
+      &-btn--group {
+        .btn-detail {
+          color: $bg-White;
+          font-size: $font-big;
+          font-weight: 800;
+          width: 100%;
+          padding: 20px 0;
+          border-radius: 0;
+          margin: 5px 0;
+          &--black {
+            background-color: $bg-Black;
+          }
+          &--orange {
+            background-color: $bg-Orange;
+          }
+          &:nth-child(2){
+              padding: 17px 0;
+          }
+        }
+      }
+      &-select--group{
+        h5{
+          font-size: $font-big;
+          color: $bg-Black;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}
+.products-seen{
+  margin: 30px 0;
+  
+  &--title h4{
+    text-align: center;
+    font-size: $font-big;
+    font-weight: 900;
+    color: $bg-Black;
+    padding-bottom: 30px;
+
+  }
+}
