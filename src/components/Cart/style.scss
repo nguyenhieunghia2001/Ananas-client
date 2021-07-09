@@ -1,0 +1,112 @@
+@import "../../assets/variable.scss";
+
+.cartfixed {
+  position: fixed;
+  top: 29%;
+  right: 0;
+  width: 40px;
+  height: 75px;
+  background-color: $bg-Orange;
+  &::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 8px solid $bg-Orange;
+    margin-top: 15px;
+    margin-top: 15px;
+    left: -7px;
+    z-index: 10;
+  }
+  &__cont {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 13px 0;
+    h4,
+    svg {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 800;
+      color: $bg-White;
+    }
+  }
+  .shop-open {
+    display: block;
+  }
+  &__shop {
+    display: none;
+    position: absolute;
+    width: 300px;
+    background: #f1f1f1;
+    right: 100%;
+    top: 0px;
+    &-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: $bg-Black;
+      padding: 5px 15px;
+    }
+    &-price {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px;
+      p {
+        font-size: 16px;
+        font-weight: 800;
+        margin: 0;
+        padding: 15px 0 0 0;
+        color: $bg-Orange;
+      }
+    }
+    &-btn {
+      padding: 15px 15px;
+      .btn-cart--sm {
+        border-radius: 0;
+        padding: 6px 0;
+        width: 100%;
+        background-color: $bg-Orange;
+        font-size: 20px;
+        font-weight: 900;
+        color: $bg-White;
+      }
+    }
+  }
+  &__productList {
+    padding: 0 15px;
+    max-height: 350px;
+    overflow-y: scroll;
+    .products {
+      &__item {
+        display: flex;
+        padding: 15px 0;
+        border-bottom: 1px solid #bdbdbb;
+      }
+      img {
+        width: 80px;
+        height: 80px;
+      }
+      &__info {
+        padding: 0 0 0 15px;
+        h6,
+        p {
+          font-size: $font-small;
+          font-weight: 800;
+          margin-bottom: 1px;
+        }
+        &-font {
+          display: flex;
+          justify-content: space-between;
+          span {
+            font-size: 13px;
+            line-height: 15px;
+          }
+        }
+      }
+    }
+  }
+}
