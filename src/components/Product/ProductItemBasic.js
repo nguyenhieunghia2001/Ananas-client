@@ -8,7 +8,7 @@ const ProductItem = ({product}) => {
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
-        <img src={productImg} alt="sản phẩm" />
+        <img src={product.images[0].urlPublic} alt="sản phẩm" />
         <Link to={`/product/${product._id}`} className="btn btn-thumbnail">
           MUA NGAY
         </Link>

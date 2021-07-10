@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import ProductLove from "../../components/LoveList/ProductLove";
 import "./style.scss";
@@ -8,42 +8,52 @@ import Expander from "../../components/Properties/Expander";
 import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
 import { getProductById } from "../../api/ProductApi";
+import Combobox from "../../components/Properties/Combobox";
 
-const PrdDetail = () => {
+const PrdDetail = (props) => {
+  const { id } = useParams();
   const [productState, setProductState] = useState();
 
   useEffect(() => {
-    (async function (){
+    (async function () {
       try {
-        const product = await getProductById('60e81d5ab47d38cf49cbd8a3');
+        const product = await getProductById(id);
         setProductState(product);
       } catch (error) {
         setProductState({});
       }
     })();
-  }, [])
+  }, []);
   return (
     <>
       <Container>
         <div className="prdDetail">
           <div className="prdDetail__header">
-            <p className="prdDetail__header-name">{productState && productState.name} - {productState && productState.colors.name}</p>
+            <p className="prdDetail__header-name">
+              {productState && productState.name} - 
+              {productState && productState.colors.name}
+            </p>
           </div>
           <Row>
             <Col lg="7">
-              <ImageGroup images={productState && productState.images} />
+              {productState && <ImageGroup images={productState.images} />}
             </Col>
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
-                {productState && productState.name} - {productState && productState.colors.name}
+                  {productState && productState.name} -
+                  {productState && productState.colors.name}
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm: <strong>{productState && productState._id}</strong>
+                    Mã sản phẩm:
+                    <strong>{productState && productState._id}</strong>
                   </span>
                   <span>
-                    Tình trạng: <strong>{productState && productState.statuses.name}</strong>
+                    Tình trạng:
+                    <strong>
+                      {productState && productState.statuses.name}
+                    </strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
@@ -60,6 +70,9 @@ const PrdDetail = () => {
                   <Row>
                     <Col lg="6">
                       <h5>SIZE</h5>
+                      <div className="select">
+                        <Combobox />
+                      </div>
                     </Col>
                     <Col lg="6">
                       <h5>SỐ LƯỢNG</h5>

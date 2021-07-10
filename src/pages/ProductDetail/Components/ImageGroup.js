@@ -66,7 +66,7 @@ const ImageGroup = ({ images }) => {
           <Slider {...settings}>
             {images &&
               images.map((image) => (
-                <div>
+                <div key={image._id}>
                   <img
                     src={image.urlPublic}
                     alt="product detail item"
