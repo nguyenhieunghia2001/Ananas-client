@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { Row } from "reactstrap";
 import "../style.scss";
@@ -31,8 +31,9 @@ function SamplePrevArrow(props) {
     </div>
   );
 }
-const ImageGroup = () => {
-    const [ imgSelectedState, setImgSelectedState] = useState(productImg2);
+const ImageGroup = ({ images }) => {
+  const [imgSelectedState, setImgSelectedState] = useState();
+  useEffect(() => setImgSelectedState(images && images[0].urlPublic), []);
   const settings = {
     dots: true,
     infinite: true,
@@ -57,39 +58,22 @@ const ImageGroup = () => {
     <div className="imggroup">
       <Row>
         <div className="imggroup__primary">
-            <img src={imgSelectedState} alt="Product image selected" />
+          <img src={imgSelectedState} alt="Product image selected" />
         </div>
       </Row>
       <Row>
         <div className="imggroup__carousel">
           <Slider {...settings}>
-            <div>
-                <img src={productImg} alt="product detail item" onClick={() => setImgSelectedState(productImg)} />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
-            <div>
-                <img src={productImg} alt="product detail item" />
-            </div>
+            {images &&
+              images.map((image) => (
+                <div>
+                  <img
+                    src={image.urlPublic}
+                    alt="product detail item"
+                    onClick={() => setImgSelectedState(image.urlPublic)}
+                  />
+                </div>
+              ))}
           </Slider>
         </div>
         {/* <ProductCarousel /> */}

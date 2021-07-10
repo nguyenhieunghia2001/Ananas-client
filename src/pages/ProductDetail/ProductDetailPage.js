@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
@@ -7,46 +7,51 @@ import "./style.scss";
 import Expander from "../../components/Properties/Expander";
 import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
+import { getProductById } from "../../api/ProductApi";
 
 const PrdDetail = () => {
+  const [productState, setProductState] = useState();
+
+  useEffect(() => {
+    (async function (){
+      try {
+        const product = await getProductById('60e81d5ab47d38cf49cbd8a3');
+        setProductState(product);
+      } catch (error) {
+        setProductState({});
+      }
+    })();
+  }, [])
   return (
     <>
-        <Container>
-      <div className="prdDetail">
+      <Container>
+        <div className="prdDetail">
           <div className="prdDetail__header">
-            <p className="prdDetail__header-name">Urbas Borderless - Low Top</p>
+            <p className="prdDetail__header-name">{productState && productState.name} - {productState && productState.colors.name}</p>
           </div>
           <Row>
             <Col lg="7">
-              <ImageGroup />
+              <ImageGroup images={productState && productState.images} />
             </Col>
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
-                  URBAS BORDERLESS - LOW TOP - WHITE/PRIDE FLAG
+                {productState && productState.name} - {productState && productState.colors.name}
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm: <strong>ABL2021</strong>
+                    Mã sản phẩm: <strong>{productState && productState._id}</strong>
                   </span>
                   <span>
-                    Tình trạng: <strong>Pre-order</strong>
+                    Tình trạng: <strong>{productState && productState.statuses.name}</strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
-                  <h5>950.000 VND</h5>
+                  <h5>{productState && productState.price} VND</h5>
                 </div>
                 <div className="divider-img"></div>
                 <div className="prdDetail-des detail-space">
-                  <span>
-                    Sử dụng các đường chỉ 6 màu trên lá cờ Pride Flag, đại diện
-                    cho những đường “biên giới” giữa các giới tính. “Borderless”
-                    mang ý nghĩa của sự giao thoa nhằm xoá nhoà các đường “biên
-                    giới”, hướng đến tình yêu bao dung cho tất cả mọi người.
-                    Urbas Borderless sở hữu quai dán tiện lợi trên nền chất liệu
-                    da chính cao cấp Cachemera Soft Nappa, bề mặt da nhăn tạo
-                    cảm giác tự nhiên, nhã nhặn.
-                  </span>
+                  <span>{productState && productState.des}</span>
                 </div>
                 <div className="divider-img"></div>
 
@@ -102,8 +107,8 @@ const PrdDetail = () => {
               </div>
             </Col>
           </Row>
-      </div>
-        </Container>
+        </div>
+      </Container>
 
       <div className="divider-img"></div>
       <ProductSeen />

@@ -5,7 +5,6 @@ import ProductItemBasic from "./ProductItemBasic";
 
 const ProductRight = ({ products }) => {
   // console.log(Array.isArray(products));
-  console.log(products);
   return (
     <Row>
       {products.map((product) => (

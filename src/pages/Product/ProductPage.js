@@ -12,11 +12,9 @@ const ProductPage = () => {
   useEffect(() => {
     (async function () {
       const products = await getAllProduct();
-      console.log(products);
       setproductsState(products);
     })();
   }, []);
-  console.log(productsState);
   return (
     <div className="product">
       <Container>
