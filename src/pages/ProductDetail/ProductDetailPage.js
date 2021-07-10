@@ -71,11 +71,14 @@ const PrdDetail = (props) => {
                     <Col lg="6">
                       <h5>SIZE</h5>
                       <div className="select">
-                        <Combobox />
+                        <Combobox type='SIZE' />
                       </div>
                     </Col>
                     <Col lg="6">
                       <h5>SỐ LƯỢNG</h5>
+                      <div className="select">
+                        <Combobox type='QUANTITY' />
+                      </div>
                     </Col>
                   </Row>
                 </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../style.scss";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ExpanderSidebar from "./ExpanderSidebar";
 
 const Sidebar = () => {
   const [toggleCatState, setToggleCatState] = useState(true);
@@ -32,21 +33,24 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="sidebar__divider"></div>
-      <div className="sidebar__cat">
-        <div
-          className={toggleCatState ? "sidebar__title sidebar__title-open" : "sidebar__title"}
-          onClick={() => setToggleCatState(!toggleCatState)}
-        >
-          DÒNG SẢN PHẨM
-          <span className="caret">
-            {toggleCatState ? <FaChevronUp /> : <FaChevronDown />}
-          </span>
-        </div>
-        <ul className="nav nav-stacked" style={{display: toggleCatState ? "block" : "none"}}>
-          <li className="active">Giày</li>
-          <li>Nữa trên</li>
-          <li>Phụ kiện</li>
-        </ul>
+      <div className="sidebar__expander">
+        <ExpanderSidebar title='DÒNG SẢN PHẨM'>
+          <ul className="nav nav-stacked">
+            <li className="active">Giày</li>
+            <li>Nữa trên</li>
+            <li>Phụ kiện</li>
+          </ul>
+        </ExpanderSidebar>
+      </div>
+      <div className="divider-img"></div>
+      <div className="sidebar__expander">
+        <ExpanderSidebar title='TRẠNG THÁI'>
+          <ul className="nav nav-stacked">
+            <li className="active">Giày</li>
+            <li>Nữa trên</li>
+            <li>Phụ kiện</li>
+          </ul>
+        </ExpanderSidebar>
       </div>
     </div>
   );
