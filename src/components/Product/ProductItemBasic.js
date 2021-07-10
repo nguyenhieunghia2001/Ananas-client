@@ -4,7 +4,8 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import ProductLove from "../LoveList/ProductLove";
 
-const ProductItem = () => {
+const ProductItem = ({product}) => {
+  console.log(product);
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
@@ -18,13 +19,13 @@ const ProductItem = () => {
         {/* <AiFillHeart className="thumbnail__bg-icon" /> */}
       </div>
       <div className="thumbnail__caption">
-        <p className="thumbnail__caption-type">Pre-order</p>
+        <p className="thumbnail__caption-type">{product.statuses.name}</p>
         <div className="divider-img"></div>
         <h4 className="thumbnail__caption-name">
-          <Link to="/products/id">Baseball Cap - Be Positive</Link>
+          <Link to="/products/id">{product.name}</Link>
         </h4>
-        <p className="thumbnail__caption-color">Pink</p>
-        <h4 className="thumbnail__caption-price">275.000 VND</h4>
+        <p className="thumbnail__caption-color">{product.colors.name}</p>
+        <h4 className="thumbnail__caption-price">{product.price} VND</h4>
       </div>
     </div>
   );

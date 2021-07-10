@@ -1,23 +1,45 @@
-import React from 'react'
-import { Container, Row, Col } from 'reactstrap';
-import Sidebar from './components/Sidebar'
-import ProductRight from './components/ProductRight'
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from "reactstrap";
+import Sidebar from "./components/Sidebar";
+import { getAllProduct } from "../../api/ProductApi";
+import ProductList from "../../components/Product/ProductList";
+import PorductBannerImg from "../../assets/images/prd-banner.jpg";
 
-const ProductPage = () =>{
-    return (
-        <div className="product">
-        <Container>
-            <Row>
-                <Col lg="3">
-                    <Sidebar />
-                </Col>
-                <Col lg="9">
-                    <ProductRight />
-                </Col>
-            </Row>
-        </Container>
-        </div>
-    )
-}
+const ProductPage = () => {
+  const [productsState, setproductsState] = useState([]);
+
+  //DIDMOUNT
+  useEffect(() => {
+    (async function () {
+      const products = await getAllProduct();
+      console.log(products);
+      setproductsState(products);
+    })();
+  }, []);
+  console.log(productsState);
+  return (
+    <div className="product">
+      <Container>
+        <Row>
+          <Col lg="3">
+            <Sidebar />
+          </Col>
+          <Col lg="9">
+            <div className="product-right">
+              <Row>
+                <div className="product-right--banner">
+                  <img src={PorductBannerImg} alt="prd right banner" />
+                </div>
+              </Row>
+              {/* {productsState && <ProductList products={productsState}/>} */}
+              <ProductList products={productsState} />
+              {/* <ProductList /> */}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
 export default ProductPage;
