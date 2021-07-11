@@ -3,8 +3,6 @@ import Slider from "react-slick";
 import { Row } from "reactstrap";
 import "../style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import productImg from "../../../assets/images/product/1.jpg";
-import productImg2 from "../../../assets/images/product/2.jpg";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;

@@ -41,18 +41,15 @@ const PrdDetail = (props) => {
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
-                  {productState && productState.name} -
+                  {productState && productState.name} - 
                   {productState && productState.colors.name}
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm:
-                    <strong>{productState && productState._id}</strong>
+                    Mã sản phẩm: <strong> {productState && productState._id}</strong>
                   </span>
                   <span>
-                    Tình trạng:
-                    <strong>
-                      {productState && productState.statuses.name}
+                    Tình trạng: <strong> {productState && productState.statuses.name}
                     </strong>
                   </span>
                 </div>

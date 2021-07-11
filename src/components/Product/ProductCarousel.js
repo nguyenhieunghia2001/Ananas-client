@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import productImg from "../../assets/images/product/1.jpg";
 import "./style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import {Link } from 'react-router-dom'

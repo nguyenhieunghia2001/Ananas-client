@@ -1,5 +1,4 @@
 import React from "react";
-import productImg from "../../assets/images/product/1.jpg";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import ProductLove from "../LoveList/ProductLove";

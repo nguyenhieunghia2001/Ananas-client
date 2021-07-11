@@ -4,11 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { getAllProduct, getAllProductByQuery } from "../../api/ProductApi";
 import ProductList from "../../components/Product/ProductList";
 import PorductBannerImg from "../../assets/images/prd-banner.jpg";
-import { useLocation } from "react-router-dom";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 const ProductPage = () => {
   const [productsState, setproductsState] = useState([]);
   //DID-MOUNT
