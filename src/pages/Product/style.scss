@@ -37,9 +37,18 @@
         padding: 3px 15px;
         margin: 2px 0;
         position: relative;
+        a {
+          text-decoration: none;
+          color: $bg-Black;
+        }
+        &:hover {
+          background-color: #f1f1f1;
+          font-weight: 800;
+        }
       }
       .active {
         background-color: #f1f1f1;
+        font-weight: 800;
         &::before {
           position: absolute;
           content: "x";

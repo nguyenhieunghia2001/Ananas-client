@@ -1,26 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style.scss";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ExpanderSidebar from "./ExpanderSidebar";
+import { getAllCategory } from "../../../api/CategoryApi";
+import { getAllStatus } from "../../../api/StatusApi";
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 const Sidebar = () => {
-  const [toggleCatState, setToggleCatState] = useState(true);
+  const [categoriesState, setCategoriesState] = useState();
+  const [statuesState, setStatuesState] = useState();
 
+  useEffect(() => {
+    (async function () {
+      const categories = await getAllCategory();
+      const statuses = await getAllStatus();
+      setCategoriesState(categories);
+      setStatuesState(statuses);
+    })();
+  }, []);
+
+  const query = useQuery();
+  const genderQuery = query.get("gender");
+  const catQuery = query.get("cat");
+  const statusQuery = query.get("status");
   return (
     <div className="sidebar">
       <div className="sidebar__header">
         <ul className="nav nav-tabs">
-          <li className="nav-tabs-active">
-            <Link to="">TẤT CẢ</Link>
+          <li className={!genderQuery || genderQuery === 'null' ? "nav-tabs-active": ""}>
+            <Link to="/products">TẤT CẢ</Link>
           </li>
           <li className="type-divider"></li>
-          <li>
-            <Link to="">NAM</Link>
+          <li
+            className={genderQuery && (genderQuery === "MALE" ? "nav-tabs-active" : "")}
+          >
+            <Link to="products?gender=MALE">NAM</Link>
           </li>
           <li className="type-divider"></li>
-          <li>
-            <Link to="">NỮ</Link>
+          <li
+            className={genderQuery && (genderQuery === "FEMALE" ? "nav-tabs-active" : "")}
+          >
+            <Link to="products?gender=FEMALE">NỮ</Link>
           </li>
         </ul>
       </div>
@@ -28,27 +50,31 @@ const Sidebar = () => {
       <div className="sidebar__pane">
         <ul className="nav nav-stacked">
           <li className="active">Giày</li>
-          <li>Nữa trên</li>
-          <li>Phụ kiện</li>
         </ul>
       </div>
       <div className="sidebar__divider"></div>
       <div className="sidebar__expander">
-        <ExpanderSidebar title='DÒNG SẢN PHẨM'>
+        <ExpanderSidebar title="DÒNG SẢN PHẨM">
           <ul className="nav nav-stacked">
-            <li className="active">Giày</li>
-            <li>Nữa trên</li>
-            <li>Phụ kiện</li>
+            {categoriesState &&
+              categoriesState.map((cat) => (
+                <li key={cat._id} className={catQuery && (catQuery === cat._id ? "active" : "")} >
+                  <Link to={`products?gender=${genderQuery}&cat=${cat._id}&status=${statusQuery}`}>{cat.name}</Link>
+                </li>
+              ))}
           </ul>
         </ExpanderSidebar>
       </div>
       <div className="divider-img"></div>
       <div className="sidebar__expander">
-        <ExpanderSidebar title='TRẠNG THÁI'>
+        <ExpanderSidebar title="TRẠNG THÁI">
           <ul className="nav nav-stacked">
-            <li className="active">Giày</li>
-            <li>Nữa trên</li>
-            <li>Phụ kiện</li>
+            {statuesState &&
+              statuesState.map((sta) => (
+                <li key={sta._id} className={statusQuery && (statusQuery === sta._id ? "active" : "")} >
+                  <Link to={`products?gender=${genderQuery}&cat=${catQuery}&status=${sta._id}`}>{sta.name}</Link>
+                </li>
+              ))}
           </ul>
         </ExpanderSidebar>
       </div>

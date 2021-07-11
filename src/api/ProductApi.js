@@ -2,7 +2,7 @@ import api from "./index";
 
 const getAllProduct = async () => {
     try {
-        const res = await api.get('/product/all');
+        const res = await api.get('/products/all');
         return res.data.products;
     } catch (error) {
         return error;
