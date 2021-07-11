@@ -17,8 +17,17 @@ const getProductById = async (id) => {
         return error;
     }
 }
-
+const getAllProductByQuery = async (getGender, getCat, getStatus) => {
+    try {
+        const url = `/products/all?gender=${getGender || ''}&cat=${getCat || ''}&status=${getStatus || ''}`;
+        const res = await api.get(url);
+        return res.data.products;
+    } catch (error) {
+        return error;
+    }
+}
 export {
     getAllProduct,
-    getProductById
+    getProductById,
+    getAllProductByQuery
 }

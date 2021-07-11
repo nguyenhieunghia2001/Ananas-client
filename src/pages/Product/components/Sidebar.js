@@ -8,7 +8,7 @@ import { getAllStatus } from "../../../api/StatusApi";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
-const Sidebar = () => {
+const Sidebar = ({ handleProduct }) => {
   const [categoriesState, setCategoriesState] = useState();
   const [statuesState, setStatuesState] = useState();
 
@@ -29,20 +29,34 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar__header">
         <ul className="nav nav-tabs">
-          <li className={!genderQuery || genderQuery === 'null' ? "nav-tabs-active": ""}>
-            <Link to="/products">TẤT CẢ</Link>
+          <li
+            className={
+              !genderQuery || genderQuery === "null" ? "nav-tabs-active" : ""
+            }
+          >
+            <Link to="/products" onClick={() => handleProduct()}>
+              TẤT CẢ
+            </Link>
           </li>
           <li className="type-divider"></li>
           <li
-            className={genderQuery && (genderQuery === "MALE" ? "nav-tabs-active" : "")}
+            className={
+              genderQuery && (genderQuery === "MALE" ? "nav-tabs-active" : "")
+            }
           >
-            <Link to="products?gender=MALE">NAM</Link>
+            <Link to="products?gender=MALE" onClick={() => handleProduct("MALE")}>
+              NAM
+            </Link>
           </li>
           <li className="type-divider"></li>
           <li
-            className={genderQuery && (genderQuery === "FEMALE" ? "nav-tabs-active" : "")}
+            className={
+              genderQuery && (genderQuery === "FEMALE" ? "nav-tabs-active" : "")
+            }
           >
-            <Link to="products?gender=FEMALE">NỮ</Link>
+            <Link to="products?gender=FEMALE" onClick={() => handleProduct("FEMALE")}>
+              NỮ
+            </Link>
           </li>
         </ul>
       </div>
@@ -58,8 +72,16 @@ const Sidebar = () => {
           <ul className="nav nav-stacked">
             {categoriesState &&
               categoriesState.map((cat) => (
-                <li key={cat._id} className={catQuery && (catQuery === cat._id ? "active" : "")} >
-                  <Link to={`products?gender=${genderQuery}&cat=${cat._id}&status=${statusQuery}`}>{cat.name}</Link>
+                <li
+                  key={cat._id}
+                  className={catQuery && (catQuery === cat._id ? "active" : "")}
+                >
+                  <Link
+                    to={`products?gender=${genderQuery}&cat=${cat._id}&status=${statusQuery}`}
+                    onClick={() => handleProduct(genderQuery, cat._id, statusQuery)}
+                  >
+                    {cat.name}
+                  </Link>
                 </li>
               ))}
           </ul>
@@ -71,8 +93,18 @@ const Sidebar = () => {
           <ul className="nav nav-stacked">
             {statuesState &&
               statuesState.map((sta) => (
-                <li key={sta._id} className={statusQuery && (statusQuery === sta._id ? "active" : "")} >
-                  <Link to={`products?gender=${genderQuery}&cat=${catQuery}&status=${sta._id}`}>{sta.name}</Link>
+                <li
+                  key={sta._id}
+                  className={
+                    statusQuery && (statusQuery === sta._id ? "active" : "")
+                  }
+                >
+                  <Link
+                    to={`products?gender=${genderQuery}&cat=${catQuery}&status=${sta._id}`}
+                    onClick={() => handleProduct(genderQuery, catQuery, sta._id)}
+                  >
+                    {sta.name}
+                  </Link>
                 </li>
               ))}
           </ul>
