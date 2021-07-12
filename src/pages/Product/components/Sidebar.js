@@ -74,7 +74,7 @@ const Sidebar = ({ handleProduct }) => {
       <div className="sidebar__expander">
         <ExpanderSidebar title="DÒNG SẢN PHẨM">
           <ul className="nav nav-stacked">
-            {categoriesState &&
+            {categoriesState && Array.isArray(categoriesState) &&
               categoriesState.map((cat) => (
                 <li
                   key={cat._id}
@@ -97,7 +97,7 @@ const Sidebar = ({ handleProduct }) => {
       <div className="sidebar__expander">
         <ExpanderSidebar title="TRẠNG THÁI">
           <ul className="nav nav-stacked">
-            {statuesState &&
+            {statuesState && Array.isArray(statuesState) &&
               statuesState.map((sta) => (
                 <li
                   key={sta._id}

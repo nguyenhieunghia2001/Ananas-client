@@ -12,6 +12,8 @@ import ProductDetailPage from "../../pages/ProductDetail/ProductDetailPage";
 import LovePage from "../../pages/Love/LovePage";
 import CartPage from "../../pages/Cart/CartPage";
 import CartFixed from "../Cart/CartFixed/CartFixed";
+import RegisterPage from "../../pages/Auth/RegisterPage";
+import LoginPage from "../../pages/Auth/LoginPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -33,6 +35,12 @@ function App() {
           </Route>
           <Route path="/cart" exact>
             <CartPage />
+          </Route>
+          <Route path="/auth/login" exact>
+            <LoginPage />
+          </Route>
+          <Route path="/auth/register" exact>
+            <RegisterPage />
           </Route>
           
         </Switch>

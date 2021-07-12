@@ -26,7 +26,7 @@ const HeaderTop = () => {
           </div>
           <div className="headerTop__item">
             <FaUserAlt className="icon-sm" />
-            <span>Dăng nhập</span>
+            <span><Link to="/auth/login">Đăng nhập</Link></span>
           </div>
           <div className="headerTop__item">
             <AiOutlineShoppingCart className="icon-sm" />
