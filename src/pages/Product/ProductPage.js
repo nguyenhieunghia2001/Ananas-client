@@ -4,13 +4,20 @@ import Sidebar from "./components/Sidebar";
 import { getAllProduct, getAllProductByQuery } from "../../api/ProductApi";
 import ProductList from "../../components/Product/ProductList";
 import PorductBannerImg from "../../assets/images/prd-banner.jpg";
+import EmptyImg from "../../assets/images/empty.png";
+import { useQuery } from "../../hooks";
 
 const ProductPage = () => {
   const [productsState, setproductsState] = useState([]);
+
+  const query = useQuery();
   //DID-MOUNT
   useEffect(() => {
     (async function () {
-      const products = await getAllProduct();
+      const genderQuery = query.get("gender");
+      const catQuery = query.get("cat");
+      const statusQuery = query.get("status");
+      const products = await getAllProductByQuery(genderQuery, catQuery, statusQuery);
       console.log("dis mount");
       setproductsState(products);
     })();
@@ -18,7 +25,6 @@ const ProductPage = () => {
 
   //hàm set lại sp khi filter
   const handleFilter = async (getGender, getCat, getStatus) => {
-    console.log(getGender, getCat, getStatus);
     const products = await getAllProductByQuery(getGender, getCat, getStatus);
     setproductsState(products);
   };
@@ -36,9 +42,16 @@ const ProductPage = () => {
                   <img src={PorductBannerImg} alt="prd right banner" />
                 </div>
               </Row>
-              {/* {productsState && <ProductList products={productsState}/>} */}
-              <ProductList products={productsState} />
-              {/* <ProductList /> */}
+              {productsState &&
+                Array.isArray(productsState) &&
+                (productsState.length ? (
+                  <ProductList products={productsState} />
+                ) : (
+                  <div className="empty-box">
+                    <img src={EmptyImg} alt="empty image" />
+                    <p>Không tồn tại sản phẩm</p>
+                  </div>
+                ))}
             </div>
           </Col>
         </Row>

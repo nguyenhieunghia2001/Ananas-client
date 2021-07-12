@@ -3,7 +3,7 @@ import "../style.scss";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const ExpanderSidebar = ({ title, children }) => {
-  const [toggleState, setToggleState] = useState(false);
+  const [toggleState, setToggleState] = useState(true);
   return (
     <>
       <div

@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import ProductLove from "../LoveList/ProductLove";
+import {convertStringtoMoney} from '../../utits/index'
 
 const ProductItem = ({product}) => {
   return (
@@ -23,7 +24,7 @@ const ProductItem = ({product}) => {
           <Link to={`/product/${product._id}`} >{product.name}</Link>
         </h4>
         <p className="thumbnail__caption-color">{product.colors.name}</p>
-        <h4 className="thumbnail__caption-price">{product.price} VND</h4>
+        <h4 className="thumbnail__caption-price">{convertStringtoMoney(product.price)}</h4>
       </div>
     </div>
   );

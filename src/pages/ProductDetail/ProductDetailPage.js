@@ -9,6 +9,7 @@ import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
 import { getProductById } from "../../api/ProductApi";
 import Combobox from "../../components/Properties/Combobox";
+import {convertStringtoMoney} from '../../utits/index'
 
 const PrdDetail = (props) => {
   const { id } = useParams();
@@ -54,7 +55,7 @@ const PrdDetail = (props) => {
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
-                  <h5>{productState && productState.price} VND</h5>
+                  <h5>{productState && convertStringtoMoney(productState.price)}</h5>
                 </div>
                 <div className="divider-img"></div>
                 <div className="prdDetail-des detail-space">

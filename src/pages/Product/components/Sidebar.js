@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../style.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ExpanderSidebar from "./ExpanderSidebar";
 import { getAllCategory } from "../../../api/CategoryApi";
 import { getAllStatus } from "../../../api/StatusApi";
+import { useQuery } from "../../../hooks";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
 const Sidebar = ({ handleProduct }) => {
   const [categoriesState, setCategoriesState] = useState();
   const [statuesState, setStatuesState] = useState();
@@ -44,7 +42,10 @@ const Sidebar = ({ handleProduct }) => {
               genderQuery && (genderQuery === "MALE" ? "nav-tabs-active" : "")
             }
           >
-            <Link to="products?gender=MALE" onClick={() => handleProduct("MALE")}>
+            <Link
+              to="products?gender=MALE"
+              onClick={() => handleProduct("MALE")}
+            >
               NAM
             </Link>
           </li>
@@ -54,7 +55,10 @@ const Sidebar = ({ handleProduct }) => {
               genderQuery && (genderQuery === "FEMALE" ? "nav-tabs-active" : "")
             }
           >
-            <Link to="products?gender=FEMALE" onClick={() => handleProduct("FEMALE")}>
+            <Link
+              to="products?gender=FEMALE"
+              onClick={() => handleProduct("FEMALE")}
+            >
               NỮ
             </Link>
           </li>
@@ -78,7 +82,9 @@ const Sidebar = ({ handleProduct }) => {
                 >
                   <Link
                     to={`products?gender=${genderQuery}&cat=${cat._id}&status=${statusQuery}`}
-                    onClick={() => handleProduct(genderQuery, cat._id, statusQuery)}
+                    onClick={() =>
+                      handleProduct(genderQuery, cat._id, statusQuery)
+                    }
                   >
                     {cat.name}
                   </Link>
@@ -101,7 +107,9 @@ const Sidebar = ({ handleProduct }) => {
                 >
                   <Link
                     to={`products?gender=${genderQuery}&cat=${catQuery}&status=${sta._id}`}
-                    onClick={() => handleProduct(genderQuery, catQuery, sta._id)}
+                    onClick={() =>
+                      handleProduct(genderQuery, catQuery, sta._id)
+                    }
                   >
                     {sta.name}
                   </Link>

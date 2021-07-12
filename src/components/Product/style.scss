@@ -86,3 +86,17 @@
     }
   }
 }
+
+.empty-box{
+  opacity: .6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 0;
+  p{
+    font-size: 23px;
+    color: $bg-Gray;
+    font-weight: 800;
+    padding: 15px 0;
+  }
+}

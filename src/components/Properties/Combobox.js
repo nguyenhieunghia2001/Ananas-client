@@ -19,7 +19,7 @@ const Combobox = ({type}) => {
         className="select__isSelected"
         onClick={() => setToggleState(!toggleState)}
       >
-        <span>{selectedState}</span>
+        <span>{selectedState || `XX`}</span>
         <FaChevronDown />
       </div>
       <div

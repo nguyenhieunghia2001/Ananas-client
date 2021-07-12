@@ -19,7 +19,7 @@ const getProductById = async (id) => {
 }
 const getAllProductByQuery = async (getGender, getCat, getStatus) => {
     try {
-        const url = `/products/all?gender=${getGender || ''}&cat=${getCat || ''}&status=${getStatus || ''}`;
+        const url = `/product/all?gender=${getGender || ''}&cat=${getCat || ''}&status=${getStatus || ''}`;
         const res = await api.get(url);
         return res.data.products;
     } catch (error) {
