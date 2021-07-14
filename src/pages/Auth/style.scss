@@ -26,7 +26,7 @@
         color: $bg-Orange;
       }
     }
-    p{
+    p {
       margin: 0;
     }
     .form-group {
@@ -76,6 +76,20 @@
       }
       span {
         margin: 0 8px;
+      }
+    }
+    .error-group {
+      padding: 10px;
+      background: #ffe4e482;
+      .error-item {
+        display: flex;
+        align-items: center;
+        margin: 0 15px;
+        font-size: 14px;
+        color: $bg-Orange;
+        span {
+          padding-left: 10px;
+        }
       }
     }
   }
