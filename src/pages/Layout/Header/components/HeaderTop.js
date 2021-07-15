@@ -1,13 +1,15 @@
-import React from "react";
-import { Container} from "reactstrap";
+import React, { useContext } from "react";
+import { Container } from "reactstrap";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
 import { FaUserAlt } from "react-icons/fa";
 import { AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { AccountContext } from "../../../../context/AccountContext";
 import "../header.scss";
 
 const HeaderTop = () => {
+  const { userCurrentState } = useContext(AccountContext);
   return (
     <div className="headerTop">
       <Container>
@@ -22,15 +24,24 @@ const HeaderTop = () => {
           </div>
           <div className="headerTop__item">
             <AiFillHeart className="icon-sm" />
-            <span><Link to="/love">Yêu thích</Link></span>
+            <span>
+              <Link to="/love">Yêu thích</Link>
+            </span>
           </div>
           <div className="headerTop__item">
             <FaUserAlt className="icon-sm" />
-            <span><Link to="/auth/login">Đăng nhập</Link></span>
+            <span>
+              {userCurrentState && (
+                <Link to="/auth/account">{userCurrentState}</Link>
+              )}
+              {!userCurrentState && <Link to="/auth/login">Đăng nhập</Link>}
+            </span>
           </div>
           <div className="headerTop__item">
             <AiOutlineShoppingCart className="icon-sm" />
-            <span><Link to="/cart">Giỏ hàng</Link></span>
+            <span>
+              <Link to="/cart">Giỏ hàng</Link>
+            </span>
           </div>
         </div>
       </Container>
