@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../header.scss";
 import { Container } from "reactstrap";
 import LogoSvg from "../../../../assets/images/logo.svg";
 import { FaChevronDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { AccountContext } from "../../../../context/AccountContext";
 
 const Navbar = () => {
+  const { userCurrentState } = useContext(AccountContext);
   return (
     <Container>
       <div className="nav d-flex justify-content-between align-items-center">
@@ -15,7 +17,9 @@ const Navbar = () => {
         </div>
         <div className="nav__menu d-flex">
           <div className="nav__menu-item d-flex align-items-end">
-            <h4><Link to="/products">SẢN PHẨM</Link></h4>
+            <h4>
+              <Link to="/products">SẢN PHẨM</Link>
+            </h4>
             <FaChevronDown className="icon" />
           </div>
           <div className="nav__menu-item d-flex align-items-end">
@@ -38,6 +42,26 @@ const Navbar = () => {
             </div>
           </form>
         </div>
+        {userCurrentState && (
+          <div className="nav__account">
+            <div className="nav__account-avatar">
+              {/* <img src={} alt="ảnh đại diện" /> */}
+            </div>
+            <div className="nav__account-select">
+              <h4>{userCurrentState.username}</h4>
+              <div className="dropdown">
+                <ul>
+                  <li>
+                    <Link to="">Tài khoản</Link>
+                  </li>
+                  <li>
+                    <Link to="">Đăng Xuất</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </Container>
   );

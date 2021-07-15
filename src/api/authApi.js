@@ -37,4 +37,13 @@ const loginAuth = async (email, password) => {
     });
   return result;
 };
-export { registerAuth, loginAuth };
+const checkIsAuthWithInfo = async () => {
+  try {
+    const auth = await api.get("/auth/getInfoUserCurrent");
+    return auth.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { registerAuth, loginAuth, checkIsAuthWithInfo };

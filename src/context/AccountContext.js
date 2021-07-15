@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 export const AccountContext = React.createContext();
 
 const AccountProvider= ({children}) => {
-    const [userCurrentState, setUserCurrentState]= useState();
+    const [userCurrentState, setUserCurrentState]= useState({});
     
     return (
         <AccountContext.Provider

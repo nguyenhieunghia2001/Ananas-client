@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Container } from "reactstrap";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
@@ -6,10 +6,26 @@ import { FaUserAlt } from "react-icons/fa";
 import { AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AccountContext } from "../../../../context/AccountContext";
+import {checkIsAuthWithInfo} from '../../../../api/authApi'
 import "../header.scss";
 
 const HeaderTop = () => {
-  const { userCurrentState } = useContext(AccountContext);
+  const { userCurrentState, setUserCurrentState } = useContext(AccountContext);
+  ///Dis Mount
+  console.log('header top');
+  useEffect(() => {
+    (async function(){
+      try {
+        const auth = await checkIsAuthWithInfo();
+        console.log(auth);
+        setUserCurrentState({
+          username: auth.username,
+        })
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [])
   return (
     <div className="headerTop">
       <Container>
@@ -32,7 +48,7 @@ const HeaderTop = () => {
             <FaUserAlt className="icon-sm" />
             <span>
               {userCurrentState && (
-                <Link to="/auth/account">{userCurrentState}</Link>
+                <Link to="/auth/account">{userCurrentState.username}</Link>
               )}
               {!userCurrentState && <Link to="/auth/login">Đăng nhập</Link>}
             </span>
