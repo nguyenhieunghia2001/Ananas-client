@@ -28,8 +28,8 @@ const Combobox = ({type}) => {
         }
       >
         <ul>
-          {component.map((item) => (
-            <li onClick={() => handleSelect(item)}>
+          {component.map((item, index) => (
+            <li onClick={() => handleSelect(item)} key={index}>
               <span>{item}</span>
             </li>
           ))}

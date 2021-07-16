@@ -1,0 +1,139 @@
+@import "../../assets/variable.scss";
+
+.sidebar {
+  &-account {
+    padding: 0 15px;
+  }
+  &__top {
+    display: flex;
+    align-items: center;
+    &-img {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      margin-right: 20px;
+
+      img {
+        border-radius: 50%;
+        @extend .img-cover;
+      }
+    }
+    h5 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    span {
+      font-weight: 800;
+      color: $bg-Gray-second;
+      cursor: pointer;
+    }
+  }
+  .divider-img {
+    margin: 25px 0;
+  }
+  &__options {
+    .list-parent {
+      list-style-type: none;
+
+      li {
+        padding: 10px 0;
+        .active {
+          color: $bg-Orange;
+        }
+        a {
+          text-decoration: none;
+          color: $bg-Black;
+          font-size: $font-medium;
+          span {
+            margin-left: 10px;
+          }
+          &:hover {
+            color: $bg-Orange;
+          }
+        }
+        svg {
+          font-size: $font-big;
+        }
+        .icon {
+          &-user {
+            color: rgb(66, 170, 255);
+          }
+          &-order {
+            color: rgb(255, 126, 66);
+          }
+          &-like {
+            color: rgb(255, 20, 71);
+          }
+        }
+      }
+    }
+  }
+}
+
+// content
+.account {
+  &__cont {
+    padding: 20px 30px;
+    margin: 30px 0;
+    background-color: #f1f1f1cc;
+  }
+  .inner {
+    &__top {
+      h4 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 0;
+      }
+      p {
+        margin: 0;
+      }
+    }
+    .divider-img {
+      margin: 23px 0;
+    }
+    .profile {
+      &__left {
+        .child__group {
+          padding: 10px 0;
+          p {
+            color: #959595;
+            float: right;
+            margin: 7px 0 0 0;
+          }
+          input {
+            line-height: 30px;
+            padding: 4px 10px;
+            width: 100%;
+          }
+        }
+      }
+      &__right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .image {
+          width: 130px;
+          height: 130px;
+          img {
+            border-radius: 50%;
+            @extend .img-cover;
+          }
+        }
+      }
+    }
+  }
+}
+.btn-account {
+  background-color: $bg-Orange;
+  border-radius: 0;
+  color: $bg-White;
+  font-size: $font-medium;
+  font-weight: 800;
+  padding: 7px 23px;
+  margin: 20px 0 0 0;
+  &:hover {
+    color: $bg-White;
+  }
+}
