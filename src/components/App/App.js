@@ -43,7 +43,8 @@ function App() {
           <Route path="/auth/register" exact>
             <RegisterPage />
           </Route>
-          <Route path="/account/:slug" exact>
+
+          <Route path="/account" exact>
             <AccountPage />
           </Route>
           
