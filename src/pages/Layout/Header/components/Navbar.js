@@ -42,7 +42,7 @@ const Navbar = () => {
             </div>
           </form>
         </div>
-        {userCurrentState && (
+        {Object.keys(userCurrentState).length > 0 && (
           <div className="nav__account">
             <div className="nav__account-avatar">
               {/* <img src={} alt="ảnh đại diện" /> */}

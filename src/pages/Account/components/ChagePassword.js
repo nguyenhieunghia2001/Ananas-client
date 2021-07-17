@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import MeImage from "../../../assets/images/me.jpg";
 
-const Profile = () => {
+const ChangePassword = () => {
   return (
     <div className="inner">
       <div className="inner__top">
@@ -73,4 +73,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ChangePassword;

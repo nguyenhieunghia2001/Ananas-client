@@ -33,7 +33,7 @@
     margin: 25px 0;
   }
   &__options {
-    .list-parent {
+    .list-parent, .list-child {
       list-style-type: none;
 
       li {
@@ -41,7 +41,7 @@
         .active {
           color: $bg-Orange;
         }
-        a {
+        .item-group, a {
           text-decoration: none;
           color: $bg-Black;
           font-size: $font-medium;

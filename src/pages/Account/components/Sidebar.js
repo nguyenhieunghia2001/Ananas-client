@@ -1,8 +1,8 @@
 import React from "react";
 import { AiFillHeart, AiOutlineUser } from "react-icons/ai";
 import { FaClipboardList } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import MeImage from '../../../assets/images/me.jpg';
+import { Link, NavLink } from "react-router-dom";
+import MeImage from "../../../assets/images/me.jpg";
 
 const SidebarAccount = () => {
   return (
@@ -20,22 +20,47 @@ const SidebarAccount = () => {
       <div className="sidebar__options">
         <ul className="list-parent">
           <li>
-            <Link to="" className="item-group active">
+            <div className="item-group">
               <AiOutlineUser className="icon-user" />
               <span>Tài khoản của tôi</span>
-            </Link>
+              <ul className="list-child">
+                <li>
+                  <NavLink to="/account/profile" activeClassName="active">
+                    Hồ sơ
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/account/address" activeClassName="active">
+                    Địa chỉ
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/account/password" activeClassName="active">
+                    Mật khẩu
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </li>
           <li>
-            <Link to="" className="item-group">
+            <NavLink
+              to="/account/changepass"
+              className="item-group"
+              activeClassName="active"
+            >
               <FaClipboardList className="icon-order" />
               <span>Đơn mua</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="" className="item-group">
+            <NavLink
+              to="/account/lovelist"
+              className="item-group"
+              activeClassName="active"
+            >
               <AiFillHeart className="icon-like" />
               <span>Yêu thích</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

@@ -44,7 +44,7 @@ function App() {
             <RegisterPage />
           </Route>
 
-          <Route path="/account" exact>
+          <Route path="/account">
             <AccountPage />
           </Route>
           

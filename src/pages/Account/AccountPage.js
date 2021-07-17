@@ -16,11 +16,12 @@ const AccountPage = () => {
           </Col>
           <Col lg="9">
             <div className="account__cont">
+            {/* <ChangePassword /> */}
               <Switch>
-                <Route path="/account/profile">
+                <Route path="/account/profile" exact>
                   <Profile />
                 </Route>
-                <Route path="/account/changepass">
+                <Route path="/account/password" exact>
                   <ChangePassword />
                 </Route>
               </Switch>
