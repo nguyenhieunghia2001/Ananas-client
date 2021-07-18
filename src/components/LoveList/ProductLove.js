@@ -3,16 +3,16 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { ProductLoveContext } from "../../context/ProductLoveContext";
 import { addProductLove, removeProductLove } from "../../api/loveApi";
 
-const ProductLove = ({ productId }) => {
-  console.log(productId);
-  const { productLoveState } = useContext(ProductLoveContext);
+const ProductLove = ({ product }) => {
+  const { productLoveState, setproductLoveState } =
+  useContext(ProductLoveContext);
+  console.log(product, productLoveState);
   const [toggleState, setToggleState] = useState();
 
   useEffect(() => {
     async function fetchData() {
-      console.log(1);
       Array.isArray(productLoveState) &&
-      productLoveState.some((prd) => prd._id === productId)
+      productLoveState.some((prd) => prd._id === product._id)
         ? await setToggleState(true)
         : await setToggleState(false);
     }
@@ -21,8 +21,19 @@ const ProductLove = ({ productId }) => {
 
   const handleClick = async () => {
     //nếu dang like thì xóa
-    if (toggleState) await removeProductLove(productId);
-    else await addProductLove(productId);
+    if (toggleState) {
+      await removeProductLove(product._id);
+      //xóa ra khỏi context
+      const index = productLoveState.map((prd) => prd._id).indexOf(product._id);
+      await setproductLoveState([
+        ...productLoveState.slice(0, index),
+        ...productLoveState.slice(index + 1, productLoveState.length),
+      ]);
+    } else {
+      await addProductLove(product._id);
+      //them vào context
+      await setproductLoveState([...productLoveState, product]);
+    }
 
     setToggleState(!toggleState);
   };

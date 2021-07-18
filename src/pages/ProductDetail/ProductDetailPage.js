@@ -102,7 +102,7 @@ const PrdDetail = (props) => {
                         style={{ padding: "7px 0" }}
                       >
                         {productState && (
-                          <ProductLove productId={productState?._id} />
+                          <ProductLove product={productState} />
                         )}
                       </div>
                     </Col>

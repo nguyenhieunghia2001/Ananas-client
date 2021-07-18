@@ -5,7 +5,7 @@ import PorductBannerImg from "../../../assets/images/prd-banner.jpg";
 import ProductList from "../../../components/Product/ProductList";
 import { getAllProduct } from "../../../api/ProductApi";
 
-const ProductRight = ({products}) => {
+const ProductRight = ({ products }) => {
   return (
     <div className="product-right">
       <Row>
@@ -13,9 +13,7 @@ const ProductRight = ({products}) => {
           <img src={PorductBannerImg} alt="prd right banner" />
         </div>
       </Row>
-      {/* {productsState && <ProductList products={productsState}/>} */}
-      <ProductList products={products} />
-      {/* <ProductList /> */}
+      {products && <ProductList products={products} />}
     </div>
   );
 };

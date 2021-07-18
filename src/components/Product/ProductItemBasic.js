@@ -13,7 +13,7 @@ const ProductItem = ({product}) => {
           MUA NGAY
         </Link>
         <div className="thumbnail__bg-icon">
-          <ProductLove productId={product._id} />
+          <ProductLove product={product} />
         </div>
         {/* <AiFillHeart className="thumbnail__bg-icon" /> */}
       </div>

@@ -12,7 +12,7 @@ const ProductRight = ({ products }) => {
           style={{ marginBottom: "30px", padding: "0" }}
           key={product._id}
         >
-          <ProductItemBasic product={product} />
+          {product && <ProductItemBasic product={product} />}
         </Col>
       ))}
     </Row>
