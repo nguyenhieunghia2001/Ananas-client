@@ -4,17 +4,21 @@ import { ProductLoveContext } from "../../context/ProductLoveContext";
 import { addProductLove, removeProductLove } from "../../api/loveApi";
 
 const ProductLove = ({ productId }) => {
+  console.log(productId);
   const { productLoveState } = useContext(ProductLoveContext);
-  const [toggleState, setToggleState] = useState(false);
-  // console.log(productLoveState.some((prd) => prd._id === productId), productId);
-  useEffect(
-    () =>
+  const [toggleState, setToggleState] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      console.log(1);
       Array.isArray(productLoveState) &&
       productLoveState.some((prd) => prd._id === productId)
-        ? setToggleState(true)
-        : setToggleState(false),
-    []
-  );
+        ? await setToggleState(true)
+        : await setToggleState(false);
+    }
+    fetchData();
+  }, []);
+
   const handleClick = async () => {
     //nếu dang like thì xóa
     if (toggleState) await removeProductLove(productId);

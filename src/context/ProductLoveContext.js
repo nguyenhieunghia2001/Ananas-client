@@ -8,7 +8,7 @@ const ProductLoveProvider = ({ children }) => {
   useEffect(() => {
     (async function () {
       const data = await getProductLoveByEmail();
-      setproductLoveState(data.products);
+      await setproductLoveState(data?.products);
     })();
   }, []);
   return (

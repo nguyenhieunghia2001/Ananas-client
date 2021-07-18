@@ -9,7 +9,7 @@ import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
 import { getProductById } from "../../api/ProductApi";
 import Combobox from "../../components/Properties/Combobox";
-import {convertStringtoMoney} from '../../utits/index'
+import { convertStringtoMoney } from "../../utits/index";
 
 const PrdDetail = (props) => {
   const { id } = useParams();
@@ -31,7 +31,7 @@ const PrdDetail = (props) => {
         <div className="prdDetail">
           <div className="prdDetail__header">
             <p className="prdDetail__header-name">
-              {productState && productState.name} - 
+              {productState && productState.name} -
               {productState && productState.colors.name}
             </p>
           </div>
@@ -42,20 +42,26 @@ const PrdDetail = (props) => {
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
-                  {productState && productState.name} - 
+                  {productState && productState.name} -
                   {productState && productState.colors.name}
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm: <strong> {productState && productState._id}</strong>
+                    Mã sản phẩm:{" "}
+                    <strong> {productState && productState._id}</strong>
                   </span>
                   <span>
-                    Tình trạng: <strong> {productState && productState.statuses.name}
+                    Tình trạng:{" "}
+                    <strong>
+                      {" "}
+                      {productState && productState.statuses.name}
                     </strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
-                  <h5>{productState && convertStringtoMoney(productState.price)}</h5>
+                  <h5>
+                    {productState && convertStringtoMoney(productState.price)}
+                  </h5>
                 </div>
                 <div className="divider-img"></div>
                 <div className="prdDetail-des detail-space">
@@ -69,13 +75,13 @@ const PrdDetail = (props) => {
                     <Col lg="6">
                       <h5>SIZE</h5>
                       <div className="select">
-                        <Combobox type='SIZE' />
+                        <Combobox type="SIZE" />
                       </div>
                     </Col>
                     <Col lg="6">
                       <h5>SỐ LƯỢNG</h5>
                       <div className="select">
-                        <Combobox type='QUANTITY' />
+                        <Combobox type="QUANTITY" />
                       </div>
                     </Col>
                   </Row>
@@ -95,7 +101,9 @@ const PrdDetail = (props) => {
                         className="btn btn-detail btn-detail--black"
                         style={{ padding: "7px 0" }}
                       >
-                        <ProductLove />
+                        {productState && (
+                          <ProductLove productId={productState?._id} />
+                        )}
                       </div>
                     </Col>
                     <Col lg="12">
