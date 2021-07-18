@@ -56,7 +56,7 @@ const ImageGroup = ({ images }) => {
     <div className="imggroup">
       <Row>
         <div className="imggroup__primary">
-          <img src={imgSelectedState} alt="Product image selected" />
+          <img src={imgSelectedState} alt="Foo eating a sandwich." />
         </div>
       </Row>
       <Row>

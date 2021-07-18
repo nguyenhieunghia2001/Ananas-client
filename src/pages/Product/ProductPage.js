@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import Sidebar from "./components/Sidebar";
-import { getAllProduct, getAllProductByQuery } from "../../api/ProductApi";
+import { getAllProductByQuery } from "../../api/ProductApi";
 import ProductList from "../../components/Product/ProductList";
 import PorductBannerImg from "../../assets/images/prd-banner.jpg";
 import EmptyImg from "../../assets/images/empty.png";
@@ -48,7 +48,7 @@ const ProductPage = () => {
                   <ProductList products={productsState} />
                 ) : (
                   <div className="empty-box">
-                    <img src={EmptyImg} alt="empty image" />
+                    <img src={EmptyImg} alt="Foo eating a sandwich." />
                     <p>Không tồn tại sản phẩm</p>
                   </div>
                 ))}

@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import AccountContext from "./context/AccountContext";
+import ProductLoveContext from "./context/ProductLoveContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <AccountContext>
-      <App />
+      <ProductLoveContext>
+        <App />
+      </ProductLoveContext>
     </AccountContext>
   </React.StrictMode>,
   document.getElementById("root")

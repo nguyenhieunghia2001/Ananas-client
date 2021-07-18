@@ -49,7 +49,7 @@ const HeaderTop = () => {
             <FaUserAlt className="icon-sm" />
             <span>
               {Object.keys(userCurrentState).length > 0 && (
-                <Link to="/auth/account">{userCurrentState.username}</Link>
+                <Link to="/account/profile">{userCurrentState.username}</Link>
               )}
               {!userCurrentState ||
                 (Object.keys(userCurrentState).length < 1 && (

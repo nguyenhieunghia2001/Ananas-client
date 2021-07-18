@@ -6,6 +6,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AccountContext } from "../../../../context/AccountContext";
+import MeImage from '../../../../assets/images/me.jpg';
 
 const Navbar = () => {
   const { userCurrentState } = useContext(AccountContext);
@@ -45,17 +46,17 @@ const Navbar = () => {
         {Object.keys(userCurrentState).length > 0 && (
           <div className="nav__account">
             <div className="nav__account-avatar">
-              {/* <img src={} alt="ảnh đại diện" /> */}
+              <img src={MeImage} alt="ảnh đại diện" />
             </div>
             <div className="nav__account-select">
               <h4>{userCurrentState.username}</h4>
               <div className="dropdown">
                 <ul>
                   <li>
-                    <Link to="">Tài khoản</Link>
+                    <Link to="/account/profile">Tài khoản</Link>
                   </li>
                   <li>
-                    <Link to="">Đăng Xuất</Link>
+                    <Link to="/auth/logout">Đăng Xuất</Link>
                   </li>
                 </ul>
               </div>
