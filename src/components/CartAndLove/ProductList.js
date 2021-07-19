@@ -2,11 +2,17 @@ import React from "react";
 import "./style.scss";
 import ProductItemCart from "./ProductItem";
 
-const ProductListCart = () => {
+const ProductListCart = ({ products, fromPage }) => {
   return (
     <div className="prdCart">
-      <ProductItemCart />
-      <ProductItemCart />
+      {products &&
+        Array.isArray(products) &&
+        products.map((prd, index) => (
+          <div className="prdCart__item" key={prd._id}>
+            <ProductItemCart product={prd} fromPage={fromPage} />
+            {index < products.length - 1 && <div className="divider-img"></div>}
+          </div>
+        ))}
     </div>
   );
 };

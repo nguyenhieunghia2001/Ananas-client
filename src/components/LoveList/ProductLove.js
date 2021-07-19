@@ -6,7 +6,6 @@ import { addProductLove, removeProductLove } from "../../api/loveApi";
 const ProductLove = ({ product }) => {
   const { productLoveState, setproductLoveState } =
   useContext(ProductLoveContext);
-  console.log(product, productLoveState);
   const [toggleState, setToggleState] = useState();
 
   useEffect(() => {

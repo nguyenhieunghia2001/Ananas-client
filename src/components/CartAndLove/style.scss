@@ -2,11 +2,11 @@
 
 .prdCart {
   padding: 30px 0;
-  &__item {
-    .divider-img {
-      padding: 30px 0;
-    }
+
+  .divider-img {
+    padding: 30px 0;
   }
+
   &__left {
     img {
       @extend .img-cover;

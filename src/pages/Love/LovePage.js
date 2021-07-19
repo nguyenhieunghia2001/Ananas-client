@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Row, Col } from "reactstrap";
 import ProductListCart from "../../components/CartAndLove/ProductList";
 import { Link } from "react-router-dom";
 import "./style.scss";
+import { ProductLoveContext} from '../../context/ProductLoveContext'
 
 const LovePage = () => {
+  const {productLoveState} = useContext(ProductLoveContext);
   return (
     <Container>
       <div className="love">
         <div className="love__title">
           <h4>DANH MỤC YÊU THÍCH CỦA BẠN</h4>
           <div className="divider-soild"></div>
-          <ProductListCart />
-          {/* <div className="love__empty">
+          <ProductListCart products={productLoveState} fromPage="LOVE-PAGE" />
+          {Array.isArray(productLoveState) && productLoveState.length < 1 &&
+            <div className="love__empty">
             <p>Bạn không thích sản phẩm nào!!</p>
             <Link className="btn btn-love" to="/">TIẾP TỤC MUA HÀNG</Link>
-          </div> */}
+          </div>}
           <div className="divider-soild"></div>
           <div className="love__btn-group">
             <Row>
