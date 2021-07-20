@@ -3,16 +3,19 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
-import AccountContext from "./context/AccountContext";
-import ProductLoveContext from "./context/ProductLoveContext";
+import AccountProvider from "./context/AccountContext";
+import ProductLoveProvider from "./context/ProductLoveContext";
+import CartProvider from "./context/CartContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AccountContext>
-      <ProductLoveContext>
-        <App />
-      </ProductLoveContext>
-    </AccountContext>
+    <AccountProvider>
+      <ProductLoveProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </ProductLoveProvider>
+    </AccountProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

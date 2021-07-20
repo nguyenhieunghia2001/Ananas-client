@@ -8,7 +8,7 @@ const ProductListCart = ({ products, fromPage }) => {
       {products &&
         Array.isArray(products) &&
         products.map((prd, index) => (
-          <div className="prdCart__item" key={prd._id}>
+          <div className="prdCart__item" key={prd?._id}>
             <ProductItemCart product={prd} fromPage={fromPage} />
             {index < products.length - 1 && <div className="divider-img"></div>}
           </div>

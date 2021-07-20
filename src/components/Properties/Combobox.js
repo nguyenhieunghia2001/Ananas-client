@@ -60,12 +60,12 @@ const Combobox = ({ type, values, setValue, disabled }) => {
   const checkDisabled = (item) => {
     // console.log('item', item);
     if (type === "SIZE") {
-      return values.some((v) => v?.size?.name === item) ? false : true;
+      return values?.some((v) => v?.size?.name === item) ? false : true;
     } else {
       return +values >= +item ? false : true;
     }
   };
-  console.log(disabled);
+  // console.log(disabled);
   return (
     <>
       <div
@@ -88,13 +88,6 @@ const Combobox = ({ type, values, setValue, disabled }) => {
                 type="button"
                 onClick={() => handleSelect(item)}
                 disabled={checkDisabled(item)}
-                // {
-                //   type === "SIZE" &&
-                //   values &&
-                //   values.some((v) => v?.size?.name === item)
-                //     ? false
-                //     : true
-                // }
               >
                 <span>{item}</span>
               </button>

@@ -13,6 +13,7 @@ const ProductItemCart = ({ product, fromPage }) => {
     if (fromPage && fromPage === "LOVE-PAGE") removeLove(product);
     // if(fromPage && fromPage === 'CART-PAGE')
   };
+  const productRender = fromPage === 'CART-PAGE' ? product.product : product;
   return (
     <Row>
       <Col lg="8">
@@ -20,19 +21,19 @@ const ProductItemCart = ({ product, fromPage }) => {
           <Row>
             <Col lg="3">
               <div className="prdCart__img">
-                <Link to={`/product/${product._id}`}>
-                  <img src={product.images[0]?.urlPublic} alt="prd" />
+                <Link to={`/product/${productRender._id}`}>
+                  <img src={productRender.images[0]?.urlPublic} alt="prd" />
                 </Link>
               </div>
             </Col>
             <Col lg="9">
               <div className="prdCart__info">
-                <Link to={`/product/${product._id}`}>
-                  <h5>{product.name}</h5>
+                <Link to={`/product/${productRender._id}`}>
+                  <h5>{productRender.name}</h5>
                 </Link>
                 <span>
                   <strong>Giá: </strong>
-                  {convertStringtoMoney(product.price)}
+                  {convertStringtoMoney(productRender.price)}
                 </span>
               </div>
             </Col>
@@ -41,12 +42,12 @@ const ProductItemCart = ({ product, fromPage }) => {
       </Col>
       <Col lg="4">
         <div className="prdCart__right">
-          <h5>{convertStringtoMoney(product.price)}</h5>
-          {product.stock > 0 ? <p>Còn hàng</p> : <p>Hết hàng</p>}
+          <h5>{convertStringtoMoney(productRender.price)}</h5>
+          {productRender.stock > 0 ? <p>Còn hàng</p> : <p>Hết hàng</p>}
           <button
             type="button"
             className={`btn btn-cart btn-cart--noneBackground `}
-            disabled={product.stock < 1 ? true : false}
+            disabled={productRender.stock < 1 ? true : false}
           >
             <AiOutlineShoppingCart />
           </button>

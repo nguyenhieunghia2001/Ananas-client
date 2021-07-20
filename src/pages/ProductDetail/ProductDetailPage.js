@@ -30,7 +30,7 @@ const PrdDetail = () => {
       }
     })();
   }, []);
-  console.log(valueSelectedState);
+  // console.log(valueSelectedState);
   return (
     <>
       <Container>

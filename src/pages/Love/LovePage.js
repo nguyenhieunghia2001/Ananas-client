@@ -36,12 +36,18 @@ const LovePage = () => {
           </div>
         )}
         {Array.isArray(productLoveState) && productLoveState.length < 1 && (
-          <div className="love__empty">
-            <p>Bạn không thích sản phẩm nào!!</p>
-            <Link className="btn btn-love" to="/products">
-              TIẾP TỤC MUA HÀNG
-            </Link>
-          </div>
+          <>
+            <div className="love__title">
+              <h4>DANH MỤC YÊU THÍCH CỦA BẠN</h4>
+              <div className="divider-soild"></div>
+            </div>
+            <div className="love__empty">
+              <p>Bạn không thích sản phẩm nào!!</p>
+              <Link className="btn btn-love" to="/products">
+                TIẾP TỤC MUA HÀNG
+              </Link>
+            </div>
+          </>
         )}
       </div>
     </Container>
