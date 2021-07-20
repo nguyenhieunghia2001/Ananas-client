@@ -17,7 +17,7 @@ const PrdDetail = () => {
   const [valueSelectedState, setValueSelectedState] = useState({
     SIZE: "",
     QUANTITY: "",
-    STOCK: ""
+    STOCK: "",
   });
 
   useEffect(() => {
@@ -30,6 +30,25 @@ const PrdDetail = () => {
       }
     })();
   }, []);
+  const handleSetValueSelect = (value, type) => {
+    if (type === "SIZE") {
+      const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
+      setValueSelectedState((pre) => {
+        return {
+          ...pre,
+          ["STOCK"]: sizeItem.quantity?.toString(),
+          [type]: value,
+        };
+      });
+    } else {
+      setValueSelectedState((pre) => {
+        return {
+          ...pre,
+          [type]: value,
+        };
+      });
+    }
+  };
   // console.log(valueSelectedState);
   return (
     <>
@@ -85,7 +104,7 @@ const PrdDetail = () => {
                         <Combobox
                           type="SIZE"
                           values={productState?.sizes}
-                          setValue={setValueSelectedState}
+                          setValue={handleSetValueSelect}
                           disabled={false}
                         />
                       </div>
@@ -96,8 +115,8 @@ const PrdDetail = () => {
                         <Combobox
                           type="QUANTITY"
                           values={valueSelectedState.STOCK}
-                          setValue={setValueSelectedState}
-                          disabled={valueSelectedState.STOCK ? false :  true}
+                          setValue={handleSetValueSelect}
+                          disabled={valueSelectedState.STOCK ? false : true}
                         />
                       </div>
                     </Col>

@@ -3,11 +3,12 @@ import { Container, Row, Col } from "reactstrap";
 import ProductListCart from "../../components/CartAndLove/ProductList";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { convertStringtoMoney } from "../../utits/index";
 import "./style.scss";
 
 const CartPage = () => {
   const { CartState } = useContext(CartContext);
-  console.log(CartState?.products);
+  // console.log(CartState);
   return (
     <Container>
       <div className="cart">
@@ -41,17 +42,17 @@ const CartPage = () => {
                 <div className="cart__box-price--group">
                   <div className="cart__box-price">
                     <p>Đơn hàng</p>
-                    <p>3.005.000 VND</p>
+                    <p>{convertStringtoMoney(CartState?.totalPrice())}</p>
                   </div>
                   <div className="cart__box-price">
                     <p>Giảm</p>
-                    <p>496.500 VND</p>
+                    <p>0 VND</p>
                   </div>
                 </div>
                 <div className="divider-soild"></div>
                 <div className="cart__box-totalPrice">
                   <h5>TẠM TÍNH</h5>
-                  <h5>2.508.500 VND</h5>
+                  <h5>{convertStringtoMoney(CartState?.totalPrice())}</h5>
                 </div>
                 <div className="cart__box-btn">
                   <Link to="" className="btn btn-cartBig">

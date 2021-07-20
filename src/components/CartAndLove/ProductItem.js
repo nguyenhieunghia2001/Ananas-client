@@ -6,14 +6,18 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import { convertStringtoMoney } from "../../utits/index";
 import { ProductLoveContext } from "../../context/ProductLoveContext";
+import ProductLove from "../LoveList/ProductLove";
+import { CartContext } from "../../context/CartContext";
 
 const ProductItemCart = ({ product, fromPage }) => {
   const { removeLove } = useContext(ProductLoveContext);
+  const { removeCart } = useContext(CartContext);
   const handleRemove = () => {
     if (fromPage && fromPage === "LOVE-PAGE") removeLove(product);
-    // if(fromPage && fromPage === 'CART-PAGE')
+    console.log(fromPage);
+    if (fromPage && fromPage === "CART-PAGE") removeCart(product?.product._id);
   };
-  const productRender = fromPage === 'CART-PAGE' ? product.product : product;
+  const productRender = fromPage === "CART-PAGE" ? product.product : product;
   return (
     <Row>
       <Col lg="8">
@@ -49,7 +53,11 @@ const ProductItemCart = ({ product, fromPage }) => {
             className={`btn btn-cart btn-cart--noneBackground `}
             disabled={productRender.stock < 1 ? true : false}
           >
-            <AiOutlineShoppingCart />
+            {fromPage === "CART-PAGE" ? (
+              <ProductLove product={product.product} />
+            ) : (
+              <AiOutlineShoppingCart />
+            )}
           </button>
           <button
             type="button"

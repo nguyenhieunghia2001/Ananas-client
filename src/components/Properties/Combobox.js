@@ -39,23 +39,24 @@ const Combobox = ({ type, values, setValue, disabled }) => {
     setSelectedState(item);
     setToggleState(false);
 
-    if (type === "SIZE") {
-      const sizeItem = values.find((v) => v.size?.name === item);
-      setValue((pre) => {
-        return {
-          ...pre,
-          ["STOCK"]: sizeItem.quantity?.toString(),
-          [type]: item,
-        };
-      });
-    } else {
-      setValue((pre) => {
-        return {
-          ...pre,
-          [type]: item,
-        };
-      });
-    }
+    setValue(item, type);
+    // if (type === "SIZE") {
+    //   const sizeItem = values.find((v) => v.size?.name === item);
+    //   setValue((pre) => {
+    //     return {
+    //       ...pre,
+    //       ["STOCK"]: sizeItem.quantity?.toString(),
+    //       [type]: item,
+    //     };
+    //   });
+    // } else {
+    //   setValue((pre) => {
+    //     return {
+    //       ...pre,
+    //       [type]: item,
+    //     };
+    //   });
+    // }
   };
   const checkDisabled = (item) => {
     // console.log('item', item);
