@@ -27,4 +27,7 @@
     font-size: 16px;
     padding: 8px 30px;
     border-radius: 0;
+    &:hover{
+        color: $bg-White;
+    }
 }

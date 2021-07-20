@@ -80,7 +80,7 @@ $colorFont-priary: #fff;
       &:last-child {
         border-right: none;
       }
-      h4 {
+      h4{
         margin: 0;
         font-size: 23px;
         font-weight: 800;
@@ -92,6 +92,9 @@ $colorFont-priary: #fff;
             color: $bg-Orange;
           }
         }
+      }
+      svg{
+        margin-bottom: 2px;
       }
       &:hover {
         color: $bg-Orange;

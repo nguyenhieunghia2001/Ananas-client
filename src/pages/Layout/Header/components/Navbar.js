@@ -6,7 +6,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { AccountContext } from "../../../../context/AccountContext";
-import MeImage from '../../../../assets/images/me.jpg';
+import MeImage from "../../../../assets/images/me.jpg";
 
 const Navbar = () => {
   const { userCurrentState } = useContext(AccountContext);
@@ -14,7 +14,9 @@ const Navbar = () => {
     <Container>
       <div className="nav d-flex justify-content-between align-items-center">
         <div className="nav__logo">
-          <img src={LogoSvg} alt="logo Ananas" />
+          <Link to="/">
+            <img src={LogoSvg} alt="logo Ananas" />
+          </Link>
         </div>
         <div className="nav__menu d-flex">
           <div className="nav__menu-item d-flex align-items-end">
@@ -24,11 +26,16 @@ const Navbar = () => {
             <FaChevronDown className="icon" />
           </div>
           <div className="nav__menu-item d-flex align-items-end">
-            <h4>NAM</h4>
+            <h4>
+              <Link to="/products?gender=MALE">NAM</Link>
+            </h4>
             <FaChevronDown className="icon" />
           </div>
           <div className="nav__menu-item d-flex align-items-end">
-            <h4>NỮ</h4>
+            <h4>
+              <Link to="/products?gender=FEMALE">NỮ</Link>
+            </h4>
+
             <FaChevronDown className="icon" />
           </div>
           <div className="nav__menu-item d-flex align-items-end">

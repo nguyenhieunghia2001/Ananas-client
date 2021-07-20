@@ -11,9 +11,14 @@ import { getProductById } from "../../api/ProductApi";
 import Combobox from "../../components/Properties/Combobox";
 import { convertStringtoMoney } from "../../utits/index";
 
-const PrdDetail = (props) => {
+const PrdDetail = () => {
   const { id } = useParams();
   const [productState, setProductState] = useState();
+  const [valueSelectedState, setValueSelectedState] = useState({
+    SIZE: "",
+    QUANTITY: "",
+    STOCK: ""
+  });
 
   useEffect(() => {
     (async function () {
@@ -25,6 +30,7 @@ const PrdDetail = (props) => {
       }
     })();
   }, []);
+  console.log(valueSelectedState);
   return (
     <>
       <Container>
@@ -75,13 +81,24 @@ const PrdDetail = (props) => {
                     <Col lg="6">
                       <h5>SIZE</h5>
                       <div className="select">
-                        <Combobox type="SIZE" />
+                        {/* values là các size của giày nè */}
+                        <Combobox
+                          type="SIZE"
+                          values={productState?.sizes}
+                          setValue={setValueSelectedState}
+                          disabled={false}
+                        />
                       </div>
                     </Col>
                     <Col lg="6">
                       <h5>SỐ LƯỢNG</h5>
                       <div className="select">
-                        <Combobox type="QUANTITY" />
+                        <Combobox
+                          type="QUANTITY"
+                          values={valueSelectedState.STOCK}
+                          setValue={setValueSelectedState}
+                          disabled={valueSelectedState.STOCK ? false :  true}
+                        />
                       </div>
                     </Col>
                   </Row>
@@ -101,9 +118,7 @@ const PrdDetail = (props) => {
                         className="btn btn-detail btn-detail--black"
                         style={{ padding: "7px 0" }}
                       >
-                        {productState && (
-                          <ProductLove product={productState} />
-                        )}
+                        {productState && <ProductLove product={productState} />}
                       </div>
                     </Col>
                     <Col lg="12">

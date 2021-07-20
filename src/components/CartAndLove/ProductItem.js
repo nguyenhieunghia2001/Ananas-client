@@ -20,14 +20,14 @@ const ProductItemCart = ({ product, fromPage }) => {
           <Row>
             <Col lg="3">
               <div className="prdCart__img">
-                <Link to={`/products/${product._id}`}>
+                <Link to={`/product/${product._id}`}>
                   <img src={product.images[0]?.urlPublic} alt="prd" />
                 </Link>
               </div>
             </Col>
             <Col lg="9">
               <div className="prdCart__info">
-                <Link to={`/products/${product._id}`}>
+                <Link to={`/product/${product._id}`}>
                   <h5>{product.name}</h5>
                 </Link>
                 <span>
@@ -42,10 +42,11 @@ const ProductItemCart = ({ product, fromPage }) => {
       <Col lg="4">
         <div className="prdCart__right">
           <h5>{convertStringtoMoney(product.price)}</h5>
-          <p>Còn hàng</p>
+          {product.stock > 0 ? <p>Còn hàng</p> : <p>Hết hàng</p>}
           <button
             type="button"
-            className="btn btn-cart btn-cart--noneBackground"
+            className={`btn btn-cart btn-cart--noneBackground `}
+            disabled={product.stock < 1 ? true : false}
           >
             <AiOutlineShoppingCart />
           </button>

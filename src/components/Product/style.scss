@@ -48,6 +48,14 @@
 //product list basic
 .product-right {
   .thumbnail {
+    &:hover {
+      .thumbnail__bg-img{
+        display: none;
+        &--hover{
+          display: block;
+        }
+      }
+    }
     &__bg {
       position: relative;
 
@@ -72,6 +80,12 @@
         border-radius: 0;
         transition: 0.5s;
         display: none;
+      }
+      &-img{
+        display: block;
+        &--hover{
+          display: none;
+        }
       }
     }
     &:hover {

@@ -1,23 +1,76 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import "./style.scss";
 
-const size = [35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46];
-const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const size = [
+  "35",
+  "36",
+  "37",
+  "38",
+  "39",
+  "40",
+  "41",
+  "42",
+  "43",
+  "44",
+  "45",
+  "46",
+];
+const quantity = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+];
 
-const Combobox = ({type}) => {
+const Combobox = ({ type, values, setValue, disabled }) => {
   const [toggleState, setToggleState] = useState(false);
   const [selectedState, setSelectedState] = useState();
-  const component = type && type === 'SIZE' ? size : quantity;
-
-  const handleSelect = (item) => {
+  const component = type && type === "SIZE" ? size : quantity;
+  const handleSelect = async (item) => {
     setSelectedState(item);
     setToggleState(false);
-  }
+
+    if (type === "SIZE") {
+      const sizeItem = values.find((v) => v.size?.name === item);
+      setValue((pre) => {
+        return {
+          ...pre,
+          ["STOCK"]: sizeItem.quantity?.toString(),
+          [type]: item,
+        };
+      });
+    } else {
+      setValue((pre) => {
+        return {
+          ...pre,
+          [type]: item,
+        };
+      });
+    }
+  };
+  const checkDisabled = (item) => {
+    // console.log('item', item);
+    if (type === "SIZE") {
+      return values.some((v) => v?.size?.name === item) ? false : true;
+    } else {
+      return +values >= +item ? false : true;
+    }
+  };
+  console.log(disabled);
   return (
     <>
       <div
-        className="select__isSelected"
-        onClick={() => setToggleState(!toggleState)}
+        className={`select__isSelected ${disabled ? "select-disabled" : ""}`}
+        onClick={() => !disabled && setToggleState(!toggleState)}
       >
         <span>{selectedState || `XX`}</span>
         <FaChevronDown />
@@ -29,8 +82,22 @@ const Combobox = ({type}) => {
       >
         <ul>
           {component.map((item, index) => (
-            <li onClick={() => handleSelect(item)} key={index}>
-              <span>{item}</span>
+            <li key={index}>
+              <button
+                className="btn btn-enable"
+                type="button"
+                onClick={() => handleSelect(item)}
+                disabled={checkDisabled(item)}
+                // {
+                //   type === "SIZE" &&
+                //   values &&
+                //   values.some((v) => v?.size?.name === item)
+                //     ? false
+                //     : true
+                // }
+              >
+                <span>{item}</span>
+              </button>
             </li>
           ))}
         </ul>

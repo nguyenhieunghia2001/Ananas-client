@@ -30,6 +30,10 @@
 //SELECT
 .select {
   position: relative;
+  &-disabled{
+    opacity: .5;
+    cursor: not-allowed;
+  }
   &__isSelected {
     border: 1px solid $bg-Black;
     padding: 5px 10px;
@@ -57,7 +61,10 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-
+        
+        button{
+          font-weight: 800;
+        }
         &:hover{
           background-color: #97979733;
         }
@@ -67,4 +74,7 @@
       display: block !important;
     }
   }
+}
+.btn:disabled{
+  opacity: .4;
 }
