@@ -25,7 +25,7 @@ const HeaderTop = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [setUserCurrentState]);
   console.log(userCurrentState);
   return (
     <div className="headerTop">

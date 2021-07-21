@@ -29,14 +29,14 @@ const PrdDetail = () => {
         setProductState({});
       }
     })();
-  }, []);
+  }, [id]);
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
       const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
       setValueSelectedState((pre) => {
         return {
           ...pre,
-          ["STOCK"]: sizeItem.quantity?.toString(),
+          STOCK: sizeItem.quantity?.toString(),
           [type]: value,
         };
       });
@@ -49,7 +49,6 @@ const PrdDetail = () => {
       });
     }
   };
-  // console.log(valueSelectedState);
   return (
     <>
       <Container>

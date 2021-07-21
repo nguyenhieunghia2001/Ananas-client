@@ -13,6 +13,10 @@
     }
   }
   &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
     a {
       text-decoration: none;
 
@@ -20,13 +24,12 @@
         font-size: 21px;
         color: $bg-Black;
         font-weight: 900;
-        padding-bottom: 10px;
         &:hover {
           color: $bg-Orange;
         }
       }
     }
-    span {
+    .price {
       font-size: 18px;
       color: $bg-Gray-second;
     }
@@ -58,7 +61,7 @@
         background-color: $bg-Black;
         color: $bg-White;
       }
-      .icon-love{
+      .icon-love {
         font-size: 22px;
       }
     }

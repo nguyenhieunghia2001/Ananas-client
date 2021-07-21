@@ -11,10 +11,10 @@ const cart = {
   account: "",
   products: [],
   totalPrice: function () {
-    return this.products.reduce((result, item) => result + item.total, 0);
+    return this.products?.reduce((result, item) => result + item.total(), 0);
   },
   totalQuantity: function () {
-    return this.products.reduce((result, item) => result + item.quantity, 0);
+    return this.products?.reduce((result, item) => result + item.quantity, 0);
   },
 };
 
@@ -26,8 +26,21 @@ const CartProvider = ({ children }) => {
       setCartState((pre) => {
         return {
           ...pre,
-          ["account"]: data?.account,
-          ["products"]: data?.products,
+          account: data?.account,
+          products: data?.products.reduce(
+            (result, item) => [
+              ...result,
+              {
+                product: item?.product,
+                quantity: item?.quantity,
+                size: item?.size,
+                total: function () {
+                  return this.product?.price * this.quantity || 0;
+                },
+              },
+            ],
+            []
+          ),
         };
       });
     }
@@ -57,7 +70,7 @@ const CartProvider = ({ children }) => {
     await setCartState((pre) => {
       return {
         ...pre,
-        ["products"]: [
+        products: [
           ...pre.products.slice(0, index),
           ...pre.products.slice(index + 1, pre.products.length),
         ],

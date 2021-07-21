@@ -31,42 +31,23 @@ const quantity = [
   "12",
 ];
 
-const Combobox = ({ type, values, setValue, disabled }) => {
+const Combobox = ({ type, values, setValue, disabled, selected }) => {
   const [toggleState, setToggleState] = useState(false);
-  const [selectedState, setSelectedState] = useState();
+  const [selectedState, setSelectedState] = useState(selected);
   const component = type && type === "SIZE" ? size : quantity;
   const handleSelect = async (item) => {
     setSelectedState(item);
     setToggleState(false);
 
     setValue(item, type);
-    // if (type === "SIZE") {
-    //   const sizeItem = values.find((v) => v.size?.name === item);
-    //   setValue((pre) => {
-    //     return {
-    //       ...pre,
-    //       ["STOCK"]: sizeItem.quantity?.toString(),
-    //       [type]: item,
-    //     };
-    //   });
-    // } else {
-    //   setValue((pre) => {
-    //     return {
-    //       ...pre,
-    //       [type]: item,
-    //     };
-    //   });
-    // }
   };
   const checkDisabled = (item) => {
-    // console.log('item', item);
     if (type === "SIZE") {
       return values?.some((v) => v?.size?.name === item) ? false : true;
     } else {
       return +values >= +item ? false : true;
     }
   };
-  // console.log(disabled);
   return (
     <>
       <div

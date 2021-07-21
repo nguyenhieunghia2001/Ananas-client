@@ -8,16 +8,46 @@ import { convertStringtoMoney } from "../../utits/index";
 import { ProductLoveContext } from "../../context/ProductLoveContext";
 import ProductLove from "../LoveList/ProductLove";
 import { CartContext } from "../../context/CartContext";
+import Combobox from "../Properties/Combobox";
 
 const ProductItemCart = ({ product, fromPage }) => {
   const { removeLove } = useContext(ProductLoveContext);
-  const { removeCart } = useContext(CartContext);
+  const { removeCart, CartState, setCartState } = useContext(CartContext);
   const handleRemove = () => {
     if (fromPage && fromPage === "LOVE-PAGE") removeLove(product);
     console.log(fromPage);
     if (fromPage && fromPage === "CART-PAGE") removeCart(product?.product._id);
   };
   const productRender = fromPage === "CART-PAGE" ? product.product : product;
+  const hadlleUpdateState = async (item, type) => {
+    const index = CartState.products
+      ?.map((prd) => prd.product._id)
+      .indexOf(productRender._id);
+    let update = {};
+    if (type === "SIZE") {
+      update = {
+        ...CartState.products[index],
+        size: item,
+      };
+    } else {
+      update = {
+        ...CartState.products[index],
+        quantity: +item,
+      };
+    }
+    await setCartState({
+      ...CartState,
+      products: [
+        ...CartState.products.slice(0, index),
+        { ...update },
+        ...CartState.products.slice(index + 1, CartState.products.length),
+      ],
+    });
+  };
+  const findQuantity = () => {
+    const find  = productRender?.sizes?.find((item) => +item.size?.name === +product?.size)
+    return find?.quantity || 0;
+  }
   return (
     <Row>
       <Col lg="8">
@@ -32,13 +62,33 @@ const ProductItemCart = ({ product, fromPage }) => {
             </Col>
             <Col lg="9">
               <div className="prdCart__info">
-                <Link to={`/product/${productRender._id}`}>
-                  <h5>{productRender.name}</h5>
-                </Link>
-                <span>
-                  <strong>Giá: </strong>
-                  {convertStringtoMoney(productRender.price)}
-                </span>
+                <div className="cont">
+                  <Link to={`/product/${productRender._id}`}>
+                    <h5>{productRender.name}</h5>
+                  </Link>
+                  <span className="price">
+                    <strong>Giá: </strong>
+                    {convertStringtoMoney(productRender.price)}
+                  </span>
+                </div>
+                <Row>
+                  <Col lg="4">
+                    <Combobox
+                      type="SIZE"
+                      selected={product?.size}
+                      values={product?.product?.sizes}
+                      setValue={hadlleUpdateState}
+                    />
+                  </Col>
+                  <Col lg="4">
+                    <Combobox
+                      type="QUANTITY"
+                      selected={product?.quantity}
+                      values={findQuantity()}
+                      setValue={hadlleUpdateState}
+                    />
+                  </Col>
+                </Row>
               </div>
             </Col>
           </Row>
@@ -46,7 +96,11 @@ const ProductItemCart = ({ product, fromPage }) => {
       </Col>
       <Col lg="4">
         <div className="prdCart__right">
-          <h5>{convertStringtoMoney(productRender.price)}</h5>
+          {fromPage === "LOVE-PAGE" ? (
+            <h5>{convertStringtoMoney(productRender.price)}</h5>
+          ) : (
+            <h5>{convertStringtoMoney(product.total())}</h5>
+          )}
           {productRender.stock > 0 ? <p>Còn hàng</p> : <p>Hết hàng</p>}
           <button
             type="button"

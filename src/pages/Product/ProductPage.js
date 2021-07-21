@@ -11,18 +11,21 @@ const ProductPage = () => {
   const [productsState, setproductsState] = useState([]);
 
   const query = useQuery();
+  const genderQuery = query.get("gender");
+  const catQuery = query.get("cat");
+  const statusQuery = query.get("status");
   //DID-MOUNT
   useEffect(() => {
     (async function () {
-      const genderQuery = query.get("gender");
-      const catQuery = query.get("cat");
-      const statusQuery = query.get("status");
-      const products = await getAllProductByQuery(genderQuery, catQuery, statusQuery);
-      console.log("dis mount");
+      const products = await getAllProductByQuery(
+        genderQuery,
+        catQuery,
+        statusQuery
+      );
       setproductsState(products);
     })();
-  }, []);
-
+  }, [genderQuery, catQuery, statusQuery]);
+  console.log("check loop product-page");
   //hàm set lại sp khi filter
   const handleFilter = async (getGender, getCat, getStatus) => {
     const products = await getAllProductByQuery(getGender, getCat, getStatus);

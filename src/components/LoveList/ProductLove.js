@@ -5,7 +5,7 @@ import { addProductLove, removeProductLove } from "../../api/loveApi";
 
 const ProductLove = ({ product }) => {
   const { productLoveState, setproductLoveState } =
-  useContext(ProductLoveContext);
+    useContext(ProductLoveContext);
   const [toggleState, setToggleState] = useState();
 
   useEffect(() => {
@@ -16,8 +16,8 @@ const ProductLove = ({ product }) => {
         : await setToggleState(false);
     }
     fetchData();
-  }, []);
-
+  }, [productLoveState, product._id]);
+  // console.log(1);
   const handleClick = async () => {
     //nếu dang like thì xóa
     if (toggleState) {

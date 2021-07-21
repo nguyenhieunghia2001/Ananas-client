@@ -1,7 +1,7 @@
 import React from "react";
 import { AiFillHeart, AiOutlineUser } from "react-icons/ai";
 import { FaClipboardList } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import MeImage from "../../../assets/images/me.jpg";
 
 const SidebarAccount = () => {

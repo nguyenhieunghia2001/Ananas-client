@@ -31,7 +31,8 @@ function SamplePrevArrow(props) {
 }
 const ImageGroup = ({ images }) => {
   const [imgSelectedState, setImgSelectedState] = useState();
-  useEffect(() => setImgSelectedState(images && images[0].urlPublic), []);
+  useEffect(() => setImgSelectedState(images && images[0].urlPublic), [images]);
+  console.log('chekc loop');
   const settings = {
     dots: true,
     infinite: true,
