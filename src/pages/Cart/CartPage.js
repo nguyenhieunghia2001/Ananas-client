@@ -16,7 +16,7 @@ const CartPage = () => {
           <Row>
             <Col lg="8">
               <div className="cart__title">GIỎ HÀNG</div>
-              <ProductListCart products={CartState?.products} fromPage="CART-PAGE"/>
+              <ProductListCart products={CartState?.products} fromPage="CART-PAGE" key={CartState._id}/>
               <div className="divider-soild"></div>
               <div className="love__btn-group">
                 <Row>

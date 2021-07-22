@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./style.scss";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
@@ -10,14 +10,20 @@ import ImageGroup from "./Components/ImageGroup";
 import { getProductById } from "../../api/ProductApi";
 import Combobox from "../../components/Properties/Combobox";
 import { convertStringtoMoney } from "../../utits/index";
+import { CartContext } from "../../context/CartContext";
 
 const PrdDetail = () => {
+  const { CartState, addCart } = useContext(CartContext);
   const { id } = useParams();
   const [productState, setProductState] = useState();
   const [valueSelectedState, setValueSelectedState] = useState({
     SIZE: "",
     QUANTITY: "",
     STOCK: "",
+    status: false,
+    error: function () {
+      if (!this.SIZE) return "Vui lòng chọn Size/Số lượng phù hợp";
+    },
   });
 
   useEffect(() => {
@@ -33,10 +39,16 @@ const PrdDetail = () => {
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
       const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
+      console.log(productState, CartState);
+      const productCart = CartState.products.find(
+        (p) => p.product._id === productState._id && p.size === value
+      );
+
       setValueSelectedState((pre) => {
         return {
           ...pre,
-          STOCK: sizeItem.quantity?.toString(),
+          STOCK:
+            +sizeItem.quantity - productCart?.quantity || +sizeItem.quantity,
           [type]: value,
         };
       });
@@ -47,6 +59,18 @@ const PrdDetail = () => {
           [type]: value,
         };
       });
+    }
+  };
+  const handleAddCart = () => {
+    if(valueSelectedState.error()){
+      setValueSelectedState((pre) => {
+        return {
+          ...pre,
+          status: true,
+        };
+      });
+    }else{
+
     }
   };
   return (
@@ -119,6 +143,12 @@ const PrdDetail = () => {
                         />
                       </div>
                     </Col>
+                    <div className="error-msg">
+                      <p>
+                        {valueSelectedState.error() && valueSelectedState.status &&
+                          valueSelectedState.error()}
+                      </p>
+                    </div>
                   </Row>
                 </div>
                 <div className="divider-img"></div>
@@ -127,9 +157,13 @@ const PrdDetail = () => {
                 <div className="prdDetail-btn--group detail-space">
                   <Row>
                     <Col lg="10">
-                      <Link to="" className="btn btn-detail btn-detail--black">
+                      <button
+                        type="button"
+                        className="btn btn-detail btn-detail--black"
+                        onClick={handleAddCart}
+                      >
                         THÊM VÀO GIỎ HÀNG
-                      </Link>
+                      </button>
                     </Col>
                     <Col lg="2" style={{ paddingLeft: "0" }}>
                       <div

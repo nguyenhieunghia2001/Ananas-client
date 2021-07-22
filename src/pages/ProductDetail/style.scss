@@ -60,6 +60,14 @@
           color: $bg-Black;
           font-weight: 800;
         }
+        .error-msg{
+          font-size: 23px;
+          color: $bg-Orange;
+          p{
+            padding: 20px 0 0 0;
+            margin: 0;
+          }
+        }
       }
     }
   }

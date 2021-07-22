@@ -8,17 +8,25 @@ const getAllProductCart = async () => {
         return error;
     }
 }
-const addProductCart = async (id) => {
+const addProductCart = async (id, size, quantity) => {
     try {
-        const res = await api.get(`/love/add/${id}`);
+        const res = await api.get(`/cart/add/${id}?size=${size}&quantity=${quantity}`);
         return res.data;
     } catch (error) {
         return error;
     }
 }
-const removeProductCart = async (id) => {
+const removeProductCart = async (id, size) => {
     try {
-        const res = await api.get(`/love/remove/${id}`);
+        const res = await api.get(`/cart/remove/${id}?size=${size}`);
+        return res.data;
+    } catch (error) {
+        return error;
+    }
+}
+const updateProductCart = async (id, size, quantity) => {
+    try {
+        const res = await api.get(`/cart/update/${id}?size=${size}&quantity=${quantity}`);
         return res.data;
     } catch (error) {
         return error;
@@ -28,5 +36,6 @@ const removeProductCart = async (id) => {
 export {
     getAllProductCart,
     addProductCart,
-    removeProductCart
+    removeProductCart,
+    updateProductCart
 }

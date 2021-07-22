@@ -3,6 +3,7 @@ import {
   getAllProductCart,
   addProductCart,
   removeProductCart,
+  updateProductCart,
 } from "../api/CartApi";
 //tạo context
 export const CartContext = React.createContext();
@@ -27,7 +28,7 @@ const CartProvider = ({ children }) => {
         return {
           ...pre,
           account: data?.account,
-          products: data?.products.reduce(
+          products: data?.products?.reduce(
             (result, item) => [
               ...result,
               {
@@ -46,27 +47,10 @@ const CartProvider = ({ children }) => {
     }
     fetch();
   }, []);
-  const removeCart = async (productId) => {
-    // await removeCart(productId);
-    // const index = CartState.map((prd) => prd._id).indexOf(product._id);
-    // await setCartState([
-    //   ...CartState.slice(0, index),
-    //   ...CartState.slice(index + 1, CartState.length),
-    // ]);
-    // const result =
-    // CartState.products
-    const index = CartState.products
-      ?.map((item) => item.product._id)
-      .indexOf(productId);
-
-    // const test = {
-    //   ...CartState,
-    //   ["products"]: [
-    //     ...CartState.products.slice(0, index),
-    //     ...CartState.products.slice(index + 1, CartState.products.length),
-    //   ],
-    // };
-
+  const removeCart = async (productId, size) => {
+    const index = CartState.products?.findIndex(
+      (item) => item.product._id === productId && item.size === size
+    );
     await setCartState((pre) => {
       return {
         ...pre,
@@ -76,15 +60,38 @@ const CartProvider = ({ children }) => {
         ],
       };
     });
-    // console.log("1: ", CartState);
-    // console.log("2: ", test);
+    await removeProductCart(productId, size);
   };
+  const updateQuantity = async (productId, size, quantity) => {
+    const index = CartState.products
+      ?.findIndex((prd) => prd.product._id === productId && prd.size === size)
+    let update = {
+      ...CartState.products[index],
+      quantity: +quantity,
+    };
+    await setCartState({
+      ...CartState,
+      products: [
+        ...CartState.products.slice(0, index),
+        { ...update },
+        ...CartState.products.slice(index + 1, CartState.products.length),
+      ],
+    });
+    await updateProductCart(productId, size, quantity);
+  };
+  const addCart= (productId, size, quantity) =>{
+
+
+    // await addProductCart(productId, size, quantity);
+  }
   return (
     <CartContext.Provider
       value={{
         CartState,
         setCartState,
         removeCart,
+        updateQuantity,
+        addCart
       }}
     >
       {children}
