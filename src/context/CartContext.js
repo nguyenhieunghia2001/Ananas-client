@@ -63,8 +63,9 @@ const CartProvider = ({ children }) => {
     await removeProductCart(productId, size);
   };
   const updateQuantity = async (productId, size, quantity) => {
-    const index = CartState.products
-      ?.findIndex((prd) => prd.product._id === productId && prd.size === size)
+    const index = CartState.products?.findIndex(
+      (prd) => prd.product._id === productId && prd.size === size
+    );
     let update = {
       ...CartState.products[index],
       quantity: +quantity,
@@ -79,11 +80,45 @@ const CartProvider = ({ children }) => {
     });
     await updateProductCart(productId, size, quantity);
   };
-  const addCart= (productId, size, quantity) =>{
+  const addCart = async (product, size, quantity) => {
+    const checkPrdExist = CartState.products.find(
+      (ct) => ct.product._id === product._id && ct.size === size
+    );
+    if (checkPrdExist) {
+      const index = CartState.products?.findIndex(
+        (prd) => prd.product._id === product._id && prd.size === size
+      );
+      let update = {
+        ...CartState.products[index],
+        quantity: +checkPrdExist.quantity + +quantity,
+      };
+      await setCartState({
+        ...CartState,
+        products: [
+          ...CartState.products.slice(0, index),
+          { ...update },
+          ...CartState.products.slice(index + 1, CartState.products.length),
+        ],
+      });
+    } else {
+      const objectAdd = {
+        product: product,
+        quantity: quantity,
+        size: size,
+        total: function () {
+          return this.product?.price * this.quantity || 0;
+        },
+      };
+      setCartState((pre) => {
+        return {
+          ...pre,
+          products: [...pre.products, objectAdd],
+        };
+      });
+    }
 
-
-    // await addProductCart(productId, size, quantity);
-  }
+    await addProductCart(product._id, size, quantity);
+  };
   return (
     <CartContext.Provider
       value={{
@@ -91,7 +126,7 @@ const CartProvider = ({ children }) => {
         setCartState,
         removeCart,
         updateQuantity,
-        addCart
+        addCart,
       }}
     >
       {children}

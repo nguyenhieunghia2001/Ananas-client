@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./style.scss";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import ProductLove from "../../components/LoveList/ProductLove";
@@ -22,7 +21,8 @@ const PrdDetail = () => {
     STOCK: "",
     status: false,
     error: function () {
-      if (!this.SIZE) return "Vui lòng chọn Size/Số lượng phù hợp";
+      if (!this.SIZE || !this.QUANTITY)
+        return "Vui lòng chọn Size/Số lượng phù hợp";
     },
   });
 
@@ -43,12 +43,14 @@ const PrdDetail = () => {
       const productCart = CartState.products.find(
         (p) => p.product._id === productState._id && p.size === value
       );
-
+      const stock = productCart
+        ? +sizeItem.quantity - productCart?.quantity
+        : +sizeItem.quantity;
+      console.log(stock);
       setValueSelectedState((pre) => {
         return {
           ...pre,
-          STOCK:
-            +sizeItem.quantity - productCart?.quantity || +sizeItem.quantity,
+          STOCK: stock.toString(),
           [type]: value,
         };
       });
@@ -62,15 +64,20 @@ const PrdDetail = () => {
     }
   };
   const handleAddCart = () => {
-    if(valueSelectedState.error()){
+    console.log(valueSelectedState.error());
+    if (valueSelectedState.error()) {
       setValueSelectedState((pre) => {
         return {
           ...pre,
           status: true,
         };
       });
-    }else{
-
+    } else {
+      addCart(
+        productState,
+        valueSelectedState.SIZE,
+        valueSelectedState.QUANTITY
+      );
     }
   };
   return (
@@ -145,7 +152,8 @@ const PrdDetail = () => {
                     </Col>
                     <div className="error-msg">
                       <p>
-                        {valueSelectedState.error() && valueSelectedState.status &&
+                        {valueSelectedState.error() &&
+                          valueSelectedState.status &&
                           valueSelectedState.error()}
                       </p>
                     </div>

@@ -12,7 +12,7 @@ import Combobox from "../Properties/Combobox";
 
 const ProductItemCart = ({ product, fromPage }) => {
   const { removeLove } = useContext(ProductLoveContext);
-  const { removeCart, CartState, setCartState, updateQuantity } = useContext(CartContext);
+  const { removeCart, updateQuantity } = useContext(CartContext);
   const handleRemove = () => {
     if (fromPage && fromPage === "LOVE-PAGE") removeLove(product);
     console.log(fromPage);
@@ -21,28 +21,6 @@ const ProductItemCart = ({ product, fromPage }) => {
   const productRender = fromPage === "CART-PAGE" ? product.product : product;
   const hadlleUpdateState = async (item, type) => {
     await updateQuantity(product.product._id, product.size, item)
-    // const index = CartState.products?.findIndex((prd) => prd.product._id === productRender._id && prd.size === product.size)
-    //   .indexOf(productRender._id);
-    // let update = {};
-    // if (type === "SIZE") {
-    //   update = {
-    //     ...CartState.products[index],
-    //     size: item,
-    //   };
-    // } else {
-    //   update = {
-    //     ...CartState.products[index],
-    //     quantity: +item,
-    //   };
-    // }
-    // await setCartState({
-    //   ...CartState,
-    //   products: [
-    //     ...CartState.products.slice(0, index),
-    //     { ...update },
-    //     ...CartState.products.slice(index + 1, CartState.products.length),
-    //   ],
-    // });
   };
   const findQuantity = () => {
     const find  = productRender?.sizes?.find((item) => +item.size?.name === +product?.size)

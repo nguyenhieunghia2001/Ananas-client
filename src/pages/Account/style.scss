@@ -106,6 +106,14 @@
             padding: 4px 10px;
             width: 100%;
           }
+          .is-valid{
+            input{
+              border: 1px solid $bg-Orange;
+            }
+            .valid-msg{
+              display: block;
+            }
+          }
         }
       }
       &__right {
@@ -113,6 +121,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        height: 100%;
         .image {
           width: 130px;
           height: 130px;
@@ -120,6 +129,10 @@
             border-radius: 50%;
             @extend .img-cover;
           }
+        }
+        .inputfile{
+          width: 100%;
+          margin-top: 10px;
         }
       }
     }
@@ -136,4 +149,9 @@
   &:hover {
     color: $bg-White;
   }
+}
+.valid-msg{
+  display: none;
+  color: $bg-Orange;
+  padding-top: 10px;
 }

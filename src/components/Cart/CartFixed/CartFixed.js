@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ProductList from "./ProductList";
 import "../style.scss";
+import { CartContext } from "../../../context/CartContext";
+import { convertStringtoMoney } from "../../../utits/index";
+
 const CartFixed = () => {
+  const { CartState } = useContext(CartContext);
   const [toggleOpenState, setToggleOpenState] = useState(false);
+  console.log(CartState);
   return (
     <div className="cartfixed">
       <div
         className="cartfixed__cont"
         onClick={() => setToggleOpenState(!toggleOpenState)}
       >
-        <h4>0</h4>
+        <h4>{CartState?.products?.length}</h4>
         <AiOutlineShoppingCart />
       </div>
       <div
@@ -22,15 +27,15 @@ const CartFixed = () => {
         <div className="cartfixed__shop-title">Giỏ hàng</div>
         <div className="divider-soild"></div>
         <div className="cartfixed__productList">
-          <ProductList />
+          <ProductList products={CartState?.products} />
         </div>
         <div className="divider-soild"></div>
         <div className="cartfixed__shop-price">
           <p>Tổng cộng</p>
-          <p>2.578.000 VND</p>
+          <p>{convertStringtoMoney(CartState?.totalPrice())}</p>
         </div>
         <div className="cartfixed__shop-btn">
-          <Link to="cart" className="btn btn-cart--sm">
+          <Link to="/cart" className="btn btn-cart--sm" onClick={() => setToggleOpenState(false)}>
             THANH TOÁN
           </Link>
         </div>
