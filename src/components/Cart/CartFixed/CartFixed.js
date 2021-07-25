@@ -32,7 +32,7 @@ const CartFixed = () => {
         <div className="divider-soild"></div>
         <div className="cartfixed__shop-price">
           <p>Tổng cộng</p>
-          <p>{convertStringtoMoney(CartState?.totalPrice())}</p>
+          <p>{CartState?.totalPrice() && convertStringtoMoney(CartState?.totalPrice())}</p>
         </div>
         <div className="cartfixed__shop-btn">
           <Link to="/cart" className="btn btn-cart--sm" onClick={() => setToggleOpenState(false)}>

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "reactstrap";
 import MeImage from "../../../assets/images/me.jpg";
-import { getInfo } from "../../../api/accountApi";
-import {checkPhone} from '../../../utits/regex'
+import { getInfo, updateInfo } from "../../../api/accountApi";
+import { checkPhone } from "../../../utits/regex";
+import Loading from "../../../components/Loading/LoadingSpinning";
 
 const Profile = () => {
+  const fileInput = useRef();
+  const [loadingState, setLoadingState] = useState(false);
   const [accountState, setAccountState] = useState({
     username: "",
     email: "",
@@ -40,11 +43,13 @@ const Profile = () => {
   }, []);
   const changeAvatar = (evt) => {
     const [file] = evt.target.files;
+    console.log(evt.target);
     if (file) {
       setAccountState((pre) => {
         return {
           ...pre,
           avatar: URL.createObjectURL(file),
+          // URL.createObjectURL(file),
         };
       });
     }
@@ -58,6 +63,15 @@ const Profile = () => {
       };
     });
   };
+  const handleSubmit = async () => {
+    // console.log(fileInput.current.files);
+    // const test = await updateInfo(fileInput.current.files[0]);
+    setLoadingState(true)
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 3000);
+  };
+  console.log(accountState?.avatar[0]?.file);
   return (
     <div className="inner">
       <div className="inner__top">
@@ -133,7 +147,11 @@ const Profile = () => {
                 </Row>
               </div>
               <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-account">
+                <button
+                  type="button"
+                  className="btn btn-account"
+                  onClick={handleSubmit}
+                >
                   Lưu
                 </button>
               </div>
@@ -152,11 +170,21 @@ const Profile = () => {
                 type="file"
                 id="imgInp"
                 className="inputfile"
+                ref={fileInput}
                 onChange={changeAvatar}
               />
             </div>
           </Col>
         </Row>
+      </div>
+
+      {/* //loading */}
+      <div
+        className={`inner__loading ${
+          loadingState ? "inner__loading-active" : ""
+        }`}
+      >
+        <Loading color="#FF5F17" />
       </div>
     </div>
   );
