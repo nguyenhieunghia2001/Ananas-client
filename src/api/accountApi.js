@@ -8,10 +8,12 @@ const getInfo = async () => {
     return error;
   }
 };
-const updateInfo = async (avatar) => {
+const updateInfo = async ({ avatar, username, phone }) => {
   try {
     let formData = new FormData();
     formData.append("avatar", avatar);
+    formData.append("username", username);
+    formData.append("phone", phone);
     const res = await api.post("/account/updateinfo", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -22,4 +24,22 @@ const updateInfo = async (avatar) => {
     return error;
   }
 };
-export { getInfo, updateInfo };
+const updatePass = async (oldPass, newPass, confirmPass) => {
+  try {
+    const res = await api.post(`/account/updatepass`, {
+      oldPass,
+      newPass,
+      confirmPass,
+    });
+    return {
+      status: res.status,
+      data: res.data
+    }
+  } catch (error) {
+    return {
+      status: error.response.status,
+      data: error.response.data.errors,
+    }
+  }
+};
+export { getInfo, updateInfo, updatePass };

@@ -6,26 +6,24 @@ import { FaUserAlt } from "react-icons/fa";
 import { AiFillHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { AccountContext } from "../../../../context/AccountContext";
-import { checkIsAuthWithInfo } from "../../../../api/authApi";
 import "../header.scss";
 
 const HeaderTop = () => {
-  const { userCurrentState, setUserCurrentState } = useContext(AccountContext);
+  const { userCurrentState } = useContext(AccountContext);
   ///Dis Mount
-  console.log("header top");
-  useEffect(() => {
-    (async function () {
-      try {
-        const auth = await checkIsAuthWithInfo();
-        console.log(auth);
-        auth && setUserCurrentState({
-          username: auth?.username,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [setUserCurrentState]);
+  // useEffect(() => {
+  //   (async function () {
+  //     try {
+  //       const auth = await checkIsAuthWithInfo();
+  //       console.log(auth);
+  //       auth && setUserCurrentState({
+  //         username: auth?.username,
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, [setUserCurrentState]);
   console.log(userCurrentState);
   return (
     <div className="headerTop">

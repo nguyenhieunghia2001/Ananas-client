@@ -65,13 +65,17 @@ const Profile = () => {
   };
   const handleSubmit = async () => {
     // console.log(fileInput.current.files);
-    // const test = await updateInfo(fileInput.current.files[0]);
-    setLoadingState(true)
-    setTimeout(() => {
-      setLoadingState(false);
-    }, 3000);
+    const formData = {
+      avatar: fileInput.current.files[0],
+      username: accountState.username,
+      phone: accountState.phone
+    }
+    setLoadingState(true);
+    const updateAccount = await updateInfo(formData);
+    // console.log(updateAccount);
+    setLoadingState(false);
   };
-  console.log(accountState?.avatar[0]?.file);
+  // console.log(accountState?.avatar[0]?.file);
   return (
     <div className="inner">
       <div className="inner__top">
