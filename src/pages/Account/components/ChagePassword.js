@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import MeImage from "../../../assets/images/me.jpg";
 import { updatePass } from "../../../api/accountApi";
 import Loading from "../../../components/Loading/LoadingSpinning";
+import { Link } from "react-router-dom";
 
 const form = {
   oldPass: "",
@@ -149,13 +149,8 @@ const ChangePassword = () => {
             </div>
           </Col>
           <Col lg="3">
-            <div className="profile__right">
-              <div className="image">
-                <img src={MeImage} alt="hình người dùng" />
-              </div>
-              <button type="button" className="btn">
-                Chọn ảnh
-              </button>
+            <div className="fogetPass">
+              <Link to="">Quên mật khẩu?</Link>
             </div>
           </Col>
         </Row>

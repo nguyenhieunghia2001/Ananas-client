@@ -10,7 +10,6 @@ const AccountProvider = ({ children }) => {
     (async function () {
       try {
         const auth = await checkIsAuthWithInfo();
-        console.log(auth);
         auth &&
           setUserCurrentState({
             username: auth?.username,
@@ -20,7 +19,6 @@ const AccountProvider = ({ children }) => {
       }
     })();
   }, [setUserCurrentState]);
-  console.log('check loop');
   return (
     <AccountContext.Provider
       value={{

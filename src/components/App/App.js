@@ -15,6 +15,7 @@ import CartFixed from "../Cart/CartFixed/CartFixed";
 import RegisterPage from "../../pages/Auth/RegisterPage";
 import LoginPage from "../../pages/Auth/LoginPage";
 import AccountPage from "../../pages/Account/AccountPage";
+import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -31,22 +32,15 @@ function App() {
           <Route path="/product/:id" exact>
             <ProductDetailPage />
           </Route>
-          <Route path="/love" exact>
-            <LovePage />
-          </Route>
-          <Route path="/cart" exact>
-            <CartPage />
-          </Route>
+          <PrivateRoute path="/love" exact component={LovePage} />
+          <PrivateRoute path="/cart" exact component={CartPage} />
           <Route path="/auth/login" exact>
             <LoginPage />
           </Route>
           <Route path="/auth/register" exact>
             <RegisterPage />
           </Route>
-
-          <Route path="/account">
-            <AccountPage />
-          </Route>
+          <PrivateRoute path="/account" component={AccountPage} />
           
         </Switch>
         <CartFixed />
