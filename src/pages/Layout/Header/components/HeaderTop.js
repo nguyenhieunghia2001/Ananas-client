@@ -10,20 +10,6 @@ import "../header.scss";
 
 const HeaderTop = () => {
   const { userCurrentState } = useContext(AccountContext);
-  ///Dis Mount
-  // useEffect(() => {
-  //   (async function () {
-  //     try {
-  //       const auth = await checkIsAuthWithInfo();
-  //       console.log(auth);
-  //       auth && setUserCurrentState({
-  //         username: auth?.username,
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, [setUserCurrentState]);
   console.log(userCurrentState);
   return (
     <div className="headerTop">

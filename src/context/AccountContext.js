@@ -9,10 +9,10 @@ const AccountProvider = ({ children }) => {
   useEffect(() => {
     (async function () {
       try {
-        const auth = await checkIsAuthWithInfo();
-        auth &&
+        const { data, status } = await checkIsAuthWithInfo();
+        status === 200 &&
           setUserCurrentState({
-            username: auth?.username,
+            username: data?.username,
           });
       } catch (error) {
         console.log(error);

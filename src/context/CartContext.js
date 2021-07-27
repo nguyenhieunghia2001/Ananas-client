@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   getAllProductCart,
   addProductCart,
   removeProductCart,
   updateProductCart,
 } from "../api/CartApi";
+import { AccountContext } from "./AccountContext";
 //tạo context
 export const CartContext = React.createContext();
 
@@ -21,32 +22,34 @@ const cart = {
 
 const CartProvider = ({ children }) => {
   const [CartState, setCartState] = useState(cart);
+  const { userCurrentState } = useContext(AccountContext);
   useEffect(() => {
     async function fetch() {
-      const data = await getAllProductCart();
-      setCartState((pre) => {
-        return {
-          ...pre,
-          account: data?.account,
-          products: data?.products?.reduce(
-            (result, item) => [
-              ...result,
-              {
-                product: item?.product,
-                quantity: item?.quantity,
-                size: item?.size,
-                total: function () {
-                  return this.product?.price * this.quantity || 0;
+      const { data, status } = await getAllProductCart();
+      status === 200 &&
+        setCartState((pre) => {
+          return {
+            ...pre,
+            account: data?.account,
+            products: data?.products?.reduce(
+              (result, item) => [
+                ...result,
+                {
+                  product: item?.product,
+                  quantity: item?.quantity,
+                  size: item?.size,
+                  total: function () {
+                    return this.product?.price * this.quantity || 0;
+                  },
                 },
-              },
-            ],
-            []
-          ),
-        };
-      });
+              ],
+              []
+            ),
+          };
+        });
     }
     fetch();
-  }, []);
+  }, [userCurrentState]);
   const removeCart = async (productId, size) => {
     const index = CartState.products?.findIndex(
       (item) => item.product._id === productId && item.size === size

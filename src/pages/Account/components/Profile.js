@@ -20,7 +20,6 @@ const Profile = () => {
           if (!_this.username) return "Vui lòng điền tên khách hàng";
         },
         phone: function () {
-          console.log(checkPhone.test(_this.phone));
           if (!_this.phone) return "vui lòng điền số điện thoại";
           if (!checkPhone.test(_this.phone)) return "Số điện thoại không đúng";
         },
@@ -43,13 +42,11 @@ const Profile = () => {
   }, []);
   const changeAvatar = (evt) => {
     const [file] = evt.target.files;
-    console.log(evt.target);
     if (file) {
       setAccountState((pre) => {
         return {
           ...pre,
           avatar: URL.createObjectURL(file),
-          // URL.createObjectURL(file),
         };
       });
     }
@@ -64,7 +61,6 @@ const Profile = () => {
     });
   };
   const handleSubmit = async () => {
-    // console.log(fileInput.current.files);
     const formData = {
       avatar: fileInput.current.files[0],
       username: accountState.username,
@@ -72,10 +68,8 @@ const Profile = () => {
     }
     setLoadingState(true);
     const updateAccount = await updateInfo(formData);
-    // console.log(updateAccount);
     setLoadingState(false);
   };
-  // console.log(accountState?.avatar[0]?.file);
   return (
     <div className="inner">
       <div className="inner__top">

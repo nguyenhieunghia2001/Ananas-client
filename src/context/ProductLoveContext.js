@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getProductLoveByEmail, removeProductLove } from "../api/loveApi";
+import { AccountContext } from "./AccountContext";
 //tạo context
 export const ProductLoveContext = React.createContext();
 
 const ProductLoveProvider = ({ children }) => {
   const [productLoveState, setproductLoveState] = useState();
+  const { userCurrentState } = useContext(AccountContext);
   useEffect(() => {
     (async function () {
-      const data = await getProductLoveByEmail();
-      await setproductLoveState(data?.products);
+      const { data, status } = await getProductLoveByEmail();
+      status === 200 && (await setproductLoveState(data?.products));
     })();
-  }, []);
+  }, [userCurrentState]);
   const removeLove = async (product) => {
     await removeProductLove(product._id);
     //xóa ra khỏi context
@@ -25,7 +27,7 @@ const ProductLoveProvider = ({ children }) => {
       value={{
         productLoveState,
         setproductLoveState,
-        removeLove
+        removeLove,
       }}
     >
       {children}

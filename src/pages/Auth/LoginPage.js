@@ -18,7 +18,9 @@ const HomePage = () => {
     try {
       const login = await loginAuth(formState.email, formState.password);
       if (login.status === 200) {
-        setUserCurrentState(login.data?.username)
+        setUserCurrentState({
+          username: login.data?.username
+        })
         history.push("/");
       }
       if (login.status === 422) setErrorFormState(login.data);

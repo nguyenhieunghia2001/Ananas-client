@@ -40,9 +40,14 @@ const loginAuth = async (email, password) => {
 const checkIsAuthWithInfo = async () => {
   try {
     const auth = await api.get("/auth/getInfoUserCurrent");
-    return auth.data;
+    return {
+      status: 200,
+      data: auth.data,
+    };
   } catch (error) {
-    console.log(error);
+    return {
+      status: 400,
+    };
   }
 };
 
