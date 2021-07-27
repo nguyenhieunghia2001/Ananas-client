@@ -23,6 +23,7 @@ const cart = {
 const CartProvider = ({ children }) => {
   const [CartState, setCartState] = useState(cart);
   const { userCurrentState } = useContext(AccountContext);
+  useEffect(() => console.log('account oke'),[]);
   useEffect(() => {
     async function fetch() {
       const { data, status } = await getAllProductCart();

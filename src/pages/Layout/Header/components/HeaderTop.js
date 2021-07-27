@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Container } from "reactstrap";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { GoLocation } from "react-icons/go";
@@ -10,7 +10,6 @@ import "../header.scss";
 
 const HeaderTop = () => {
   const { userCurrentState } = useContext(AccountContext);
-  console.log(userCurrentState);
   return (
     <div className="headerTop">
       <Container>

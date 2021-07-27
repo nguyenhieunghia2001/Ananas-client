@@ -6,24 +6,28 @@ export const AccountContext = React.createContext();
 
 const AccountProvider = ({ children }) => {
   const [userCurrentState, setUserCurrentState] = useState({});
+  const [loaddingUserState, setLoaddingUserState] = useState(false);
   useEffect(() => {
     (async function () {
       try {
         const { data, status } = await checkIsAuthWithInfo();
         status === 200 &&
-          setUserCurrentState({
+          (await setUserCurrentState({
             username: data?.username,
-          });
+          }));
+        setLoaddingUserState(true);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [setUserCurrentState]);
+
+  }, [loaddingUserState]);
   return (
     <AccountContext.Provider
       value={{
         userCurrentState,
         setUserCurrentState,
+        loaddingUserState,
       }}
     >
       {children}

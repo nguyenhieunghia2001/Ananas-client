@@ -67,7 +67,7 @@ const Profile = () => {
       phone: accountState.phone
     }
     setLoadingState(true);
-    const updateAccount = await updateInfo(formData);
+    await updateInfo(formData);
     setLoadingState(false);
   };
   return (

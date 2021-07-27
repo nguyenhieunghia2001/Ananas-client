@@ -8,7 +8,6 @@ import "./style.scss";
 
 const CartPage = () => {
   const { CartState } = useContext(CartContext);
-  // console.log(CartState);
   return (
     <Container>
       <div className="cart">
@@ -63,10 +62,10 @@ const CartPage = () => {
             </Col>
           </Row>
         )}
-        {/* {Array.isArray(productLoveState) && productLoveState.length < 1 && (
+        {Array.isArray(CartState.products) && CartState.products?.length < 1 && (
           <>
             <div className="love__title">
-              <h4>DANH MỤC YÊU THÍCH CỦA BẠN</h4>
+              <h4>GIỎ HÀNG CỦA BẠN</h4>
               <div className="divider-soild"></div>
             </div>
             <div className="love__empty">
@@ -76,7 +75,7 @@ const CartPage = () => {
               </Link>
             </div>
           </>
-        )} */}
+        )}
       </div>
     </Container>
   );
