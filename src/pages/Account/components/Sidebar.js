@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { AiFillHeart, AiOutlineUser } from "react-icons/ai";
 import { FaClipboardList } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import MeImage from "../../../assets/images/me.jpg";
+import { AccountContext } from "../../../context/AccountContext";
+import {CLOUDINARY_LINK} from '../../../utits/base'
 
 const SidebarAccount = () => {
+  const { userCurrentState } = useContext(AccountContext);
   return (
     <div className="sidebar sidebar-account">
       <div className="sidebar__top">
         <div className="sidebar__top-img">
-          <img src={MeImage} alt="" />
+          <img src={`${CLOUDINARY_LINK}${userCurrentState.public_Id}` || MeImage} alt="" />
         </div>
         <div>
           <h5>Nghĩa dx</h5>

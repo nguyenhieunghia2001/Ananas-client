@@ -1,18 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Col, Row } from "reactstrap";
 import MeImage from "../../../assets/images/me.jpg";
 import { getInfo, updateInfo } from "../../../api/accountApi";
 import { checkPhone } from "../../../utits/regex";
 import Loading from "../../../components/Loading/LoadingSpinning";
+import {CLOUDINARY_LINK} from '../../../utits/base'
+import { AccountContext } from "../../../context/AccountContext";
 
 const Profile = () => {
   const fileInput = useRef();
+  const { setUserCurrentState } = useContext(AccountContext);
   const [loadingState, setLoadingState] = useState(false);
   const [accountState, setAccountState] = useState({
     username: "",
     email: "",
     phone: "",
-    avatar: "",
+    public_Id: "",
+    avatarLocal: '',
     error: function () {
       const _this = this;
       return {
@@ -28,13 +32,14 @@ const Profile = () => {
   });
   useEffect(() => {
     async function fetch() {
-      const { username, phone, email } = await getInfo();
+      const { username, phone, email, public_Id } = await getInfo();
       setAccountState((pre) => {
         return {
           ...pre,
           username,
           email,
           phone,
+          public_Id
         };
       });
     }
@@ -46,7 +51,7 @@ const Profile = () => {
       setAccountState((pre) => {
         return {
           ...pre,
-          avatar: URL.createObjectURL(file),
+          avatarLocal: URL.createObjectURL(file),
         };
       });
     }
@@ -62,12 +67,20 @@ const Profile = () => {
   };
   const handleSubmit = async () => {
     const formData = {
-      avatar: fileInput.current.files[0],
+      public_Id: fileInput.current.files[0],
       username: accountState.username,
       phone: accountState.phone
     }
     setLoadingState(true);
-    await updateInfo(formData);
+    const {username, public_Id} = await updateInfo(formData);
+    console.log(username, public_Id);
+    await setUserCurrentState(pre => {
+      return {
+        ...pre,
+        username,
+        public_Id,
+      }
+    })
     setLoadingState(false);
   };
   return (
@@ -159,7 +172,7 @@ const Profile = () => {
             <div className="profile__right">
               <div className="image">
                 <img
-                  src={accountState.avatar || MeImage}
+                  src={accountState.avatarLocal || `${CLOUDINARY_LINK}${accountState.public_Id}` || MeImage}
                   alt="hình người dùng"
                 />
               </div>

@@ -8,10 +8,10 @@ const getInfo = async () => {
     return error;
   }
 };
-const updateInfo = async ({ avatar, username, phone }) => {
+const updateInfo = async ({ public_Id, username, phone }) => {
   try {
     let formData = new FormData();
-    formData.append("avatar", avatar);
+    formData.append("avatar", public_Id);
     formData.append("username", username);
     formData.append("phone", phone);
     const res = await api.post("/account/updateinfo", formData, {

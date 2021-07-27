@@ -14,6 +14,7 @@ const AccountProvider = ({ children }) => {
         status === 200 &&
           (await setUserCurrentState({
             username: data?.username,
+            public_Id: data?.public_Id,
           }));
         setLoaddingUserState(true);
       } catch (error) {

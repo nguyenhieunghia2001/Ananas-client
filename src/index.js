@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import AccountProvider from "./context/AccountContext";
 import ProductLoveProvider from "./context/ProductLoveContext";
 import CartProvider from "./context/CartContext";
+require('dotenv').config()
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,0 +1,4 @@
+const CLOUDINARY_LINK = process.env.REACT_APP_CLOUDINARY_LINK;
+export {
+    CLOUDINARY_LINK
+}
