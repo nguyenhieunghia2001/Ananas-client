@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
-import Loading from "../../../components/Loading/LoadingSpinning";
+// import Loading from "../../../components/Loading/LoadingSpinning";
 import Modal from "../../../components/Modal/Modal";
 import Add_Address from "../../../components/Profile/addAddress";
 
 const Address = () => {
-  const [loadingState, setLoadingState] = useState(false);
+  // const [loadingState, setLoadingState] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   return (
     <>
       <div className="inner">
         <div className="inner__top inner__top-between">
           <h4>Địa Chỉ Của Tôi</h4>
-          <button className="btn btn-modal">+ Thêm địa chỉ mới</button>
+          <button className="btn btn-modal" onClick={() => setIsOpenModal(true)} >+ Thêm địa chỉ mới</button>
         </div>
         <div className="divider-img" />
         <div className="inner__body profile">
@@ -116,15 +117,19 @@ const Address = () => {
         </div>
 
         {/* //loading */}
-        <div
+        {/* <div
           className={`inner__loading ${
             loadingState ? "inner__loading-active" : ""
           }`}
         >
           <Loading color="#FF5F17" />
-        </div>
+        </div> */}
       </div>
-      <Modal component={Add_Address} />
+      <Modal
+        component={Add_Address}
+        isOpenModal={isOpenModal}
+        setIsOpenModal={setIsOpenModal}
+      />
     </>
   );
 };

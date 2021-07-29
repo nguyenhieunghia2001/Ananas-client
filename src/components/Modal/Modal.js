@@ -1,12 +1,15 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import "./style.scss";
 
-const Modal = ({ component: Component}) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ component: Component, isOpenModal, setIsOpenModal }) => {
   return (
-    <div className="modal-primary">
-      <Component />
-    </div>
+    <>
+      {isOpenModal && (
+        <div className="modal-primary">
+          <Component setIsOpen={setIsOpenModal} />
+        </div>
+      )}
+    </>
   );
 };
 

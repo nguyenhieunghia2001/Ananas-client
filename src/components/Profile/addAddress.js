@@ -36,7 +36,7 @@ const reduceWard = (arr) => {
   }, []);
 };
 
-const Add_Address = () => {
+const Add_Address = ({setIsOpen}) => {
   const [isSelect, setIsSelect] = useState(false);
   const [address, setAddress] = useState({
     city: [],
@@ -173,73 +173,80 @@ const Add_Address = () => {
           <div className="group" onClick={() => setIsSelect(!isSelect)}>
             <input
               value={`${address.selectPROVINCE?.name}${
-                address.selectDISTRICT?.name && ","
-              } ${address.selectDISTRICT?.name}${
-                address.selectWARD?.name && ","
-              } ${address.selectWARD?.name}`}
+                address.selectDISTRICT?.name && ", "
+              }${address.selectDISTRICT?.name}${
+                address.selectWARD?.name && ", "
+              }${address.selectWARD?.name}`}
               placeholder="Tỉnh/ Thành phố, Quận/Huyện, Phường/Xã"
               readOnly
             />
             <span>+</span>
           </div>
-          {/* {isSelect && ( */}
-          <div className="cont">
-            <div className="header">
-              <div
-                onClick={changeTab.Province}
-                className={`header-item city ${
-                  address.active === "PROVINCE" ? "header-item--active" : ""
-                }`}
-              >
-                Tỉnh/ Thành phố
+          {isSelect && (
+            <div className="cont">
+              <div className="header">
+                <div
+                  onClick={changeTab.Province}
+                  className={`header-item city ${
+                    address.active === "PROVINCE" ? "header-item--active" : ""
+                  }`}
+                >
+                  Tỉnh/ Thành phố
+                </div>
+                <div
+                  onClick={changeTab.District}
+                  className={`header-item district ${
+                    address.active === "DISTRICT" ? "header-item--active" : ""
+                  }`}
+                >
+                  Quận/Huyện
+                </div>
+                <div
+                  onClick={changeTab.Ward}
+                  className={`header-item wards ${
+                    address.active === "WARD" ? "header-item--active" : ""
+                  }`}
+                >
+                  Phường/Xã
+                </div>
               </div>
-              <div
-                onClick={changeTab.District}
-                className={`header-item district ${
-                  address.active === "DISTRICT" ? "header-item--active" : ""
-                }`}
-              >
-                Quận/Huyện
-              </div>
-              <div
-                onClick={changeTab.Ward}
-                className={`header-item wards ${
-                  address.active === "WARD" ? "header-item--active" : ""
-                }`}
-              >
-                Phường/Xã
+              <div className="body">
+                <ul>
+                  {Array.isArray(address.valuesSelect()) &&
+                    address.valuesSelect()?.map((item) => (
+                      //option-active
+                      <li
+                        key={item?.code}
+                        onClick={() => selectOpion(item)}
+                        className={
+                          address.selectPROVINCE.code?.toString() ===
+                            item.code?.toString() ||
+                          address.selectDISTRICT.code?.toString() ===
+                            item.code?.toString() ||
+                          address.selectWARD.code?.toString() ===
+                            item.code?.toString()
+                            ? "option-active"
+                            : ""
+                        }
+                      >
+                        {item.name}
+                      </li>
+                    ))}
+                </ul>
               </div>
             </div>
-            <div className="body">
-              <ul>
-                {Array.isArray(address.valuesSelect()) &&
-                  address.valuesSelect()?.map((item) => (
-                    //option-active
-                    <li
-                      key={item?.code}
-                      onClick={() => selectOpion(item)}
-                      className={
-                        address.selectPROVINCE.code?.toString() ===
-                          item.code?.toString() ||
-                        address.selectDISTRICT.code?.toString() ===
-                          item.code?.toString() ||
-                        address.selectWARD.code?.toString() ===
-                          item.code?.toString()
-                          ? "option-active"
-                          : ""
-                      }
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          </div>
-          {/* )} */}
+          )}
+        </div>
+        <div className="address-detail">
+          <input
+            className="txtdetail"
+            name="detail"
+            placeholder="Địa chỉ cụ thể"
+          />
         </div>
       </div>
       <div className="btn__group">
-        <button className="btn btn-pre btn-sm">TRỞ LẠI</button>
+        <button className="btn btn-pre btn-sm" onClick={() => setIsOpen(false)}>TRỞ LẠI</button>
         <button className="btn btn-complete btn-sm">HOÀN THÀNH</button>
       </div>
     </div>
