@@ -1,12 +1,13 @@
 import React from "react";
 import "./style.scss";
 
-const Modal = ({ component: Component, isOpenModal, setIsOpenModal }) => {
+//isOpenModal, setIsOpenModal
+const Modal = ({ component: Component, isOpenModal, ...rest}) => {
   return (
     <>
       {isOpenModal && (
         <div className="modal-primary">
-          <Component setIsOpen={setIsOpenModal} />
+          <Component {...rest} />
         </div>
       )}
     </>

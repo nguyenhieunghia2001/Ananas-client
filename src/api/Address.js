@@ -1,3 +1,4 @@
+import api from "./index";
 import axios from "axios";
 
 const getCity = async () => {
@@ -40,4 +41,36 @@ const getWards = async (codeDistrict) => {
   }
 };
 
-export { getCity, getDistrict, getWards };
+const getAllAddress = async () => {
+  try {
+    const res = await api.get("/address/getAll");
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+const addAddress = async (formData) => {
+  try {
+    const res = await api.post("/address/add", formData);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+const removeAddress = async (id) => {
+  try {
+    const res = await axios.get(`/address/remove/${id}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export {
+  getCity,
+  getDistrict,
+  getWards,
+  addAddress,
+  getAllAddress,
+  removeAddress,
+};

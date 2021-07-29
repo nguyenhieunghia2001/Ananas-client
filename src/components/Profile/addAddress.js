@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCity, getDistrict, getWards } from "../../api/Address";
+import { getCity, getDistrict, getWards, addAddress } from "../../api/Address";
 import "./style.scss";
 
 const reduceProvince = (arr) => {
@@ -36,7 +36,7 @@ const reduceWard = (arr) => {
   }, []);
 };
 
-const Add_Address = ({setIsOpen}) => {
+const Add_Address = ({ setIsOpenModal, setAddresses }) => {
   const [isSelect, setIsSelect] = useState(false);
   const [address, setAddress] = useState({
     city: [],
@@ -64,6 +64,11 @@ const Add_Address = ({setIsOpen}) => {
         ? this.district
         : this.ward;
     },
+  });
+  const [recieverInfo, setRecieverInfo] = useState({
+    username: "",
+    phone: "",
+    detail: "",
   });
   useEffect(() => {
     async function fetch() {
@@ -126,6 +131,34 @@ const Add_Address = ({setIsOpen}) => {
       });
     },
   };
+  const onChangeInput = (e) => {
+    const inputTag = e.target;
+    setRecieverInfo((pre) => {
+      return {
+        ...pre,
+        [inputTag.name]: inputTag.value,
+      };
+    });
+  };
+  const handleSubmit = async () => {
+    const formData = {
+      province: address.selectPROVINCE,
+      district: address.selectDISTRICT,
+      ward: address.selectWARD,
+      username: recieverInfo.username,
+      phone: recieverInfo.phone,
+      detail: recieverInfo.detail
+    }
+    const addressDataApi = await addAddress(formData); 
+    setAddresses((pre) => {
+      return [
+        ...pre,
+        addressDataApi?.address,
+      ];
+    });
+
+    setIsOpenModal(false)
+  };
   const selectOpion = async ({ code, name }) => {
     let values;
     let key;
@@ -162,11 +195,12 @@ const Add_Address = ({setIsOpen}) => {
       </div>
       <div className="wrapper__cont">
         <div className="nameandphone">
-          <input className="txtname" name="name" placeholder="Họ và tên" />
+          <input className="txtname" name="username" placeholder="Họ và tên" value={recieverInfo.username} onChange={onChangeInput} />
           <input
             className="txtphone"
             name="phone"
             placeholder="Số điện thoại"
+            value={recieverInfo.phone} onChange={onChangeInput} 
           />
         </div>
         <div className="select-address">
@@ -242,12 +276,20 @@ const Add_Address = ({setIsOpen}) => {
             className="txtdetail"
             name="detail"
             placeholder="Địa chỉ cụ thể"
+            value={recieverInfo.detail} onChange={onChangeInput} 
           />
         </div>
       </div>
       <div className="btn__group">
-        <button className="btn btn-pre btn-sm" onClick={() => setIsOpen(false)}>TRỞ LẠI</button>
-        <button className="btn btn-complete btn-sm">HOÀN THÀNH</button>
+        <button
+          className="btn btn-pre btn-sm"
+          onClick={() => setIsOpenModal(false)}
+        >
+          TRỞ LẠI
+        </button>
+        <button className="btn btn-complete btn-sm" onClick={handleSubmit}>
+          HOÀN THÀNH
+        </button>
       </div>
     </div>
   );
