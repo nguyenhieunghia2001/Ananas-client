@@ -66,6 +66,8 @@
             }
           }
           .body {
+            max-height: 224px;
+            overflow-y: scroll;
             ul {
               list-style-type: none;
               padding: 0;
