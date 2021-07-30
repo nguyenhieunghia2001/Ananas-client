@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import ProductLove from "../../components/LoveList/ProductLove";
-import "./style.scss";
 import Expander from "../../components/Properties/Expander";
 import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
@@ -10,6 +9,7 @@ import { getProductById } from "../../api/ProductApi";
 import Combobox from "../../components/Properties/Combobox";
 import { convertStringtoMoney } from "../../utits/index";
 import { CartContext } from "../../context/CartContext";
+import "./style.scss";
 
 const PrdDetail = () => {
   const { CartState, addCart } = useContext(CartContext);
@@ -39,14 +39,12 @@ const PrdDetail = () => {
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
       const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
-      console.log(productState, CartState);
       const productCart = CartState.products.find(
         (p) => p.product._id === productState._id && p.size === value
       );
       const stock = productCart
         ? +sizeItem.quantity - productCart?.quantity
         : +sizeItem.quantity;
-      console.log(stock);
       setValueSelectedState((pre) => {
         return {
           ...pre,
@@ -64,7 +62,6 @@ const PrdDetail = () => {
     }
   };
   const handleAddCart = () => {
-    console.log(valueSelectedState.error());
     if (valueSelectedState.error()) {
       setValueSelectedState((pre) => {
         return {
@@ -86,8 +83,7 @@ const PrdDetail = () => {
         <div className="prdDetail">
           <div className="prdDetail__header">
             <p className="prdDetail__header-name">
-              {productState && productState.name} -
-              {productState && productState.colors.name}
+              {`${productState?.name} - ${productState?.colors?.name}`}
             </p>
           </div>
           <Row>
@@ -97,20 +93,14 @@ const PrdDetail = () => {
             <Col lg="5">
               <div className="prdDetail__right">
                 <h4 className="prdDetail-name">
-                  {productState && productState.name} -
-                  {productState && productState.colors.name}
+                  {`${productState?.name} - ${productState?.colors?.name}`}
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm:{" "}
-                    <strong> {productState && productState._id}</strong>
+                    Mã sản phẩm: <strong> {productState?._id}</strong>
                   </span>
                   <span>
-                    Tình trạng:{" "}
-                    <strong>
-                      {" "}
-                      {productState && productState.statuses.name}
-                    </strong>
+                    Tình trạng: <strong> {productState?.statuses.name}</strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
@@ -120,7 +110,7 @@ const PrdDetail = () => {
                 </div>
                 <div className="divider-img"></div>
                 <div className="prdDetail-des detail-space">
-                  <span>{productState && productState.des}</span>
+                  <span>{productState?.des}</span>
                 </div>
                 <div className="divider-img"></div>
 

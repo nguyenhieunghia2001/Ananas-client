@@ -15,7 +15,7 @@ const SidebarAccount = () => {
           <img src={`${CLOUDINARY_LINK}${userCurrentState.public_Id}` || MeImage} alt="" />
         </div>
         <div>
-          <h5>Nghĩa dx</h5>
+          <h5>{userCurrentState?.username}</h5>
           <span>Sửa hồ sơ</span>
         </div>
       </div>
