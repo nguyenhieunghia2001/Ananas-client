@@ -2,10 +2,10 @@ import React from "react";
 import "./style.scss";
 
 //isOpenModal, setIsOpenModal
-const Modal = ({ component: Component, isOpenModal, ...rest}) => {
+const Modal = ({ component: Component, isShowing, ...rest}) => {
   return (
     <>
-      {isOpenModal && (
+      {isShowing && (
         <div className="modal-primary">
           <Component {...rest} />
         </div>

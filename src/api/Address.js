@@ -57,6 +57,15 @@ const addAddress = async (formData) => {
     return error;
   }
 };
+const updateAddress = async (formData) => {
+  try {
+    const res = await api.post("/address/update", formData);
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
 const removeAddress = async (id) => {
   try {
     const res = await api.get(`/address/remove/${id}`);
@@ -81,5 +90,6 @@ export {
   addAddress,
   getAllAddress,
   removeAddress,
-  changeActive
+  changeActive,
+  updateAddress
 };

@@ -7,10 +7,13 @@ import {
   removeAddress,
   changeActive,
 } from "../../../api/Address";
+import useModal from "../../../hooks/useModal";
 
 const Address = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false);
   const [addresses, setAddresses] = useState([]);
+  const [selectValue, setSelectValue] = useState({});
+  const {isShowing, toggle} = useModal();
+
   useEffect(() => {
     async function fetch() {
       const data = await getAllAddress();
@@ -37,14 +40,19 @@ const Address = () => {
     setAddresses(newAddresses);
   };
 
+  const openModalUpdate = (addressItem) => {
+    setSelectValue(addressItem);
+    toggle();
+  }
   return (
     <>
       <div className="inner">
         <div className="inner__top inner__top-between">
           <h4>Địa Chỉ Của Tôi</h4>
+          
           <button
             className="btn btn-modal"
-            onClick={() => setIsOpenModal(true)}
+            onClick={() => openModalUpdate(null)}
           >
             + Thêm địa chỉ mới
           </button>
@@ -94,7 +102,7 @@ const Address = () => {
                   <Col lg="3">
                     <div className="right">
                       <div className="control">
-                        <div className="control-edit">Sửa</div>
+                        <div className="control-edit" onClick={() => openModalUpdate(item)}>Sửa</div>
                         {!item?.active && (
                           <div
                             className="control-remove"
@@ -121,9 +129,10 @@ const Address = () => {
       </div>
       <Modal
         component={Add_Address}
-        isOpenModal={isOpenModal}
-        setIsOpenModal={setIsOpenModal}
+        isShowing={isShowing}
+        hide={toggle}
         setAddresses={setAddresses}
+        selectValue={selectValue}
       />
     </>
   );
