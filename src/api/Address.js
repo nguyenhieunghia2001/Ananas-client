@@ -59,7 +59,15 @@ const addAddress = async (formData) => {
 };
 const removeAddress = async (id) => {
   try {
-    const res = await axios.get(`/address/remove/${id}`);
+    const res = await api.get(`/address/remove/${id}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+const changeActive = async (id) => {
+  try {
+    const res = await api.get(`/address/changeactive/${id}`);
     return res.data;
   } catch (error) {
     return error;
@@ -73,4 +81,5 @@ export {
   addAddress,
   getAllAddress,
   removeAddress,
+  changeActive
 };

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Modal from "../../../components/Modal/Modal";
 import Add_Address from "../../../components/Profile/addAddress";
-import { getAllAddress } from "../../../api/Address";
+import {
+  getAllAddress,
+  removeAddress,
+  changeActive,
+} from "../../../api/Address";
 
 const Address = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -14,6 +18,25 @@ const Address = () => {
     }
     fetch();
   }, []);
+  const handleRemove = async (id, index) => {
+    await removeAddress(id);
+
+    setAddresses([
+      ...addresses.slice(0, index),
+      ...addresses.slice(index + 1, addresses.length),
+    ]);
+  };
+  const handleChangeActive = async (id) => {
+    await changeActive(id);
+
+    const newAddresses = addresses.map((address) => {
+      if (address._id === id) address.active = true;
+      else address.active = false;
+      return address;
+    });
+    setAddresses(newAddresses);
+  };
+
   return (
     <>
       <div className="inner">
@@ -30,7 +53,7 @@ const Address = () => {
         <div className="inner__body profile">
           {Array.isArray(addresses) &&
             addresses.length > 0 &&
-            addresses.map((item) => (
+            addresses.map((item, index) => (
               <div className="address-item" key={item._id}>
                 <Row>
                   <Col lg="9">
@@ -72,11 +95,23 @@ const Address = () => {
                     <div className="right">
                       <div className="control">
                         <div className="control-edit">Sửa</div>
-                        <div className="control-remove">Xóa</div>
+                        {!item?.active && (
+                          <div
+                            className="control-remove"
+                            onClick={() => handleRemove(item._id, index)}
+                          >
+                            Xóa
+                          </div>
+                        )}
                       </div>
-                      <button className="btn btn-medium-border">
-                        Thiết Lập Mặc Định
-                      </button>
+                      {!item?.active && (
+                        <button
+                          className="btn btn-medium-border"
+                          onClick={() => handleChangeActive(item?._id)}
+                        >
+                          Thiết Lập Mặc Định
+                        </button>
+                      )}
                     </div>
                   </Col>
                 </Row>
