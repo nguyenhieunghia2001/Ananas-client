@@ -2,11 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import "./style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import {Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem";
 
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+function SampleNextArrow({ className, style, onClick }) {
   return (
     <div
       className={className}
@@ -18,23 +17,22 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+function SamplePrevArrow({ className, style, onClick }) {
   return (
     <div
       className={className}
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
-        <BsChevronLeft className="carousel-control" />
+      <BsChevronLeft className="carousel-control" />
     </div>
   );
 }
 
-const Banner = () => {
+const Banner = ({ products }) => {
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,
     speed: 200,
@@ -55,21 +53,13 @@ const Banner = () => {
   return (
     <div className="carousel-product">
       <Slider {...settings}>
-        <div style={{marginRight: "10px"}} >
-          <ProductItem />
-        </div>
-        <div style={{marginRight: "10px"}} >
-          <ProductItem />
-        </div>
-        <div style={{marginRight: "10px"}} >
-          <ProductItem />
-        </div>
-        <div style={{marginRight: "10px"}} >
-          <ProductItem />
-        </div>
-        <div style={{marginRight: "10px"}} >
-          <ProductItem />
-        </div>
+        {products &&
+          Array.isArray(products) &&
+          products.map((prd) => (
+            <div style={{ marginRight: "10px" }} key={prd?._id} >
+              <ProductItem product={prd} />
+            </div>
+          ))}
       </Slider>
     </div>
   );

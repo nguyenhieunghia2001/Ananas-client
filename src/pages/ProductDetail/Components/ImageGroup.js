@@ -35,7 +35,7 @@ const ImageGroup = ({ images }) => {
   console.log('chekc loop');
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     slidesToShow: 4,
     slidesToScroll: 1,
     speed: 200,
@@ -67,7 +67,7 @@ const ImageGroup = ({ images }) => {
               images.map((image) => (
                 <div key={image._id}>
                   <img
-                    src={image.urlPublic}
+                    src={image?.urlPublic}
                     alt="product detail item"
                     onClick={() => setImgSelectedState(image.urlPublic)}
                   />

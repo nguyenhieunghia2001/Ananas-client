@@ -6,6 +6,7 @@ import Expander from "../../components/Properties/Expander";
 import ProductSeen from "./Components/ProductSeen";
 import ImageGroup from "./Components/ImageGroup";
 import { getProductById } from "../../api/ProductApi";
+import { addProductHistory } from "../../api/historyApi";
 import Combobox from "../../components/Properties/Combobox";
 import { convertStringtoMoney } from "../../utits/index";
 import { CartContext } from "../../context/CartContext";
@@ -30,6 +31,8 @@ const PrdDetail = () => {
     (async function () {
       try {
         const product = await getProductById(id);
+        //them vao lich su da xem
+        await addProductHistory(id);
         setProductState(product);
       } catch (error) {
         setProductState({});
@@ -78,6 +81,7 @@ const PrdDetail = () => {
       );
     }
   };
+  console.log(productState);
   return (
     <>
       <Container>
