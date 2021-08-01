@@ -36,6 +36,7 @@ const PrdDetail = () => {
       }
     })();
   }, [id]);
+
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
       const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
@@ -100,7 +101,7 @@ const PrdDetail = () => {
                     Mã sản phẩm: <strong> {productState?._id}</strong>
                   </span>
                   <span>
-                    Tình trạng: <strong> {productState?.statuses.name}</strong>
+                    Tình trạng: <strong> {productState?.statuses?.name}</strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">
@@ -198,7 +199,7 @@ const PrdDetail = () => {
       </Container>
 
       <div className="divider-img"></div>
-      <ProductSeen />
+      {productState && <ProductSeen productId={productState?._id} />}
     </>
   );
 };
