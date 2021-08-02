@@ -1,7 +1,9 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Checkbox } from "antd";
+import "./component/ProductList";
 import "./style.scss";
+import ProductList from "./component/ProductList";
 
 const CheckoutPage = () => {
   return (
@@ -69,6 +71,7 @@ const CheckoutPage = () => {
                 <h3>ĐƠN HÀNG</h3>
               </div>
               <div className="divider-soild"></div>
+              <ProductList />
               <div className="divider-img"></div>
               <div className="order__info">
                 <div className="item-group">

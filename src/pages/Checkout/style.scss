@@ -86,13 +86,45 @@
     }
     .btn-checkout {
       width: 100%;
-      padding: 25px 0;
+      padding: 20px 0;
       margin-top: 10px;
       background-color: $bg-Orange;
       border-radius: 0;
       color: $bg-White;
       font-weight: 900;
       font-size: 23px;
+    }
+    .product {
+      &-list {
+        padding: 10px 0;
+      }
+      &-item {
+        margin: 15px 0;
+        // display: flex;
+        // img {
+        //   width: 40px;
+        //   height: 40px;
+        // }
+        .top {
+          font-size: 18px;
+          color: #808080;
+          .name {
+            font-weight: 800;
+            width: 60%;
+          }
+          .price {
+            float: right;
+          }
+        }
+        .bottom {
+          display: flex;
+          font-size: 18px;
+          color: #808080;
+          .size {
+            width: 60%;
+          }
+        }
+      }
     }
   }
 }
