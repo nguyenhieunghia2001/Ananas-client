@@ -81,7 +81,6 @@ const PrdDetail = () => {
       );
     }
   };
-  console.log(productState);
   return (
     <>
       <Container>
@@ -203,7 +202,7 @@ const PrdDetail = () => {
       </Container>
 
       <div className="divider-img"></div>
-      {productState && <ProductSeen productId={productState?._id} />}
+      {productState && <ProductSeen />}
     </>
   );
 };

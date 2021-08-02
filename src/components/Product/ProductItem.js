@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { convertStringtoMoney } from "../../utits";
 
 const ProductItem = ({ product }) => {
-  console.log(product);
   return (
     <div className="thumbnail">
       <div className="thumbnail__img">
-        <img src={productImg} alt="sản phẩm" />
+        <img src={product?.images[0]?.urlPublic} alt="sản phẩm" />
       </div>
       <div className="thumbnail__caption">
         <h4 className="thumbnail__caption-name">

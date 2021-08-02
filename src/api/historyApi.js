@@ -15,7 +15,6 @@ const getProductByEmail = async () => {
 };
 const addProductHistory = async (productId) => {
   try {
-    console.log(productId);
     const res = await api.get(`/history/add?productId=${productId}`);
     return res.data;
   } catch (error) {

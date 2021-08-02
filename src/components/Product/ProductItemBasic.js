@@ -8,8 +8,8 @@ const ProductItem = ({product}) => {
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
-        <img src={product.images[0].urlPublic} alt="sản phẩm" className='thumbnail__bg-img' />
-        <img src={product.images[1].urlPublic} alt="sản phẩm" className='thumbnail__bg-img--hover' />
+        <img src={product?.images[0]?.urlPublic} alt="sản phẩm" className='thumbnail__bg-img' />
+        <img src={product?.images[1]?.urlPublic} alt="sản phẩm" className='thumbnail__bg-img--hover' />
         <Link to={`/product/${product._id}`} className="btn btn-thumbnail">
           MUA NGAY
         </Link>

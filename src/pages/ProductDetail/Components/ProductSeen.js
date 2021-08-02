@@ -4,7 +4,7 @@ import ProductCarousel from "../../../components/Product/ProductCarousel";
 import { getProductByEmail } from "../../../api/historyApi";
 import "../style.scss";
 
-const ProductSeen = ({ productId }) => {
+const ProductSeen = () => {
   const [history, setHistory] = useState();
   useEffect(() => {
     async function fetch() {
