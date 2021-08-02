@@ -54,7 +54,7 @@ const CartPage = () => {
                   <h5>{convertStringtoMoney(CartState?.totalPrice())}</h5>
                 </div>
                 <div className="cart__box-btn">
-                  <Link to="" className="btn btn-cartBig">
+                  <Link to="/checkout" className="btn btn-cartBig">
                     TIẾP TỤC THANH TOÁN
                   </Link>
                 </div>

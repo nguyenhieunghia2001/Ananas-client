@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //caousel slick
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+//ant design 
+import 'antd/dist/antd.css';
 
 import "./App.scss";
 import "./lib.scss";
@@ -15,6 +17,7 @@ import CartFixed from "../Cart/CartFixed/CartFixed";
 import RegisterPage from "../../pages/Auth/RegisterPage";
 import LoginPage from "../../pages/Auth/LoginPage";
 import AccountPage from "../../pages/Account/AccountPage";
+import CheckoutPage from "../../pages/Checkout/ChecckoutPage";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -41,7 +44,10 @@ function App() {
             <RegisterPage />
           </Route>
           <PrivateRoute path="/account" component={AccountPage} />
-          
+          <Route path="/checkout" exact>
+            <CheckoutPage />
+          </Route>
+
         </Switch>
         <CartFixed />
       </Layout>

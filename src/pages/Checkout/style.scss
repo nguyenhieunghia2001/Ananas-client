@@ -1,0 +1,102 @@
+@import "../../assets/variable.scss";
+
+.checkout {
+  margin: 30px 0;
+  &__left {
+    .header {
+      background-color: #f1f1f1;
+      margin-bottom: 20px;
+      p {
+        padding: 5px 20px;
+        margin: 0;
+        font-weight: 900;
+        font-size: $font-big;
+      }
+    }
+    .orderForm {
+      padding: 0 15px 20px;
+
+      .input-group {
+        padding: 12px 0;
+        input {
+          width: 100%;
+          border: 1px solid $bg-Gray-second;
+          border-radius: 2px;
+          font-size: 16px;
+          line-height: 27px;
+          padding: 5px 15px;
+          &:focus {
+            border: 1px solid $bg-Black;
+          }
+        }
+      }
+    }
+    .shipping {
+      &__info {
+        margin: 0 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        .charge {
+          margin: 0;
+          font-size: 20px;
+          color: $bg-Black;
+          font-weight: 900;
+        }
+      }
+    }
+    .payment {
+      &__info {
+        margin: 0 15px 20px;
+        .check-group {
+          padding: 10px 0;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  &__right {
+    background-color: #f1f1f1;
+    padding: 20px;
+    .header h3 {
+      font-size: $font-big;
+      color: $bg-Black;
+      font-weight: 800;
+    }
+    .order__info {
+      padding: 20px 0;
+      .item-group {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        padding: 3px 0;
+        .title {
+          font-weight: 700;
+        }
+      }
+    }
+    .totalPrice {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 0;
+      font-size: 20px;
+      font-weight: 800;
+      .content {
+        color: $bg-Orange;
+      }
+    }
+    .btn-checkout {
+      width: 100%;
+      padding: 25px 0;
+      margin-top: 10px;
+      background-color: $bg-Orange;
+      border-radius: 0;
+      color: $bg-White;
+      font-weight: 900;
+      font-size: 23px;
+    }
+  }
+}
+.ant-checkbox + span {
+  padding-left: 30px !important;
+  font-size: 16px !important;
+}
