@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Checkbox } from "antd";
+import { Checkbox, Radio } from "antd";
 import "./component/ProductList";
 import "./style.scss";
 import ProductList from "./component/ProductList";
+import { getAllAddress, getAddressDefault } from "../../api/Address";
 
 const CheckoutPage = () => {
+  const [radioAddress, setRadioAddress] = useState();
+  const [showChooseAddress, setshowChooseAddress] = useState(false);
+  const [addressSelected, setAddressSelctet] = useState();
+  const [addresses, setAddresses] = useState();
+
+  useEffect(() => {
+    async function fetch() {
+      const { addresses } = await getAllAddress();
+      const { addressDefault } = await getAddressDefault();
+      setAddresses(addresses);
+      setAddressSelctet(addressDefault);
+    }
+    fetch();
+  }, []);
+  const onChange = (e) => {
+    setRadioAddress(e.target.value);
+  };
+  const chooseAddress = () => {
+    const addressFind = addresses?.find(
+      (address) => address._id === radioAddress
+    );
+    setAddressSelctet(addressFind);
+    setshowChooseAddress(false);
+  };
+  const closrChooseAddress = () => {
+    setRadioAddress();
+    setshowChooseAddress(false);
+  };
+ 
   return (
     <Container>
       <div className="checkout">
@@ -14,19 +44,97 @@ const CheckoutPage = () => {
             <div className="checkout__left">
               <div className="header">
                 <p>THÔNG TIN GIAO HÀNG</p>
+                <span onClick={() => setshowChooseAddress(true)}>Thay đổi</span>
               </div>
+              {showChooseAddress && (
+                <div className="choose-address">
+                  <Radio.Group
+                    onChange={onChange}
+                    value={radioAddress || addressSelected?._id}
+                  >
+                    <ul>
+                      {addresses &&
+                        Array.isArray(addresses) &&
+                        addresses.map((address) => (
+                          <li key={address?._id}>
+                            <div className="address-item">
+                              <Radio value={address?._id}>
+                                <div className="account-info">
+                                  <span className="name">
+                                    {address?.username}
+                                  </span>
+                                  <span className="phone">
+                                    {address?.phone}
+                                  </span>
+                                </div>
+                                <div className="address-full">
+                                  {`${address?.ward?.name}, ${address?.district?.name}, ${address?.province?.name}`}
+                                </div>
+                              </Radio>
+                            </div>
+                          </li>
+                        ))}
+
+                      <li>
+                        <button
+                          className="btn btn-address btn-address--finish"
+                          onClick={chooseAddress}
+                        >
+                          Hoàn thành
+                        </button>
+                        <button
+                          className="btn btn-address btn-address--close"
+                          onClick={closrChooseAddress}
+                        >
+                          Đóng
+                        </button>
+                      </li>
+                    </ul>
+                  </Radio.Group>
+                </div>
+              )}
+
               <form className="orderForm">
                 <div className="input-group">
-                  <input type="text" name="username" placeholder="HỌ TÊN" />
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Họ tên"
+                    defaultValue={addressSelected?.username}
+                    readOnly
+                  />
+                  {/* <div className="error-msg">Vui lòng nhập họ tên</div> */}
                 </div>
                 <div className="input-group">
-                  <input type="text" name="phone" placeholder="SỐ ĐIỆN THOẠI" />
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Số điện thoại"
+                    defaultValue={addressSelected?.phone}
+                    readOnly
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" name="email" placeholder="EMAIL" />
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    defaultValue={addressSelected?.email}
+                    readOnly
+                  />
                 </div>
                 <div className="input-group">
-                  <input type="text" name="address" placeholder="ĐỊA CHỈ" />
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Địa chỉ"
+                    // defaultValue={addressSelected && `${addressSelected?.ward?.name}, ${addressSelected?.district?.name}, ${addressSelected?.province?.name}`}
+                    defaultValue={
+                      addressSelected &&
+                      `${addressSelected?.ward?.name}, ${addressSelected?.district?.name}, ${addressSelected?.province?.name}`
+                    }
+                    readOnly
+                  />
                 </div>
                 <div className="input-group">
                   <Checkbox>
@@ -100,6 +208,11 @@ const CheckoutPage = () => {
             </div>
           </Col>
         </Row>
+        {/* <Modal
+          component={ModalContenAddress}
+          isShowing={isShowing}
+          hide={toggle}
+        /> */}
       </div>
     </Container>
   );

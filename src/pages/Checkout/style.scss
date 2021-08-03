@@ -6,11 +6,56 @@
     .header {
       background-color: #f1f1f1;
       margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       p {
         padding: 5px 20px;
         margin: 0;
         font-weight: 900;
         font-size: $font-big;
+      }
+      span {
+        color: $bg-Orange;
+        font-size: 16px;
+        padding-right: 15px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .choose-address {
+      ul {
+        padding: 0 0 0 15px;
+        li {
+          padding: 5px 0;
+          .address-item {
+            .account-info {
+              display: flex;
+              color: $bg-Black;
+              font-size: 16px;
+              font-weight: 800;
+              .phone {
+                margin-left: 25px;
+              }
+            }
+            .address-full {
+              font-size: 16px;
+            }
+          }
+          .btn-address {
+            border-radius: 2;
+            margin-left: 20px;
+            &--finish {
+              background-color: $bg-Orange;
+              color: $bg-White;
+            }
+            &--close {
+              border: 1px solid $bg-Gray-second;
+              margin-left: 20px;
+              
+            }
+          }
+        }
       }
     }
     .orderForm {

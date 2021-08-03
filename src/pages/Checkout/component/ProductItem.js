@@ -1,11 +1,10 @@
 import React from "react";
-import ImgTest from "../../../assets/images/product/1.jpg";
 
 const ProductItem = ({ product }) => {
   return (
     <div className="product-item">
       {/* <img src={ImgTest} alt="img" /> */}
-      <div classNam="info">
+      <div className="info">
         <div className="top">
           <span className="name">Basas Simple Life NE - Low Top - White</span>
           <span className="price">490.000 VND</span>

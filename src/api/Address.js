@@ -49,6 +49,14 @@ const getAllAddress = async () => {
     return error;
   }
 };
+const getAddressDefault = async () => {
+  try {
+    const res = await api.get("/address/getaddressdefault");
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
 const addAddress = async (formData) => {
   try {
     const res = await api.post("/address/add", formData);
@@ -91,5 +99,6 @@ export {
   getAllAddress,
   removeAddress,
   changeActive,
-  updateAddress
+  updateAddress,
+  getAddressDefault
 };
