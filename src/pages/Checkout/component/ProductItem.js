@@ -1,4 +1,5 @@
 import React from "react";
+import {convertStringtoMoney} from '../../../utits/index'
 
 const ProductItem = ({ product }) => {
   return (
@@ -6,12 +7,12 @@ const ProductItem = ({ product }) => {
       {/* <img src={ImgTest} alt="img" /> */}
       <div className="info">
         <div className="top">
-          <span className="name">Basas Simple Life NE - Low Top - White</span>
-          <span className="price">490.000 VND</span>
+          <span className="name">{product?.product?.name}</span>
+          <span className="price">{product && convertStringtoMoney(product?.total())}</span>
         </div>
         <div className="bottom">
-          <div className="size">Size: 35</div>
-          <span className="quantity">x 1</span>
+          <div className="size">Size: {product?.size}</div>
+          <span className="quantity">x {product?.quantity}</span>
         </div>
       </div>
     </div>

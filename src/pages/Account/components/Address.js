@@ -17,7 +17,7 @@ const Address = () => {
   useEffect(() => {
     async function fetch() {
       const data = await getAllAddress();
-      setAddresses(data?.address);
+      setAddresses(data?.addresses);
     }
     fetch();
   }, []);

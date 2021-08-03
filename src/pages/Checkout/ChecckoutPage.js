@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { Checkbox, Radio } from "antd";
 import "./component/ProductList";
 import "./style.scss";
 import ProductList from "./component/ProductList";
 import { getAllAddress, getAddressDefault } from "../../api/Address";
+import { CartContext } from "../../context/CartContext";
+import { convertStringtoMoney } from "../../utits/index";
 
 const CheckoutPage = () => {
   const [radioAddress, setRadioAddress] = useState();
   const [showChooseAddress, setshowChooseAddress] = useState(false);
   const [addressSelected, setAddressSelctet] = useState();
   const [addresses, setAddresses] = useState();
+  const { CartState } = useContext(CartContext);
 
   useEffect(() => {
     async function fetch() {
@@ -35,7 +38,6 @@ const CheckoutPage = () => {
     setRadioAddress();
     setshowChooseAddress(false);
   };
- 
   return (
     <Container>
       <div className="checkout">
@@ -128,7 +130,6 @@ const CheckoutPage = () => {
                     type="text"
                     name="address"
                     placeholder="Địa chỉ"
-                    // defaultValue={addressSelected && `${addressSelected?.ward?.name}, ${addressSelected?.district?.name}, ${addressSelected?.province?.name}`}
                     defaultValue={
                       addressSelected &&
                       `${addressSelected?.ward?.name}, ${addressSelected?.district?.name}, ${addressSelected?.province?.name}`
@@ -147,7 +148,7 @@ const CheckoutPage = () => {
                   <p>PHƯƠNG THỨC GIAO HÀNG</p>
                 </div>
                 <div className="shipping__info">
-                  <Checkbox>
+                  <Checkbox checked={true}>
                     Tốc độ tiêu chuẩn (từ 2 - 5 ngày làm việc)
                   </Checkbox>
                   <h5 className="charge">40.000 VND</h5>
@@ -159,7 +160,7 @@ const CheckoutPage = () => {
                 </div>
                 <div className="payment__info">
                   <div className="check-group">
-                    <Checkbox>Thanh toán trực tiếp khi giao hàng</Checkbox>
+                    <Checkbox checked={true} >Thanh toán trực tiếp khi giao hàng</Checkbox>
                   </div>
                   <div className="check-group">
                     <Checkbox>
@@ -179,12 +180,14 @@ const CheckoutPage = () => {
                 <h3>ĐƠN HÀNG</h3>
               </div>
               <div className="divider-soild"></div>
-              <ProductList />
+              {CartState && <ProductList products={CartState?.products} />}
               <div className="divider-img"></div>
               <div className="order__info">
                 <div className="item-group">
                   <span className="title">Đơn hàng</span>
-                  <span className="content">1.010.000 VND</span>
+                  <span className="content">
+                    {CartState && convertStringtoMoney(CartState?.totalPrice())}
+                  </span>
                 </div>
                 <div className="item-group">
                   <span className="title">Giảm</span>
@@ -192,7 +195,7 @@ const CheckoutPage = () => {
                 </div>
                 <div className="item-group">
                   <span className="title">Phí vận chuyển</span>
-                  <span className="content">0 VND</span>
+                  <span className="content">40.000 VND</span>
                 </div>
                 <div className="item-group">
                   <span className="title">Phí thanh toán</span>
@@ -202,7 +205,10 @@ const CheckoutPage = () => {
               <div className="divider-img"></div>
               <div className="totalPrice">
                 <span className="title">TỔNG CỘNG</span>
-                <span className="content">1.010.000 VND</span>
+                <span className="content">
+                  {CartState &&
+                    convertStringtoMoney(+CartState?.totalPrice() + 40000)}
+                </span>
               </div>
               <button className="btn btn-checkout">HOÀN TẤT ĐẶT HÀNG</button>
             </div>
