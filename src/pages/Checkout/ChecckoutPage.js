@@ -5,10 +5,13 @@ import "./component/ProductList";
 import "./style.scss";
 import ProductList from "./component/ProductList";
 import { getAllAddress, getAddressDefault } from "../../api/Address";
+import { addPurchase } from "../../api/PurchaseApi";
 import { CartContext } from "../../context/CartContext";
 import { convertStringtoMoney } from "../../utits/index";
+import Loading from "../../components/Loading/LoadingSpinning";
 
 const CheckoutPage = () => {
+  const [loadingState, setLoadingState] = useState(false);
   const [radioAddress, setRadioAddress] = useState();
   const [showChooseAddress, setshowChooseAddress] = useState(false);
   const [addressSelected, setAddressSelctet] = useState();
@@ -37,6 +40,15 @@ const CheckoutPage = () => {
   const closrChooseAddress = () => {
     setRadioAddress();
     setshowChooseAddress(false);
+  };
+  const handleSubmitCheckout = async () => {
+    setLoadingState(true);
+    const formData = {
+      addressId: addressSelected?._id,
+      cartId: CartState?._id,
+    };
+    const sunmit = await addPurchase(formData);
+    setLoadingState(false);
   };
   return (
     <Container>
@@ -160,7 +172,9 @@ const CheckoutPage = () => {
                 </div>
                 <div className="payment__info">
                   <div className="check-group">
-                    <Checkbox checked={true} >Thanh toán trực tiếp khi giao hàng</Checkbox>
+                    <Checkbox checked={true}>
+                      Thanh toán trực tiếp khi giao hàng
+                    </Checkbox>
                   </div>
                   <div className="check-group">
                     <Checkbox>
@@ -210,15 +224,17 @@ const CheckoutPage = () => {
                     convertStringtoMoney(+CartState?.totalPrice() + 40000)}
                 </span>
               </div>
-              <button className="btn btn-checkout">HOÀN TẤT ĐẶT HÀNG</button>
+              <button className="btn btn-checkout" onClick={handleSubmitCheckout}>HOÀN TẤT ĐẶT HÀNG</button>
             </div>
           </Col>
         </Row>
-        {/* <Modal
-          component={ModalContenAddress}
-          isShowing={isShowing}
-          hide={toggle}
-        /> */}
+        <div
+          className={`loading ${
+            loadingState ? "loading-active" : ""
+          }`}
+        >
+          <Loading color="#FF5F17" />
+        </div>
       </div>
     </Container>
   );
