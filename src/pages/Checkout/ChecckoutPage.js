@@ -16,7 +16,7 @@ const CheckoutPage = () => {
   const [showChooseAddress, setshowChooseAddress] = useState(false);
   const [addressSelected, setAddressSelctet] = useState();
   const [addresses, setAddresses] = useState();
-  const { CartState } = useContext(CartContext);
+  const { CartState, setCartState } = useContext(CartContext);
 
   useEffect(() => {
     async function fetch() {
@@ -48,6 +48,12 @@ const CheckoutPage = () => {
       cartId: CartState?._id,
     };
     const sunmit = await addPurchase(formData);
+    setCartState(pre => {
+      return {
+        ...pre,
+        products: []
+      }
+    });
     setLoadingState(false);
   };
   return (

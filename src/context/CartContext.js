@@ -45,7 +45,7 @@ const CartProvider = ({ children }) => {
                 },
               ],
               []
-            ),
+            ) || [],
           };
         });
     }
@@ -85,7 +85,7 @@ const CartProvider = ({ children }) => {
     await updateProductCart(productId, size, quantity);
   };
   const addCart = async (product, size, quantity) => {
-    const checkPrdExist = CartState.products.find(
+    const checkPrdExist = CartState?.products?.find(
       (ct) => ct.product._id === product._id && ct.size === size
     );
     if (checkPrdExist) {

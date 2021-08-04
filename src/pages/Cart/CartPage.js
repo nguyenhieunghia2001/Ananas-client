@@ -15,7 +15,11 @@ const CartPage = () => {
           <Row>
             <Col lg="8">
               <div className="cart__title">GIỎ HÀNG</div>
-              <ProductListCart products={CartState?.products} fromPage="CART-PAGE" key={CartState._id}/>
+              <ProductListCart
+                products={CartState?.products}
+                fromPage="CART-PAGE"
+                key={CartState._id}
+              />
               <div className="divider-soild"></div>
               <div className="love__btn-group">
                 <Row>
@@ -62,20 +66,21 @@ const CartPage = () => {
             </Col>
           </Row>
         )}
-        {Array.isArray(CartState.products) && CartState.products?.length < 1 && (
-          <>
-            <div className="love__title">
-              <h4>GIỎ HÀNG CỦA BẠN</h4>
-              <div className="divider-soild"></div>
-            </div>
-            <div className="love__empty">
-              <p>Bạn không thích sản phẩm nào!!</p>
-              <Link className="btn btn-love" to="/products">
-                TIẾP TỤC MUA HÀNG
-              </Link>
-            </div>
-          </>
-        )}
+        {!CartState ||
+          (!CartState?.products && (
+            <>
+              <div className="love__title">
+                <h4>GIỎ HÀNG CỦA BẠN</h4>
+                <div className="divider-soild"></div>
+              </div>
+              <div className="love__empty">
+                <p>Bạn không thích sản phẩm nào!!</p>
+                <Link className="btn btn-love" to="/products">
+                  TIẾP TỤC MUA HÀNG
+                </Link>
+              </div>
+            </>
+          ))}
       </div>
     </Container>
   );
