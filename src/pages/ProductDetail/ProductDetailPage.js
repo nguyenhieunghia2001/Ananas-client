@@ -42,8 +42,8 @@ const PrdDetail = () => {
 
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
-      const sizeItem = productState?.sizes.find((v) => v.size?.name === value);
-      const productCart = CartState.products.find(
+      const sizeItem = productState?.sizes?.find((v) => v.size?.name === value);
+      const productCart = CartState?.products?.find(
         (p) => p.product._id === productState._id && p.size === value
       );
       const stock = productCart

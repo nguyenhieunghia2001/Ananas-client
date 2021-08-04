@@ -192,3 +192,62 @@
     display: flex;
   }
 }
+
+//order success
+.order-success {
+  margin: 50px 0;
+  header {
+    .top {
+      display: flex;
+      align-items: center;
+      .content {
+        width: 100%;
+        text-align: center;
+        h1 {
+          font-weight: 900;
+          margin: 0;
+        }
+        p {
+          font-weight: 900;
+          font-size: 30px;
+          margin: 0;
+        }
+        @media only screen and (max-width: 540px){
+          h1, p{
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .bottom {
+      padding: 20px 0;
+      span {
+        font-size: 20px;
+        line-height: 25px;
+      }
+    }
+  }
+  .body {
+    .content {
+      margin-top: 40px;
+      text-align: center;
+      span {
+        font-weight: 900;
+        font-size: 20px;
+      }
+    }
+    .button-group {
+      display: flex;
+      justify-content: center;
+    }
+    .btn-ordersuccess {
+      padding: 13px 50px;
+      background-color: #ff5f17;
+      border-radius: 0;
+      color: #fff;
+      font-weight: 700;
+      font-size: 20px;
+      margin-top: 40px;
+    }
+  }
+}

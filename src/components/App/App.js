@@ -20,6 +20,7 @@ import AccountPage from "../../pages/Account/AccountPage";
 import CheckoutPage from "../../pages/Checkout/ChecckoutPage";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import OrderSuccessPage from "../../pages/Checkout/OrderSuccessPage";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
           <PrivateRoute path="/account" component={AccountPage} />
           <Route path="/checkout" exact>
             <CheckoutPage />
+          </Route>
+          <Route path="/checkout/ordersuccess" exact>
+            <OrderSuccessPage />
           </Route>
 
         </Switch>
