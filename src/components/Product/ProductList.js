@@ -8,7 +8,7 @@ const ProductRight = ({ products }) => {
     <Row>
       {products.map((product) => (
         <Col
-          lg="4"
+          lg="4" md={4} sm={6} xs={6}
           style={{ marginBottom: "30px", padding: "0" }}
           key={product._id}
         >

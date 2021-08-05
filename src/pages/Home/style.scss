@@ -14,6 +14,9 @@
       height: 100vh;
       max-width: 1920px;
       object-fit: cover;
+      @media (max-width: $lg) {
+        height: auto;
+      }
     }
   }
 }
@@ -32,6 +35,7 @@
     .cat__item {
       position: relative;
       height: 270px;
+      margin: 5px 0;
       .item__group {
         position: absolute;
         top: 50%;

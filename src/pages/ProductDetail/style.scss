@@ -55,6 +55,9 @@
         }
       }
       &-select--group {
+        .wrapper{
+          margin-top: 10px;
+        }
         h5 {
           font-size: $font-big;
           color: $bg-Black;

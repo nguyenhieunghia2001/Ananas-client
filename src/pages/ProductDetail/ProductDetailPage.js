@@ -128,26 +128,30 @@ const PrdDetail = () => {
                 <div className="prdDetail-select--group detail-space">
                   <Row>
                     <Col lg="6">
-                      <h5>SIZE</h5>
-                      <div className="select">
-                        {/* values là các size của giày nè */}
-                        <Combobox
-                          type="SIZE"
-                          values={productState?.sizes}
-                          setValue={handleSetValueSelect}
-                          disabled={false}
-                        />
+                      <div className="wrapper">
+                        <h5>SIZE</h5>
+                        <div className="select">
+                          {/* values là các size của giày nè */}
+                          <Combobox
+                            type="SIZE"
+                            values={productState?.sizes}
+                            setValue={handleSetValueSelect}
+                            disabled={false}
+                          />
+                        </div>
                       </div>
                     </Col>
                     <Col lg="6">
-                      <h5>SỐ LƯỢNG</h5>
-                      <div className="select">
-                        <Combobox
-                          type="QUANTITY"
-                          values={valueSelectedState.STOCK}
-                          setValue={handleSetValueSelect}
-                          disabled={valueSelectedState.STOCK ? false : true}
-                        />
+                      <div className="wrapper">
+                        <h5>SỐ LƯỢNG</h5>
+                        <div className="select">
+                          <Combobox
+                            type="QUANTITY"
+                            values={valueSelectedState.STOCK}
+                            setValue={handleSetValueSelect}
+                            disabled={valueSelectedState.STOCK ? false : true}
+                          />
+                        </div>
                       </div>
                     </Col>
                     <div className="error-msg">
@@ -164,7 +168,7 @@ const PrdDetail = () => {
                 {/* BUTTON */}
                 <div className="prdDetail-btn--group detail-space">
                   <Row>
-                    <Col lg="10">
+                    <Col lg="10" md={10} xs={10}>
                       <button
                         type="button"
                         className="btn btn-detail btn-detail--black"
@@ -173,14 +177,16 @@ const PrdDetail = () => {
                         THÊM VÀO GIỎ HÀNG
                       </button>
                     </Col>
-                    <Col lg="2" style={{ paddingLeft: "0" }}>
+                    <Col lg="2" md={2} xs={2} style={{ paddingLeft: "0" }}>
                       <div
                         className="btn btn-detail btn-detail--black"
-                        style={{ padding: "7px 0" }}
+                        style={{paddingTop: '7px', paddingBottom: '7px'}}
                       >
                         {productState && <ProductLove product={productState} />}
                       </div>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col lg="12">
                       <Link to="" className="btn btn-detail btn-detail--orange">
                         THANH TOÁN
