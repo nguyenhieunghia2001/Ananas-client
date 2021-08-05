@@ -36,10 +36,7 @@
   }
   &__right {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+    text-align: right;
     h5 {
       font-size: 23px;
       color: $bg-Orange;
@@ -51,18 +48,43 @@
       color: $bg-Orange;
       margin: 0;
     }
-    .btn-cart {
-      border: 1px solid $bg-Black;
-      border-radius: 0;
-      padding: 3px 50px;
-      margin: 1px 0;
-      font-size: 22px;
-      &--Background {
-        background-color: $bg-Black;
-        color: $bg-White;
-      }
-      .icon-love {
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      .btn-cart {
+        border: 1px solid $bg-Black;
+        border-radius: 0;
+        padding: 3px 50px;
+        margin: 1px 0;
         font-size: 22px;
+        &--Background {
+          background-color: $bg-Black;
+          color: $bg-White;
+        }
+        .icon-love {
+          font-size: 22px;
+        }
+      }
+    }
+    @media (max-width: 992px) {
+      margin-top: 10px;
+      h5 {
+        float: right;
+      }
+      p {
+        float: left;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .button-group {
+        clear: both;
+        flex-direction: row;
+        justify-content: flex-end;
+        .btn-cart {
+          padding: 0px 25px;
+          margin: 1px 3px;
+        }
       }
     }
   }

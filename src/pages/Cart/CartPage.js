@@ -13,7 +13,7 @@ const CartPage = () => {
       <div className="cart">
         {Array.isArray(CartState?.products) && CartState?.products.length > 0 && (
           <Row>
-            <Col lg="8">
+            <Col lg="8" sm={12}>
               <div className="cart__title">GIỎ HÀNG</div>
               <ProductListCart
                 products={CartState?.products}
@@ -22,15 +22,14 @@ const CartPage = () => {
               />
               <div className="divider-soild"></div>
               <div className="love__btn-group">
-                <Row>
-                  <Col lg="6">
+                <Row >
+                  <Col lg="6" sm={6} xs={12} >
                     <div className="btn btn-love">XÓA HẾT</div>
                   </Col>
-                  <Col lg="6">
+                  <Col lg="6" sm={6} xs={12}>
                     <Link
                       to="/"
                       className="btn btn-love"
-                      style={{ float: "right" }}
                     >
                       TIẾP TỤC MUA HÀNG
                     </Link>
@@ -38,7 +37,7 @@ const CartPage = () => {
                 </Row>
               </div>
             </Col>
-            <Col lg="4">
+            <Col lg="4" sm={12}>
               <div className="cart__box">
                 <div className="cart__box-title">ĐƠN HÀNG</div>
                 <div className="divider-soild"></div>
@@ -66,21 +65,22 @@ const CartPage = () => {
             </Col>
           </Row>
         )}
-        {!CartState ||
-          (!CartState?.products && (
-            <>
-              <div className="love__title">
-                <h4>GIỎ HÀNG CỦA BẠN</h4>
-                <div className="divider-soild"></div>
-              </div>
-              <div className="love__empty">
-                <p>Bạn không thích sản phẩm nào!!</p>
-                <Link className="btn btn-love" to="/products">
-                  TIẾP TỤC MUA HÀNG
-                </Link>
-              </div>
-            </>
-          ))}
+        {(!CartState ||
+          !CartState?.products ||
+          CartState?.products.length < 1) && (
+          <>
+            <div className="love__title">
+              <h4>GIỎ HÀNG CỦA BẠN</h4>
+              <div className="divider-soild"></div>
+            </div>
+            <div className="love__empty">
+              <p>Bạn không thích sản phẩm nào!!</p>
+              <Link className="btn btn-love" to="/products">
+                TIẾP TỤC MUA HÀNG
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </Container>
   );

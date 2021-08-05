@@ -34,6 +34,12 @@ const PrdDetail = () => {
         //them vao lich su da xem
         await addProductHistory(id);
         setProductState(product);
+        //scroll to top
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: "smooth",
+        });
       } catch (error) {
         setProductState({});
       }

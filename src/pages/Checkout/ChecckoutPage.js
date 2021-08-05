@@ -9,8 +9,10 @@ import { addPurchase } from "../../api/PurchaseApi";
 import { CartContext } from "../../context/CartContext";
 import { convertStringtoMoney } from "../../utits/index";
 import Loading from "../../components/Loading/LoadingSpinning";
+import { useHistory } from "react-router-dom";
 
 const CheckoutPage = () => {
+  let history = useHistory();
   const [loadingState, setLoadingState] = useState(false);
   const [radioAddress, setRadioAddress] = useState();
   const [showChooseAddress, setshowChooseAddress] = useState(false);
@@ -55,6 +57,7 @@ const CheckoutPage = () => {
       }
     });
     setLoadingState(false);
+    history.push("/checkout/ordersuccess");
   };
   return (
     <Container>
