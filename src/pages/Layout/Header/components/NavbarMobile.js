@@ -51,25 +51,25 @@ const NavbarMobile = () => {
             <Link to="">TẤT CẢ</Link>
           </li>
           <li>
-            <div className="divider-img"></div>
+            <div className="divider-img-navbar"></div>
           </li>
           <li>
             <Link to="">NAM</Link>
           </li>
           <li>
-            <div className="divider-img"></div>
+            <div className="divider-img-navbar"></div>
           </li>
           <li>
             <Link to="">NỮ</Link>
           </li>
           <li>
-            <div className="divider-img"></div>
+            <div className="divider-img-navbar"></div>
           </li>
           <li>
             <Link to="">SALE OFF</Link>
           </li>
           <li>
-            <div className="divider-img"></div>
+            <div className="divider-img-navbar"></div>
           </li>
           <li>
             <Link to="">DiscoverYOU</Link>
