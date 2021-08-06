@@ -3,7 +3,10 @@ import {
   AiOutlineMenu,
   AiOutlineShoppingCart,
   AiOutlineClose,
+  AiFillHeart,
 } from "react-icons/ai";
+import { RiSearchEyeLine } from "react-icons/ri";
+import { FaUserAlt } from "react-icons/fa";
 import { FiSearch } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { Link } from "react-router-dom";
@@ -13,7 +16,7 @@ import LogoSvg from "../../../../assets/images/logo.svg";
 const NavbarMobile = () => {
   return (
     <div className="navbarmobile">
-      <Container fluid={true} style={{ padding: "0" }}>
+      <Container fluid={true}>
         <Row>
           <Col sm={4} xs={4}>
             <div className="logo">
@@ -35,7 +38,7 @@ const NavbarMobile = () => {
               </div>
             </div>
           </Col>
-          <Col sm={3} xs={3}>
+          <Col sm={3} xs={3} style={{ paddingRight: "0" }}>
             <div className="menu-mobile">
               <div className="wrapper">
                 {/* <AiOutlineMenu /> */}
@@ -46,35 +49,57 @@ const NavbarMobile = () => {
         </Row>
       </Container>
       <div className="menu-list">
-        <ul>
-          <li>
-            <Link to="">TẤT CẢ</Link>
-          </li>
-          <li>
-            <div className="divider-img-navbar"></div>
-          </li>
-          <li>
-            <Link to="">NAM</Link>
-          </li>
-          <li>
-            <div className="divider-img-navbar"></div>
-          </li>
-          <li>
-            <Link to="">NỮ</Link>
-          </li>
-          <li>
-            <div className="divider-img-navbar"></div>
-          </li>
-          <li>
-            <Link to="">SALE OFF</Link>
-          </li>
-          <li>
-            <div className="divider-img-navbar"></div>
-          </li>
-          <li>
-            <Link to="">DiscoverYOU</Link>
-          </li>
-        </ul>
+        <div className="product">
+          <ul>
+            <li>
+              <Link to="">TẤT CẢ</Link>
+            </li>
+            <li>
+              <Link to="">NAM</Link>
+            </li>
+            <li>
+              <Link to="">NỮ</Link>
+            </li>
+            <li>
+              <Link to="">SALE OFF</Link>
+            </li>
+            <li>
+              <Link to="">DiscoverYOU</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="page">
+          <ul>
+            <li>
+              <Link className="menu-item--group">
+                <FaUserAlt className="icon" />
+                <span>Đăng nhập</span>
+              </Link>
+            </li>
+            <li>
+              <Link className="menu-item--group">
+                <AiFillHeart className="icon" />
+                <span>Yêu thích</span>
+              </Link>
+            </li>
+            <li>
+              <Link className="menu-item--group">
+                <GoLocation className="icon" />
+                <span>Tìm cửa hàng</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="" className="menu-item--group">
+                <RiSearchEyeLine className="icon" />
+                <span>Tra cứu đơn hàng</span>
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div className="content">
+          <p>MỌI NGƯỜI GỌI CHÚNG TÔI LÀ</p>
+          <p >DỨA!</p>
+        </div>
       </div>
     </div>
   );

@@ -242,18 +242,67 @@ $colorFont-priary: #fff;
     width: 100%;
     height: calc(100vh - 20vw);
     background-color: #303030;
-    ul{
-      list-style-type: none;
-      li{
-        a{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .product {
+      ul {
+        list-style-type: none;
+        padding: 0;
+        li {
+          padding: 20px 0 20px 20px;
+          border-bottom: 1px solid #bdbdbd;
+          &:last-child {
+            border: none;
+          }
+          a {
+            color: $bg-White;
+            font-size: 5vw;
+            font-weight: 900;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+    .page {
+      border-top: 5px solid #bdbdbd;
+      border-bottom: 5px solid #bdbdbd;
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        padding: 20px 0 20px 20px;
+        a {
           color: $bg-White;
-          font-size: 3vw;
+          font-size: 5vw;
+          font-weight: 900;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          span {
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+    .content{
+      color: #bdbdbd;
+      font-size: 5vw;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px 0;
+      p{
+        margin: 0;
+        &:last-child{
+          color: $bg-White;
         }
       }
     }
   }
 }
-.divider-img-navbar{
+.divider-img-navbar {
   background: url("../../../assets/images/bg_divider_menu.jpg") repeat-x 7px;
   margin: 7px 0;
   height: 1px;
