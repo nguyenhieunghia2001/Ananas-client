@@ -218,6 +218,9 @@ $colorFont-priary: #fff;
     justify-content: space-between;
     .icon {
       font-size: 10vw;
+      a{
+        color: $bg-Black;
+      }
     }
   }
   .menu-mobile {

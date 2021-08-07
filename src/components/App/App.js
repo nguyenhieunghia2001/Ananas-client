@@ -21,6 +21,7 @@ import CheckoutPage from "../../pages/Checkout/ChecckoutPage";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import OrderSuccessPage from "../../pages/Checkout/OrderSuccessPage";
+import PurchasePage from "../../pages/Purchase/PurchasePage";
 
 function App() {
   return (
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="/checkout/ordersuccess" exact>
             <OrderSuccessPage />
+          </Route>
+          <Route path="/purchase" exact>
+            <PurchasePage />
           </Route>
 
         </Switch>

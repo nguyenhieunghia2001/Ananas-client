@@ -30,6 +30,7 @@ const CartPage = () => {
                     <Link
                       to="/"
                       className="btn btn-love"
+                      style={{float: 'right'}}
                     >
                       TIẾP TỤC MUA HÀNG
                     </Link>
