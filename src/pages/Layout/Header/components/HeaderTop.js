@@ -16,7 +16,9 @@ const HeaderTop = () => {
         <div className="headerTop__list">
           <div className="headerTop__item">
             <RiSearchEyeLine className="icon-sm" />
-            <span>Tra cứu đơn hàng</span>
+            <span>
+              <Link to="purchase">Tra cứu đơn hàng</Link>
+            </span>
           </div>
           <div className="headerTop__item">
             <GoLocation className="icon-sm" />

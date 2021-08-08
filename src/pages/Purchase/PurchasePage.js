@@ -2,37 +2,47 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
 import { FiSearch } from "react-icons/fi";
+import PurchaseList from './PurchaseList';
+import "./style.scss";
 
 const PurchasePage = () => {
   return (
-    <div className="puschase">
+    <div className="purchase">
       <Container>
         <header>
-          <ul className="menu-list">
-            <li>
+          <div className="menu-list">
+            <div className="menu-item menu-item--active">
               <Link to="">Tất cả</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
               <Link to="">Chờ xác nhận</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
               <Link to="">Chờ lấy hàng</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
               <Link to="">Đang giao</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
               <Link to="">Đã giao</Link>
-            </li>
-            <li>
+            </div>
+            <div className="menu-item">
               <Link to="">Đã hủy</Link>
-            </li>
-          </ul>
+            </div>
+          </div>
           <div className="search-group">
-              <FiSearch className="icon" />
-              <input type="text" placeholder="Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản phẩm"  />
+            <div className="icon">
+              <FiSearch />
+            </div>
+            <input
+              type="text"
+              placeholder="Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản phẩm"
+            />
           </div>
         </header>
+        <div className="body">
+          <PurchaseList />
+        </div>
       </Container>
     </div>
   );

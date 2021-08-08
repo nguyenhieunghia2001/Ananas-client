@@ -98,7 +98,9 @@ const NavbarMobile = () => {
               <li>
                 <Link to="" className="menu-item--group">
                   <RiSearchEyeLine className="icon" />
-                  <span>Tra cứu đơn hàng</span>
+                  <span>
+                    <Link to="/purchase">Tra cứu đơn hàng</Link>
+                  </span>
                 </Link>
               </li>
             </ul>
