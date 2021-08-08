@@ -5,6 +5,7 @@ const PurchaseList = () => {
     return (
         <div className="purchase__list">
             <PurchaseItem />
+            <PurchaseItem />
         </div>
     )
 }
