@@ -12,8 +12,8 @@
     }
   }
   .info {
-      
     .wrapper {
+      margin-top: 40px;
       padding: 20px 25px;
       background-color: #f1f1f1;
       .top {
@@ -26,13 +26,95 @@
           margin: 0;
         }
       }
-      .content{
-          padding-top: 20px;
-          p{
-              margin-bottom: 5px;
-              color: #808080;
-              font-size: 16px;
+      .content {
+        padding-top: 20px;
+        p {
+          margin-bottom: 5px;
+          color: #808080;
+          font-size: 16px;
+        }
+        .product {
+          &-info {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            h6 {
+              font-weight: 800;
+            }
+            .cont {
+              .title {
+                font-weight: 800;
+                margin-right: 10px;
+              }
+            }
+            .total {
+              margin-top: auto;
+            }
           }
+          &-img {
+            img {
+              @extend .img-cover;
+            }
+          }
+        }
+      }
+      .group {
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        span {
+          font-weight: 600;
+          color: #808080;
+        }
+        p {
+          font-weight: 800;
+          color: $bg-Black !important;
+        }
+        .total {
+          font-weight: 800;
+        }
+      }
+    }
+  }
+  .progress {
+    &-status {
+      display: flex;
+    }
+    &-1,
+    &-2,
+    &-3,
+    &-4 {
+      color: red;
+      position: relative;
+      width: 25%;
+      height: 60px;
+      margin: 30px 10px;
+      color: $bg-Orange;
+      transition: all 0.8s;
+      text-align: center;
+      line-height: 60px;
+      font-size: 16px;
+      font-weight: 800;
+      &::before {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        height: 50%;
+        background-color: #222;
+        width: 100%;
+        transform: skew(35deg);
+        left: 0;
+      }
+      &::after {
+        position: absolute;
+        z-index: -1;
+        content: "";
+        height: 50%;
+        background-color: #222;
+        width: 100%;
+        transform: skew(-35deg);
+        left: 0;
+        top: 50%;
       }
     }
   }
