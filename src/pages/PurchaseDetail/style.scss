@@ -1,0 +1,39 @@
+@import "../../assets/variable.scss";
+
+.purchasedetail {
+  padding: 40px 0;
+  header {
+    padding-bottom: 30px;
+    border-bottom: 3px solid $bg-Black;
+    h2 {
+      text-align: center;
+      font-weight: 800;
+      margin: 0;
+    }
+  }
+  .info {
+      
+    .wrapper {
+      padding: 20px 25px;
+      background-color: #f1f1f1;
+      .top {
+        padding-bottom: 20px;
+        border-bottom: 2px solid $bg-Black;
+        h4 {
+          color: $bg-Black;
+          font-weight: 800;
+          font-size: 18px;
+          margin: 0;
+        }
+      }
+      .content{
+          padding-top: 20px;
+          p{
+              margin-bottom: 5px;
+              color: #808080;
+              font-size: 16px;
+          }
+      }
+    }
+  }
+}
