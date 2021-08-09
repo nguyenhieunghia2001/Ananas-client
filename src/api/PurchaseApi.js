@@ -1,14 +1,20 @@
 import api from "./index";
 
+const getPurchase = async () => {
+  try {
+    const res = await api.get("/purchase");
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
 const addPurchase = async (formData) => {
-    try {
-        const res = await api.post('/purchase/add', formData);
-        return res.data;
-    } catch (error) {
-        return error;
-    }
-}
+  try {
+    const res = await api.post("/purchase/add", formData);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
 
-export {
-    addPurchase,
-}
+export { getPurchase, addPurchase };
