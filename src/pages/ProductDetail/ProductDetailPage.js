@@ -180,7 +180,7 @@ const PrdDetail = () => {
                     <Col lg="2" md={2} xs={2} style={{ paddingLeft: "0" }}>
                       <div
                         className="btn btn-detail btn-detail--black"
-                        style={{paddingTop: '7px', paddingBottom: '7px'}}
+                        style={{ paddingTop: "7px", paddingBottom: "7px" }}
                       >
                         {productState && <ProductLove product={productState} />}
                       </div>
@@ -196,17 +196,31 @@ const PrdDetail = () => {
                 </div>
 
                 <div className="divider-img"></div>
-                <Expander title="THÔNG TIN SẢN PHẨM" des="Gender: Unisex" />
+                <Expander title="THÔNG TIN SẢN PHẨM">
+                  <p>Gender: Unisex</p>
+                </Expander>
+
+                <Expander title="QUY ĐỊNH ĐỔI SẢN PHẨM">
+                  <p>
+                    Đối với những sản phẩm giày và thời trang thuộc phiên bản
+                    giới hạn. Vì nhiều lý do chúng tôi sẽ không áp dụng chính
+                    sách đổi hàng. Vui lòng cân nhắc kỹ trước khi quyết định
+                    mua.
+                  </p>
+                </Expander>
                 {/* <div className="divider-img"></div> */}
-                <Expander
-                  title="QUY ĐỊNH ĐỔI SẢN PHẨM"
-                  des="Đối với những sản phẩm giày và thời trang thuộc phiên bản giới hạn. Vì nhiều lý do chúng tôi sẽ không áp dụng chính sách đổi hàng. Vui lòng cân nhắc kỹ trước khi quyết định mua."
-                />
-                {/* <div className="divider-img"></div> */}
-                <Expander
-                  title="BẢO HÀNH THẾ NÀO ?"
-                  des="Mỗi đôi giày Ananas trước khi xuất xưởng đều trải qua nhiều khâu kiểm tra. Tuy vậy, trong quá trình sử dụng, nếu nhận thấy các lỗi: gãy đế, hở đế, đứt chỉ may,...trong thời gian 6 tháng từ ngày mua hàng, mong bạn sớm gửi sản phẩm về Ananas nhằm giúp chúng tôi có cơ hội phục vụ bạn tốt hơn. Vui lòng gửi sản phẩm về bất kỳ cửa hàng Ananas nào, hoặc gửi đến trung tâm bảo hành Ananas ngay trong trung tâm TP.HCM trong giờ hành chính:"
-                />
+                <Expander title="BẢO HÀNH THẾ NÀO ?">
+                  <p>
+                    Mỗi đôi giày Ananas trước khi xuất xưởng đều trải qua nhiều
+                    khâu kiểm tra. Tuy vậy, trong quá trình sử dụng, nếu nhận
+                    thấy các lỗi: gãy đế, hở đế, đứt chỉ may,...trong thời gian
+                    6 tháng từ ngày mua hàng, mong bạn sớm gửi sản phẩm về
+                    Ananas nhằm giúp chúng tôi có cơ hội phục vụ bạn tốt hơn.
+                    Vui lòng gửi sản phẩm về bất kỳ cửa hàng Ananas nào, hoặc
+                    gửi đến trung tâm bảo hành Ananas ngay trong trung tâm
+                    TP.HCM trong giờ hành chính:
+                  </p>
+                </Expander>
               </div>
             </Col>
           </Row>

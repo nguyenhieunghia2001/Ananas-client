@@ -3,6 +3,9 @@
 .foo {
   background: $bg-Gray-third;
   padding: 60px 0;
+  @media (max-width: $lg) {
+    display: none;
+  }
   &__store {
     img {
       padding-bottom: 20px;
@@ -17,7 +20,6 @@
     }
   }
   &__menu {
-    
   }
   &__item {
     &-title {
@@ -68,9 +70,57 @@
     }
   }
 }
-.copyright{
+.copyright {
   font-size: 20px;
   color: #818181;
-  margin-top: 50px;  
+  margin-top: 50px;
   text-align: center;
+}
+.footermobile {
+  background-color: #555;
+  color: $bg-White;
+  @media (min-width: $lg) {
+    display: inline-block;
+  }
+  .expander {
+    &-title {
+      padding-left: 20px;
+      h4 {
+        color: $bg-White;
+        font-size: 4vw;
+      }
+    }
+    .divider-img {
+      margin: 0 !important;
+    }
+    &-des {
+      background-color: #222;
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin-left: 20px;
+        li {
+          padding: 10px;
+          font-size: 4vw;
+          a {
+            color: $bg-White;
+            &:hover {
+              color: $bg-Orange;
+            }
+          }
+        }
+      }
+    }
+  }
+  .group {
+    margin: 30px 0 0 20px;
+    .title {
+      font-weight: 800;
+      font-size: 3vw;
+    }
+    .cont {
+      font-size: 6vw;
+      line-height: 6vw;
+    }
+  }
 }

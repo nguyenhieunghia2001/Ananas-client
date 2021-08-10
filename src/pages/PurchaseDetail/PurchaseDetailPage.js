@@ -15,7 +15,7 @@ const PurchaseDetail = () => {
       setPurchase(data?.purchase);
     }
     fetch();
-  }, []);
+  }, [id]);
   return (
     <div className="purchasedetail">
       <Container>

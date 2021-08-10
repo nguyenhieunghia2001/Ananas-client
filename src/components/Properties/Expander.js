@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.scss";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-const Expander = ({ title, des, img }) => {
+const Expander = ({ title, children}) => {
   const [toggleState, setToggleState] = useState(false);
 
   return (
@@ -15,8 +15,7 @@ const Expander = ({ title, des, img }) => {
       </div>
       <div className="divider-img"></div>
       <div className={toggleState ? "expander-des openDes" : "expander-des"}>
-        <p>{des}</p>
-        {img && <img src={img} alt="info peoduct" />}
+        {children}
         <div className="divider-img"></div>
       </div>
     </div>
