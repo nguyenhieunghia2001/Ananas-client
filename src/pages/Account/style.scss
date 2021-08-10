@@ -1,73 +1,60 @@
 @import "../../assets/variable.scss";
 
-.sidebar {
-  &-account {
-    padding: 0 15px;
-  }
-  &__top {
-    display: flex;
-    align-items: center;
-    &-img {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      margin-right: 20px;
+.nav {
+  // &-account {
+  //   padding: 0 15px;
+  // }
+  // &__top {
+  //   display: flex;
+  //   align-items: center;
+  //   &-img {
+  //     width: 65px;
+  //     height: 65px;
+  //     border-radius: 50%;
+  //     margin-right: 20px;
 
-      img {
-        border-radius: 50%;
-        @extend .img-cover;
+  //     img {
+  //       border-radius: 50%;
+  //       @extend .img-cover;
+  //     }
+  //   }
+  //   h5 {
+  //     margin: 0;
+  //     font-size: 16px;
+  //     font-weight: 800;
+  //   }
+  //   span {
+  //     font-weight: 800;
+  //     color: $bg-Gray-second;
+  //     cursor: pointer;
+  //   }
+  // }
+  // .divider-img {
+  //   margin: 25px 0;
+  // }
+  &__account {
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
+    margin: 30px 0;
+    // &-item {
+    //   width: 100%;
+    //   font-size: 18px;
+    a {
+      padding: 10px 0;
+      color: $bg-Black;
+      font-size: 18px;
+      text-align: center;
+      &:hover {
+        color: $bg-Orange;
+      }
+      
+      div {
+        padding: 10px 0;
       }
     }
-    h5 {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 800;
-    }
-    span {
-      font-weight: 800;
-      color: $bg-Gray-second;
-      cursor: pointer;
-    }
-  }
-  .divider-img {
-    margin: 25px 0;
-  }
-  &__options {
-    .list-parent,
-    .list-child {
-      list-style-type: none;
-
-      li {
-        padding: 10px 0;
-        .active {
-          color: $bg-Orange;
-        }
-        .item-group,
-        a {
-          text-decoration: none;
-          color: $bg-Black;
-          font-size: $font-medium;
-          span {
-            margin-left: 10px;
-          }
-          &:hover {
-            color: $bg-Orange;
-          }
-        }
-        svg {
-          font-size: $font-big;
-        }
-        .icon {
-          &-user {
-            color: rgb(66, 170, 255);
-          }
-          &-order {
-            color: rgb(255, 126, 66);
-          }
-          &-like {
-            color: rgb(255, 20, 71);
-          }
-        }
+    .active {
+      div {
+        color: $bg-Orange;
+        border-bottom: 2px solid $bg-Orange;
       }
     }
   }

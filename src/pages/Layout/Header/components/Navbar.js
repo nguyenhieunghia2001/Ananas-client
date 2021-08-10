@@ -13,7 +13,7 @@ const Navbar = () => {
   const { userCurrentState } = useContext(AccountContext);
   return (
     <Container>
-      <div className="nav d-flex justify-content-between align-items-center">
+      <div className="nav nav-big d-flex justify-content-between align-items-center">
         <div className="nav__logo">
           <Link to="/">
             <img src={LogoSvg} alt="logo Ananas" />

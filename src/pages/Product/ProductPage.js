@@ -35,10 +35,10 @@ const ProductPage = () => {
     <div className="product">
       <Container>
         <Row>
-          <Col lg="3">
+          <Col lg="3" md={12} sm={12} xs={12}>
             <Sidebar handleProduct={handleFilter} />
           </Col>
-          <Col lg="9">
+          <Col lg="9" md={12} sm={12} xs={12}>
             <div className="product-right">
               <Row>
                 <div className="product-right--banner">

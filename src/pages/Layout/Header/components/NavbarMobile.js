@@ -59,13 +59,13 @@ const NavbarMobile = () => {
           <div className="product">
             <ul>
               <li>
-                <Link to="">TẤT CẢ</Link>
+                <Link to="/products">TẤT CẢ</Link>
               </li>
               <li>
-                <Link to="">NAM</Link>
+                <Link to="/products?gender=MALE">NAM</Link>
               </li>
               <li>
-                <Link to="">NỮ</Link>
+                <Link to="/products?gender=FEMALE">NỮ</Link>
               </li>
               <li>
                 <Link to="">SALE OFF</Link>
@@ -78,28 +78,28 @@ const NavbarMobile = () => {
           <div className="page">
             <ul>
               <li>
-                <Link to="" className="menu-item--group">
+                <Link to="/auth/login" className="menu-item--group">
                   <FaUserAlt className="icon" />
                   <span>Đăng nhập</span>
                 </Link>
               </li>
               <li>
-                <Link className="menu-item--group">
+                <Link to="/love" className="menu-item--group">
                   <AiFillHeart className="icon" />
                   <span>Yêu thích</span>
                 </Link>
               </li>
               <li>
-                <Link className="menu-item--group">
+                <Link to="" className="menu-item--group">
                   <GoLocation className="icon" />
                   <span>Tìm cửa hàng</span>
                 </Link>
               </li>
               <li>
-                <Link to="" className="menu-item--group">
+                <Link to="/purchases" className="menu-item--group">
                   <RiSearchEyeLine className="icon" />
                   <span>
-                    <Link to="/purchase">Tra cứu đơn hàng</Link>
+                    Tra cứu đơn hàng
                   </span>
                 </Link>
               </li>

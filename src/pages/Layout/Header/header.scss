@@ -72,11 +72,13 @@ $colorFont-priary: #fff;
 }
 
 //NAVBAR
-.nav {
-  padding: 17px 0;
+.nav-big {
   @media (max-width: $md) {
     display: none !important;
   }
+}
+.nav {
+  padding: 17px 0;
   &__menu {
     &-item {
       cursor: pointer;
@@ -218,7 +220,7 @@ $colorFont-priary: #fff;
     justify-content: space-between;
     .icon {
       font-size: 10vw;
-      a{
+      a {
         color: $bg-Black;
       }
     }
@@ -290,15 +292,15 @@ $colorFont-priary: #fff;
         }
       }
     }
-    .content{
+    .content {
       color: #bdbdbd;
       font-size: 5vw;
       font-weight: 700;
       text-align: center;
       padding: 20px 0;
-      p{
+      p {
         margin: 0;
-        &:last-child{
+        &:last-child {
           color: $bg-White;
         }
       }
