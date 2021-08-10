@@ -1,11 +1,18 @@
 import React from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Expander from "../../../components/Properties/Expander";
 import "./style.scss";
 
 const FooterMobile = () => {
+  const scrollToTop = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
   return (
     <div className="footermobile">
       <Expander title="SẢN PHẨM">
@@ -77,11 +84,21 @@ const FooterMobile = () => {
         <div className="title">ĐĂNG KÝ NHẬN MAIL</div>
         <div className="form">
           <input type="text" />
-          <a href="javascript(0)" className="">
+          <Link to="">
             <AiOutlineArrowRight />
-          </a>
+          </Link>
         </div>
       </div>
+      <div className="search-shop">
+        <button className="btn btn-searchshop">TÌM CỬA HÀNG</button>
+      </div>
+      <div className="scroll-top" onClick={scrollToTop}>
+        <div className="icon">
+          <AiOutlineArrowUp />
+        </div>
+        <span>Back to top</span>
+      </div>
+      <div className="copyright">© 2021 Ananas. All Rights Reserved</div>
     </div>
   );
 };

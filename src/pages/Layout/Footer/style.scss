@@ -19,8 +19,6 @@
       color: $bg-White;
     }
   }
-  &__menu {
-  }
   &__item {
     &-title {
       font-size: 22px;
@@ -79,8 +77,10 @@
 .footermobile {
   background-color: #555;
   color: $bg-White;
-  @media (min-width: $lg) {
-    display: inline-block;
+  padding: 10px 0;
+  display: none;
+  @media (max-width: $lg){
+    display: block;
   }
   .expander {
     &-title {
@@ -113,7 +113,7 @@
     }
   }
   .group {
-    margin: 30px 0 0 20px;
+    margin: 30px 20px 0;
     .title {
       font-weight: 800;
       font-size: 3vw;
@@ -121,6 +121,50 @@
     .cont {
       font-size: 6vw;
       line-height: 6vw;
+    }
+    .form {
+      display: flex;
+      input {
+        width: 100%;
+      }
+      a,
+      input {
+        font-size: 4vw;
+        color: $bg-Black;
+        padding: 0 20px;
+        line-height: 10vw;
+      }
+      a {
+        width: 12vw;
+        color: $bg-Orange;
+        text-align: center;
+        background-color: #222;
+      }
+    }
+  }
+  .scroll-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    .icon{
+      line-height: 20px;
+      padding: 10px;
+      background-color: #a0a0a0;
+      margin-right: 15px;
+    }
+  }
+  .search-shop {
+    margin: 30px 20px;
+    .btn-searchshop {
+      background-color: $bg-Orange;
+      color: $bg-White;
+      font-weight: 800;
+      padding: 20px;
+      width: 100%;
+      font-size: 4vw;
+      line-height: 4vw;
     }
   }
 }

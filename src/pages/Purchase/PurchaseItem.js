@@ -2,15 +2,16 @@ import React from "react";
 import { Col, Row } from "reactstrap";
 import { FaShippingFast } from "react-icons/fa";
 import { convertStringtoMoney } from "../../utits/index";
+import { Link } from "react-router-dom";
 
 const PurchaseItem = ({ purchase }) => {
   return (
     <div className="purchase__item">
       <div className="header">
-        <div className="detail">
+        <Link to={`/purchase/detail?id=${purchase?._id}`} className="detail">
           <FaShippingFast />
           <span>Chi tiết đơn hàng</span>
-        </div>
+        </Link>
         <div className="status">ĐÃ GIAO</div>
       </div>
       <div className="content">
