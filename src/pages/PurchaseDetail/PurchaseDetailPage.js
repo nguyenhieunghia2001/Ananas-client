@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
+import { useQuery } from "../../hooks";
+import { getPurchaseById } from "../../api/PurchaseApi";
+import { convertStringtoMoney } from "../../utits/index";
 import "./style.scss";
 
 const PurchaseDetail = () => {
+  const query = useQuery();
+  const id = query.get("id");
+  const [purchase, setPurchase] = useState();
+  useEffect(() => {
+    async function fetch() {
+      const data = await getPurchaseById(id);
+      setPurchase(data?.purchase);
+    }
+    fetch();
+  }, []);
   return (
     <div className="purchasedetail">
       <Container>
@@ -73,13 +86,16 @@ const PurchaseDetail = () => {
                   <h4>THÔNG TIN KHÁCH HÀNG</h4>
                 </div>
                 <div className="content">
-                  <p>Họ tên: nguyen Trung Hieu</p>
-                  <p>Điện thoại: 0947094475</p>
-                  <p>Email: nghiadx2001@gmail.com</p>
-                  <p>Địa chỉ: M15, cư xá Phú Lâm A, F12, Q6, HCM</p>
-                  <p>Phường/xã: Phường 12</p>
-                  <p>Quận/Huyện: Quận 6</p>
-                  <p>Thành phố/Tỉnh: Hồ Chí Minh</p>
+                  <p>Họ tên: {purchase?.address?.username}</p>
+                  <p>Điện thoại: {purchase?.address?.phone}</p>
+                  <p>Email: {purchase?.email}</p>
+                  <p>
+                    Địa chỉ:{" "}
+                    {`${purchase?.address?.detail}, ${purchase?.address?.ward?.name}, ${purchase?.address?.district?.name}, ${purchase?.address?.province?.name}`}
+                  </p>
+                  <p>Phường/xã: {purchase?.address?.ward?.name}</p>
+                  <p>Quận/Huyện: {purchase?.address?.district?.name}</p>
+                  <p>Thành phố/Tỉnh: {purchase?.address?.province?.name}</p>
                 </div>
               </div>
             </Col>
@@ -89,13 +105,16 @@ const PurchaseDetail = () => {
                   <h4>THÔNG TIN GIAO NHẬN</h4>
                 </div>
                 <div className="content">
-                  <p>Họ tên: nguyen Trung Hieu</p>
-                  <p>Điện thoại: 0947094475</p>
-                  <p>Email: nghiadx2001@gmail.com</p>
-                  <p>Địa chỉ: M15, cư xá Phú Lâm A, F12, Q6, HCM</p>
-                  <p>Phường/xã: Phường 12</p>
-                  <p>Quận/Huyện: Quận 6</p>
-                  <p>Thành phố/Tỉnh: Hồ Chí Minh</p>
+                  <p>Họ tên: {purchase?.address?.username}</p>
+                  <p>Điện thoại: {purchase?.address?.phone}</p>
+                  <p>Email: {purchase?.email}</p>
+                  <p>
+                    Địa chỉ:{" "}
+                    {`${purchase?.address?.detail}, ${purchase?.address?.ward?.name}, ${purchase?.address?.district?.name}, ${purchase?.address?.province?.name}`}
+                  </p>
+                  <p>Phường/xã: {purchase?.address?.ward?.name}</p>
+                  <p>Quận/Huyện: {purchase?.address?.district?.name}</p>
+                  <p>Thành phố/Tỉnh: {purchase?.address?.province?.name}</p>
                 </div>
               </div>
             </Col>
@@ -104,35 +123,45 @@ const PurchaseDetail = () => {
                 <div className="top">
                   <h4>DANH SÁCH SẢN PHẨM</h4>
                 </div>
-                <div className="content">
-                  <Row>
-                    <Col lg={4} md={4} sm={4} xs={4}>
-                      <div className="product-img">
-                        <img
-                          src="https://ananas.vn/wp-content/uploads/Pro_AV00011_1.jpg"
-                          alt="product"
-                        />
-                      </div>
-                    </Col>
-                    <Col lg={8} md={8} sm={8} xs={8}>
-                      <div className="product-info">
-                        <h6>Basas Hook N'Loop NE - Low Top - White</h6>
-                        <div className="cont">
-                          <span className="title">Giá: </span>
-                          <span>520.000 VNĐ</span>
-                        </div>
-                        <div className="cont">
-                          <span className="title">Size: </span>
-                          <span>35</span>
-                        </div>
-                        <div className="cont">
-                          <span className="title">Số lượng: </span>
-                          <span>1</span>
-                        </div>
-                        <h6 className="total">520.000 VNĐ</h6>
-                      </div>
-                    </Col>
-                  </Row>
+                <div className="content product-list">
+                  {purchase &&
+                    Array.isArray(purchase?.products) &&
+                    purchase?.products.map((product) => (
+                      <Row style={{ height: "100%" }} key={product?._id}>
+                        <Col
+                          lg={4}
+                          md={4}
+                          sm={4}
+                          xs={4}
+                          style={{ height: "100%" }}
+                        >
+                          <div className="product-img">
+                            <img
+                              src={product?.product?.images[0].urlPublic}
+                              alt="product"
+                            />
+                          </div>
+                        </Col>
+                        <Col lg={8} md={8} sm={8} xs={8}>
+                          <div className="product-info">
+                            <h6>{product?.product?.name}</h6>
+                            <div className="cont">
+                              <span className="title">Giá: </span>
+                              <span>{convertStringtoMoney(product?.product?.price)}</span>
+                            </div>
+                            <div className="cont">
+                              <span className="title">Size: </span>
+                              <span>{product?.size}</span>
+                            </div>
+                            <div className="cont">
+                              <span className="title">Số lượng: </span>
+                              <span>{product?.quantity}</span>
+                            </div>
+                            <h6 className="total">{convertStringtoMoney(product?.total)}</h6>
+                          </div>
+                        </Col>
+                      </Row>
+                    ))}
                 </div>
               </div>
             </Col>
@@ -144,7 +173,9 @@ const PurchaseDetail = () => {
                 <div className="content">
                   <div className="group">
                     <span>Trị giá đơn hàng:</span>
-                    <p>520.000 VNĐ</p>
+                    <p>
+                      {purchase && convertStringtoMoney(purchase?.totalPrice)}
+                    </p>
                   </div>
                   <div className="group">
                     <span>Giảm giá:</span>
@@ -152,7 +183,7 @@ const PurchaseDetail = () => {
                   </div>
                   <div className="group">
                     <span>Phí giao hàng:</span>
-                    <p>20.000 VND</p>
+                    <p>40.000 VND</p>
                   </div>
                   <div className="group">
                     <span>Phí thanh toán:</span>
@@ -163,7 +194,10 @@ const PurchaseDetail = () => {
                 <div className="bottom">
                   <div className="group">
                     <span className="total">Tổng thanh toán:</span>
-                    <p>540.000 VNĐ</p>
+                    <p>
+                      {purchase &&
+                        convertStringtoMoney(+purchase?.totalPrice + 40000)}
+                    </p>
                   </div>
                 </div>
               </div>

@@ -8,6 +8,14 @@ const getPurchase = async () => {
     return error;
   }
 };
+const getPurchaseById = async (id) => {
+  try {
+    const res = await api.get(`/purchase/detail/${id}`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
 const addPurchase = async (formData) => {
   try {
     const res = await api.post("/purchase/add", formData);
@@ -17,4 +25,4 @@ const addPurchase = async (formData) => {
   }
 };
 
-export { getPurchase, addPurchase };
+export { getPurchase, addPurchase, getPurchaseById };
