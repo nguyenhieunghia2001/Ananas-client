@@ -4,7 +4,7 @@ import MeImage from "../../../assets/images/me.jpg";
 import { getInfo, updateInfo } from "../../../api/accountApi";
 import { checkPhone } from "../../../utits/regex";
 import Loading from "../../../components/Loading/LoadingSpinning";
-import {CLOUDINARY_LINK} from '../../../utits/base'
+import { CLOUDINARY_LINK } from "../../../utits/base";
 import { AccountContext } from "../../../context/AccountContext";
 
 const Profile = () => {
@@ -16,7 +16,7 @@ const Profile = () => {
     email: "",
     phone: "",
     public_Id: "",
-    avatarLocal: '',
+    avatarLocal: "",
     error: function () {
       const _this = this;
       return {
@@ -39,7 +39,7 @@ const Profile = () => {
           username,
           email,
           phone,
-          public_Id
+          public_Id,
         };
       });
     }
@@ -69,18 +69,18 @@ const Profile = () => {
     const formData = {
       public_Id: fileInput.current.files[0],
       username: accountState.username,
-      phone: accountState.phone
-    }
+      phone: accountState.phone,
+    };
     setLoadingState(true);
-    const {username, public_Id} = await updateInfo(formData);
+    const { username, public_Id } = await updateInfo(formData);
     console.log(username, public_Id);
-    await setUserCurrentState(pre => {
+    await setUserCurrentState((pre) => {
       return {
         ...pre,
         username,
         public_Id,
-      }
-    })
+      };
+    });
     setLoadingState(false);
   };
   return (
@@ -157,22 +157,17 @@ const Profile = () => {
                   </Col>
                 </Row>
               </div>
-              <div className="d-flex justify-content-center">
-                <button
-                  type="button"
-                  className="btn btn-account"
-                  onClick={handleSubmit}
-                >
-                  Lưu
-                </button>
-              </div>
             </div>
           </Col>
           <Col lg="3">
             <div className="profile__right">
               <div className="image">
                 <img
-                  src={accountState.avatarLocal || `${CLOUDINARY_LINK}${accountState.public_Id}` || MeImage}
+                  src={
+                    accountState.avatarLocal ||
+                    `${CLOUDINARY_LINK}${accountState.public_Id}` ||
+                    MeImage
+                  }
                   alt="hình người dùng"
                 />
               </div>
@@ -186,6 +181,17 @@ const Profile = () => {
               />
             </div>
           </Col>
+        </Row>
+        <Row>
+          <div className="d-flex justify-content-center">
+            <button
+              type="button"
+              className="btn btn-account"
+              onClick={handleSubmit}
+            >
+              Lưu
+            </button>
+          </div>
         </Row>
       </div>
 

@@ -1,52 +1,21 @@
 @import "../../assets/variable.scss";
 
 .nav {
-  // &-account {
-  //   padding: 0 15px;
-  // }
-  // &__top {
-  //   display: flex;
-  //   align-items: center;
-  //   &-img {
-  //     width: 65px;
-  //     height: 65px;
-  //     border-radius: 50%;
-  //     margin-right: 20px;
-
-  //     img {
-  //       border-radius: 50%;
-  //       @extend .img-cover;
-  //     }
-  //   }
-  //   h5 {
-  //     margin: 0;
-  //     font-size: 16px;
-  //     font-weight: 800;
-  //   }
-  //   span {
-  //     font-weight: 800;
-  //     color: $bg-Gray-second;
-  //     cursor: pointer;
-  //   }
-  // }
-  // .divider-img {
-  //   margin: 25px 0;
-  // }
-  &__account {
+  &__profile {
     box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
     margin: 30px 0;
-    // &-item {
-    //   width: 100%;
-    //   font-size: 18px;
     a {
       padding: 10px 0;
       color: $bg-Black;
       font-size: 18px;
       text-align: center;
       &:hover {
-        color: $bg-Orange;
+        div {
+          color: $bg-Orange;
+          border-bottom: 2px solid $bg-Orange;
+        }
       }
-      
+
       div {
         padding: 10px 0;
       }
@@ -83,6 +52,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        @media (max-width: $md) {
+          flex-direction: column;
+          h4 {
+            font-size: 23px !important;
+            margin-bottom: 10px !important;
+          }
+          .btn-modal {
+            font-size: 16px !important;
+            padding: 5px 15px !important;
+          }
+        }
         .btn-modal {
           padding: 10px 20px;
           background: $bg-Orange;
@@ -103,6 +83,10 @@
             color: #959595;
             float: right;
             margin: 10px 0 0 0;
+            @media (max-width: $lg) {
+              float: left !important;
+              margin: 0 0 5px 0;
+            }
           }
           input {
             line-height: 40px;
@@ -139,15 +123,20 @@
         }
       }
       .address-item {
-        padding: 20px 0;
+        padding: 20px 0 10px;
+        border-bottom: 1px solid #fff;
         .left {
           p {
             float: right;
             color: #959595;
+            @media (max-width: $lg) {
+              float: left !important;
+              margin: 0 0 5px 0;
+            }
           }
           h6 {
             color: $bg-Black;
-            font-size: 17px;
+            font-size: 16px;
             margin: 0;
           }
           .name-group {
@@ -164,14 +153,22 @@
           }
         }
         .right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: center;
+          margin-bottom: 20px;
           .btn-medium-border {
             float: right;
+            @media (max-width: $sm) {
+              font-size: 13px;
+              padding: 3px 10px;
+            }
           }
           .control {
             text-decoration: underline;
             display: flex;
             float: right;
-            margin-bottom: 20px;
             cursor: pointer;
             &-edit {
               margin: 0 10px;
