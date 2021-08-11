@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "./style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import ProductItem from "./ProductItem";
 
 function SampleNextArrow({ className, style, onClick }) {

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import ProductList from "./ProductList";
@@ -7,13 +7,29 @@ import { CartContext } from "../../../context/CartContext";
 import { convertStringtoMoney } from "../../../utits/index";
 
 const CartFixed = () => {
+  const wrapperRef = useRef(null);
   const { CartState } = useContext(CartContext);
   const [toggleOpenState, setToggleOpenState] = useState(false);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef?.current && !wrapperRef?.current.contains(event.target)) {
+        setToggleOpenState(false);
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
   return (
     <div className="cartfixed">
       <div
         className="cartfixed__cont"
         onClick={() => setToggleOpenState(!toggleOpenState)}
+        ref={wrapperRef}
       >
         <h4>{CartState?.products?.length || 0}</h4>
         <AiOutlineShoppingCart />

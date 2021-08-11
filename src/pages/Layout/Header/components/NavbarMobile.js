@@ -59,48 +59,56 @@ const NavbarMobile = () => {
           <div className="product">
             <ul>
               <li>
-                <Link to="/products">TẤT CẢ</Link>
+                <Link to="/products" onClick={() => setToggle(false)}>
+                  <div>TẤT CẢ</div>
+                </Link>
               </li>
               <li>
-                <Link to="/products?gender=MALE">NAM</Link>
+                <Link to="/products?gender=MALE" onClick={() => setToggle(false)}>
+                  <div>NAM</div>
+                </Link>
               </li>
               <li>
-                <Link to="/products?gender=FEMALE">NỮ</Link>
+                <Link to="/products?gender=FEMALE" onClick={() => setToggle(false)}>
+                  <div>NỮ</div>
+                </Link>
               </li>
               <li>
-                <Link to="">SALE OFF</Link>
+                <Link to="" onClick={() => setToggle(false)}>
+                  <div>SALE OFF</div>
+                </Link>
               </li>
               <li>
-                <Link to="">DiscoverYOU</Link>
+                <Link to="" onClick={() => setToggle(false)}>
+                  <div>DiscoverYOU</div>
+                </Link>
               </li>
             </ul>
           </div>
           <div className="page">
             <ul>
               <li>
-                <Link to="/auth/login" className="menu-item--group">
+                <Link to="/auth/login" className="menu-item--group" onClick={() => setToggle(false)}>
                   <FaUserAlt className="icon" />
                   <span>Đăng nhập</span>
                 </Link>
               </li>
               <li>
-                <Link to="/love" className="menu-item--group">
+                <Link to="/love" className="menu-item--group" onClick={() => setToggle(false)}>
                   <AiFillHeart className="icon" />
                   <span>Yêu thích</span>
                 </Link>
               </li>
               <li>
-                <Link to="" className="menu-item--group">
+                <Link to="" className="menu-item--group" onClick={() => setToggle(false)}>
                   <GoLocation className="icon" />
                   <span>Tìm cửa hàng</span>
                 </Link>
               </li>
               <li>
-                <Link to="/purchases" className="menu-item--group">
+                <Link to="/purchases" className="menu-item--group" onClick={() => setToggle(false)}>
                   <RiSearchEyeLine className="icon" />
-                  <span>
-                    Tra cứu đơn hàng
-                  </span>
+                  <span>Tra cứu đơn hàng</span>
                 </Link>
               </li>
             </ul>

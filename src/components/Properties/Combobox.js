@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import "./style.scss";
 
@@ -32,6 +32,7 @@ const quantity = [
 ];
 
 const Combobox = ({ type, values, setValue, disabled, selected }) => {
+  const wrapperRef = useRef(null);
   const [toggleState, setToggleState] = useState(false);
   const [selectedState, setSelectedState] = useState(selected);
   const component = type && type === "SIZE" ? size : quantity;
@@ -48,6 +49,20 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
       return +values >= +item ? false : true;
     }
   };
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef?.current && !wrapperRef?.current.contains(event.target)) {
+        setToggleState(false);
+      }
+    }
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
   return (
     <>
       <div
@@ -61,6 +76,7 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
         className={
           toggleState ? "select__option select__option-open" : "select__option"
         }
+        ref={wrapperRef}
       >
         <ul>
           {component.map((item, index) => (

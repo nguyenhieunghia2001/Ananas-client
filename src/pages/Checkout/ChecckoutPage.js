@@ -49,12 +49,12 @@ const CheckoutPage = () => {
       addressId: addressSelected?._id,
       cartId: CartState?._id,
     };
-    const sunmit = await addPurchase(formData);
-    setCartState(pre => {
+    await addPurchase(formData);
+    setCartState((pre) => {
       return {
         ...pre,
-        products: []
-      }
+        products: [],
+      };
     });
     setLoadingState(false);
     history.push("/checkout/ordersuccess");
@@ -233,15 +233,16 @@ const CheckoutPage = () => {
                     convertStringtoMoney(+CartState?.totalPrice() + 40000)}
                 </span>
               </div>
-              <button className="btn btn-checkout" onClick={handleSubmitCheckout}>HOÀN TẤT ĐẶT HÀNG</button>
+              <button
+                className="btn btn-checkout"
+                onClick={handleSubmitCheckout}
+              >
+                HOÀN TẤT ĐẶT HÀNG
+              </button>
             </div>
           </Col>
         </Row>
-        <div
-          className={`loading ${
-            loadingState ? "loading-active" : ""
-          }`}
-        >
+        <div className={`loading ${loadingState ? "loading-active" : ""}`}>
           <Loading color="#FF5F17" />
         </div>
       </div>

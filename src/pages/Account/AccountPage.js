@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import Profile from "./components/Profile";
 import { Switch, Route } from "react-router-dom";
 import SidebarAccount from "./components/Sidebar";
@@ -11,13 +11,8 @@ const AccountPage = () => {
   return (
     <Container>
       <div className="account">
-        {/* <Row>
-          <Col lg="3"> */}
         <SidebarAccount />
-        {/* </Col> */}
-        {/* <Col lg="9"> */}
         <div className="account__cont">
-          {/* <ChangePassword /> */}
           <Switch>
             <Route path="/account/profile" exact>
               <Profile />
@@ -30,8 +25,6 @@ const AccountPage = () => {
             </Route>
           </Switch>
         </div>
-        {/* </Col>
-        </Row> */}
       </div>
     </Container>
   );

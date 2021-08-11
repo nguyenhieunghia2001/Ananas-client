@@ -1,13 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Col, Row } from "reactstrap";
-import MeImage from "../../../assets/images/me.jpg";
-import { AccountContext } from "../../../context/AccountContext";
-import { CLOUDINARY_LINK } from "../../../utits/base";
 import "../style.scss";
 
 const SidebarAccount = () => {
-  const { userCurrentState } = useContext(AccountContext);
   return (
     <div className="nav__profile">
       <Row>
