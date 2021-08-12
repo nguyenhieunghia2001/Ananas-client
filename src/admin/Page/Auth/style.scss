@@ -1,0 +1,14 @@
+@import '../../../assets/variable.scss';
+
+.aLogin{
+    position: absolute;
+    margin: auto;
+    width: 500px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
+    h3{
+        text-align: center;
+    }
+}

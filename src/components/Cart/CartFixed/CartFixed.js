@@ -25,11 +25,10 @@ const CartFixed = () => {
     };
   }, [wrapperRef]);
   return (
-    <div className="cartfixed">
+    <div className="cartfixed" ref={wrapperRef}>
       <div
         className="cartfixed__cont"
         onClick={() => setToggleOpenState(!toggleOpenState)}
-        ref={wrapperRef}
       >
         <h4>{CartState?.products?.length || 0}</h4>
         <AiOutlineShoppingCart />

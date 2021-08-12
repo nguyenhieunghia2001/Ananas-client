@@ -17,7 +17,7 @@ const HeaderTop = () => {
           <div className="headerTop__item">
             <RiSearchEyeLine className="icon-sm" />
             <span>
-              <Link to="purchase">Tra cứu đơn hàng</Link>
+              <Link to="/purchase">Tra cứu đơn hàng</Link>
             </span>
           </div>
           <div className="headerTop__item">
