@@ -1,0 +1,56 @@
+@import "../../assets/variable.scss";
+
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 0px 4px 0px;
+  padding: 0;
+  .logo {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    border-right: 1px solid #bdbdbd;
+    padding: 6px 0;
+    img {
+      width: 25px;
+    }
+    h4 {
+      margin: 0;
+      font-weight: 800;
+      padding-left: 15px;
+    }
+  }
+  &__menu {
+    width: calc(100% - 250px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .icon {
+      cursor: pointer;
+      font-size: 23px;
+    }
+
+    .right {
+      ul {
+        list-style-type: none;
+        li {
+          float: left;
+          line-height: 23px;
+          padding: 0 5px;
+          .account {
+            cursor: pointer;
+            img {
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

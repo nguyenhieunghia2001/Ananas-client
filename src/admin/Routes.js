@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router";
+import LayoutAdmin from "./Layout/Layout";
 import LoginPage from "./Page/Auth/LoginPage";
 import PrivateRoute from "./PrivateRoute";
 const Routes = () => {
@@ -9,9 +10,11 @@ const Routes = () => {
         <LoginPage />
       </Route>
       <Route>
-        <Switch>
-          <PrivateRoute path="/admin/dashboard" exact component={LoginPage} />
-        </Switch>
+        <LayoutAdmin>
+          <Switch>
+            <PrivateRoute path="/admin/dashboard" exact component={LoginPage} />
+          </Switch>
+        </LayoutAdmin>
       </Route>
     </Switch>
   );
