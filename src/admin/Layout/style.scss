@@ -4,7 +4,6 @@
   display: flex;
   justify-content: flex-start;
   height: 70px;
-
   padding: 0;
   .logo {
     width: 250px;
@@ -55,6 +54,20 @@
       }
     }
   }
+  &-close {
+    .logo {
+      width: 70px !important;
+      img {
+        margin-bottom: 10px;
+      }
+      h4 {
+        display: none;
+      }
+    }
+    .navbar__menu {
+      width: calc(100% - 70px) !important;
+    }
+  }
 }
 
 .sidebaradmin {
@@ -63,6 +76,7 @@
   // margin-top: 70px;
   border-right: 1px solid #bdbdbd;
   height: calc(100vh - 70px);
+  transition: all 0.1s ease-out;
   ul {
     list-style-type: none;
     padding: 40px 20px 20px;
@@ -78,14 +92,25 @@
         font-size: 18px;
         width: 100%;
         line-height: 23px;
-        transform: all .4s;
-       p{
-         margin: 0 20px;
-         line-height: 18px;
-       }
-       &:hover{
-         color: $bg-Orange;
-       }
+        transform: all 0.4s;
+        p {
+          margin: 0 20px;
+          line-height: 18px;
+        }
+        &:hover {
+          color: $bg-Orange;
+        }
+      }
+    }
+  }
+  &-close {
+    width: 70px !important;
+    li {
+      a {
+        justify-content: center;
+        p {
+          display: none;
+        }
       }
     }
   }

@@ -4,10 +4,10 @@ import { FiHome, FiShoppingCart } from "react-icons/fi";
 import { RiCustomerService2Fill } from "react-icons/ri";
 import { AiOutlineProfile } from "react-icons/ai";
 
-const Sidebar = () => {
+const Sidebar = ({ openSidebar }) => {
   return (
     <>
-      <div className="sidebaradmin">
+      <div className={`sidebaradmin ${!openSidebar && "sidebaradmin-close"}`}>
         <ul>
           <li>
             <NavLink to="/admin/dashboard" activeClassName="active">
@@ -16,19 +16,19 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink  to="/admin/product" activeClassName="active">
+            <NavLink to="/admin/product" activeClassName="active">
               <AiOutlineProfile />
               <p>Sản phẩm</p>
             </NavLink>
           </li>
           <li>
-            <NavLink  to="/admin/customer" activeClassName="active">
+            <NavLink to="/admin/customer" activeClassName="active">
               <RiCustomerService2Fill />
               <p>Khách hàng</p>
             </NavLink>
           </li>
           <li>
-            <NavLink  to="/admin/order" activeClassName="active">
+            <NavLink to="/admin/order" activeClassName="active">
               <FiShoppingCart />
               <p>Đơn hàng</p>
             </NavLink>

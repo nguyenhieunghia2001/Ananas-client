@@ -1,18 +1,18 @@
 import React from "react";
 import { FiMenu, FiSettings, FiChevronDown } from "react-icons/fi";
-import Logo from '../../assets/images/logo.svg';
-import './style.scss';
+import Logo from "../../assets/images/logo.svg";
+import "./style.scss";
 
-const Header = () => {
+const Header = ({ openSidebar, setOpenSidebar }) => {
   return (
-    <div className="navbar">
-      <div className="logo">
-          <img src={Logo} alt="logo ananas" />
-          <h4>ANANAS</h4>
+    <div className={`navbar ${!openSidebar && "navbar-close"}`}>
+      <div className="logo ">
+        <img src={Logo} alt="logo ananas" />
+        <h4>ANANAS</h4>
       </div>
       <div className="navbar__menu">
         <div className="left">
-          <div className="icon">
+          <div className="icon" onClick={() => setOpenSidebar(!openSidebar)}>
             <FiMenu />
           </div>
         </div>
