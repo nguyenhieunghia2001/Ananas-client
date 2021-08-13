@@ -6,8 +6,8 @@ const LayoutAdmin = ({ children }) => {
   return (
     <>
       <Header />
+      <Sidebar />
       <div className="body">
-        <Sidebar />
         <div className="cont">{children}</div>
       </div>
     </>
