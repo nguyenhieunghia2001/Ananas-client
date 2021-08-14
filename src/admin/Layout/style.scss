@@ -1,17 +1,25 @@
 @import "../../assets/variable.scss";
 
+body{
+  background-color: #f3f4f7;
+}
 .navbar {
+  position: fixed;
   display: flex;
   justify-content: flex-start;
   height: 70px;
   padding: 0;
+  top: 0;
+  width: 100%;
+  background-color: $bg-White;
+  z-index: 1;
   .logo {
     width: 250px;
     height: 100%;
     display: flex;
     align-items: flex-end;
     border-right: 1px solid #bdbdbd;
-    padding: 0 20px;
+    padding: 0 20px 10px;
     img {
       width: 25px;
     }
@@ -77,6 +85,7 @@
   border-right: 1px solid #bdbdbd;
   height: calc(100vh - 70px);
   transition: all 0.1s ease-out;
+  background-color: $bg-White;
   ul {
     list-style-type: none;
     padding: 40px 20px 20px;
@@ -112,6 +121,26 @@
           display: none;
         }
       }
+    }
+  }
+}
+.body {
+  margin-left: 250px;
+  margin-top: 70px;
+  .wrapper{
+    header{
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h5{
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+    .content {
+      padding: 0 20px;
     }
   }
 }

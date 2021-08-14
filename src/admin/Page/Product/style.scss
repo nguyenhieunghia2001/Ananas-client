@@ -1,0 +1,77 @@
+@import "../../../assets/variable.scss";
+
+.wrapper-product {
+  header {
+    .btn-header {
+      background-color: $bg-Orange;
+      color: $bg-White;
+      margin: 0 0 0 10px;
+    }
+  }
+  .table {
+    background-color: $bg-White;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #f1f1f1f1;
+  }
+  .header-sticky {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 20px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: $bg-White;
+    position: sticky;
+    top: 70px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px -2px;
+    z-index: 2;
+    .left {
+      a{
+        color: $bg-Orange;
+      }
+    }
+    .right {
+      .btn-header {
+        background-color: $bg-Orange;
+        color: $bg-White;
+        margin: 0 0 0 10px;
+        padding: 2px 10px;
+        font-size: 14px;
+      }
+    }
+  }
+  .product-edit{
+    &-general{
+      background-color: $bg-White;
+      border-radius: 3px;
+      padding: 20px;
+      .title{
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .form{
+        .input-group{
+          display: flex;
+          flex-direction: column;
+          padding: 10px 0;
+          lable{
+            margin-bottom: 10px;  
+          }
+        }
+        .horizontal{
+          display: flex;
+          .input-group{
+            padding: 10px 10px 10px 0;
+          }
+        }
+      }
+    }
+    &-image{
+      background-color: $bg-White;
+      margin-top: 20px;
+      padding: 20px;
+    }
+  }
+}

@@ -31,7 +31,7 @@ function App() {
       <Switch>
         <Route path="/admin">
           <Switch>
-            <Route path="/admin" component={Routes} />
+            <Route path="/" component={Routes} />
           </Switch>
         </Route>
         <Route>
