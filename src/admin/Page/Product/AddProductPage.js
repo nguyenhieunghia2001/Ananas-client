@@ -1,16 +1,50 @@
 import React, { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
+import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import { Input, Select, Upload, Button, Modal } from "antd";
+import { Input, Select, Upload, Button, Modal, Table, Form } from "antd";
 import {
   LoadingOutlined,
   PlusOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
+import GeneralForm from "../../Component/ProductForm/GeneralForm";
+import AttributeForm from "../../Component/ProductForm/AttributeForm";
 
 const { Option } = Select;
+const columns = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: "Cash Assets",
+    className: "column-money",
+    dataIndex: "money",
+    align: "right",
+  },
+];
 
+const data = [
+  {
+    key: "1",
+    name: "John Brown",
+    money: "￥300,000.00",
+    address: "New York No. 1 Lake Park",
+  },
+  {
+    key: "2",
+    name: "Jim Green",
+    money: "￥1,256,000.00",
+  },
+  {
+    key: "3",
+    name: "Joe Black",
+    money: "￥120,000.00",
+  },
+];
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -20,6 +54,7 @@ function getBase64(file) {
   });
 }
 const AddProductPage = () => {
+  const [form] = Form.useForm();
   const [multipleFile, setMultipleFile] = useState({
     previewVisible: false,
     previewImage: "",
@@ -73,6 +108,12 @@ const AddProductPage = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+  const onFinish = (value) => {
+    console.log(value);
+  };
+  const onSubmit = () => {
+    form.submit();
+  };
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -95,105 +136,53 @@ const AddProductPage = () => {
             >
               Hủy
             </button>
-            <button className="btn btn-header btn-save">Xác nhận</button>
+            <button className="btn btn-header btn-save" onClick={onSubmit}>
+              Xác nhận
+            </button>
           </div>
         </div>
-        <div className="product-edit">
-          <Container fluid={true}>
-            <Row>
-              <Col lg={7} style={{ padding: "0" }}>
-                <div className="product-edit-general">
-                  <h5 className="title">Thông tin chung</h5>
-                  <div className="form">
-                    <div className="input-group">
-                      <lable>Tên sản phẩm</lable>
-                      <Input />
-                    </div>
-                    <div className="horizontal">
-                      <div className="input-group">
-                        <lable>Danh mục</lable>
-                        <Select
-                          defaultValue="lucy"
-                          style={{ width: "100%" }}
-                          // onChange={handleChange}
-                        >
-                          <Option value="jack">Jack</Option>
-                          <Option value="lucy">Lucy</Option>
-                          <Option value="disabled" disabled>
-                            Disabled
-                          </Option>
-                          <Option value="Yiminghe">yiminghe</Option>
-                        </Select>
-                      </div>
-                      <div className="input-group">
-                        <lable>Trạng thái</lable>
-                        <Select
-                          defaultValue="lucy"
-                          style={{ width: "100%" }}
-                          // onChange={handleChange}
-                        >
-                          <Option value="jack">Jack</Option>
-                          <Option value="lucy">Lucy</Option>
-                          <Option value="disabled" disabled>
-                            Disabled
-                          </Option>
-                          <Option value="Yiminghe">yiminghe</Option>
-                        </Select>
-                      </div>
-                    </div>
-                    <div className="input-group">
-                      <lable>Giới tính</lable>
-                      <Select
-                        defaultValue="lucy"
-                        style={{ width: "100%" }}
-                        // onChange={handleChange}
+        <Form layout="vertical" form={form} onFinish={onFinish}>
+          <div className="product-edit-wrapper">
+            <Container fluid={true}>
+              <Row>
+                <Col lg={7} style={{ padding: "0" }}>
+                  <GeneralForm />
+                  <div className="product-edit product-edit-image">
+                    <h5 className="title">Hình ảnh</h5>
+                    <div className="image-group">
+                      <Upload
+                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                        listType="picture-card"
+                        fileList={multipleFile?.fileList}
+                        onPreview={handlePreview}
+                        onChange={handleChange}
                       >
-                        <Option value="MALE">Nam</Option>
-                        <Option value="FEMALE">Nữ</Option>
-                        <Option value="ALL">Nam và nữ</Option>
-                      </Select>
-                    </div>
-                    <div className="input-group">
-                      <lable>Giá</lable>
-                      <Input />
-                    </div>
-                    <div className="input-group">
-                      <lable>Chi tiết</lable>
-                      <Input />
+                        {multipleFile?.fileList.length >= 8
+                          ? null
+                          : uploadButton}
+                      </Upload>
+                      <Modal
+                        visible={multipleFile.previewVisible}
+                        title={multipleFile.previewTitle}
+                        footer={null}
+                        onCancel={handleCancel}
+                      >
+                        <img
+                          alt="example"
+                          style={{ width: "100%" }}
+                          src={multipleFile.previewImage}
+                        />
+                      </Modal>
                     </div>
                   </div>
-                </div>
-                <div className="product-edit-image">
-                  <h5 className="title">Hình ảnh</h5>
-                  <div className="image-group">
-                    <Upload
-                      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                      listType="picture-card"
-                      fileList={multipleFile?.fileList}
-                      onPreview={handlePreview}
-                      onChange={handleChange}
-                    >
-                      {multipleFile?.fileList.length >= 8 ? null : uploadButton}
-                    </Upload>
-                    <Modal
-                      visible={multipleFile.previewVisible}
-                      title={multipleFile.previewTitle}
-                      footer={null}
-                      onCancel={handleCancel}
-                    >
-                      <img
-                        alt="example"
-                        style={{ width: "100%" }}
-                        src={multipleFile.previewImage}
-                      />
-                    </Modal>
-                  </div>
-                </div>
-              </Col>
-              <Col lg={5}></Col>
-            </Row>
-          </Container>
-        </div>
+                </Col>
+                <Col lg={5}>
+                  <AttributeForm form={form} />
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </Form>
       </div>
     </div>
   );

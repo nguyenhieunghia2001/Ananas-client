@@ -27,7 +27,7 @@
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px -2px;
     z-index: 2;
     .left {
-      a{
+      a {
         color: $bg-Orange;
       }
     }
@@ -41,34 +41,41 @@
       }
     }
   }
-  .product-edit{
-    &-general{
-      background-color: $bg-White;
-      border-radius: 3px;
-      padding: 20px;
-      .title{
-        font-size: 18px;
-        font-weight: 600;
-        margin-bottom: 20px;
-      }
-      .form{
-        .input-group{
-          display: flex;
-          flex-direction: column;
-          padding: 10px 0;
-          lable{
-            margin-bottom: 10px;  
-          }
+  .product-edit {
+    background-color: $bg-White;
+    border-radius: 3px;
+    padding: 20px;
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .form {
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        .lable {
+          margin-bottom: 10px;
         }
-        .horizontal{
-          display: flex;
-          .input-group{
-            padding: 10px 10px 10px 0;
-          }
+        .error-border{
+          border: 1px solid red;
+        }
+      }
+      .horizontal {
+        display: flex;
+        .input-group {
+          padding: 10px 10px 10px 0;
+        }
+        .btn-add{
+          padding: 3px 7px;
+          background-color: $bg-Orange;
+          color: $bg-White;
+          margin: 40px 0 10px;
         }
       }
     }
-    &-image{
+    &-image {
       background-color: $bg-White;
       margin-top: 20px;
       padding: 20px;
