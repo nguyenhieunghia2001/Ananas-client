@@ -12,40 +12,7 @@ import {
 import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
 import { createProduct } from "../../../api/ProductApi";
-
-const { Option } = Select;
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Cash Assets",
-    className: "column-money",
-    dataIndex: "money",
-    align: "right",
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    money: "￥300,000.00",
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    money: "￥1,256,000.00",
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    money: "￥120,000.00",
-  },
-];
+import Loading from "../../../components/Loading/LoadingSpinning";
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -55,6 +22,7 @@ function getBase64(file) {
   });
 }
 const AddProductPage = () => {
+  const [loadingState, setLoadingState] = useState(false);
   const [form] = Form.useForm();
   const [multipleFile, setMultipleFile] = useState({
     previewVisible: false,
@@ -102,9 +70,11 @@ const AddProductPage = () => {
     </div>
   );
   const onFinish = async (value) => {
-    console.log(value);
+    setLoadingState(true);
     const res = await createProduct(value);
     console.log(res);
+
+    setLoadingState(false);
   };
   const onSubmit = () => {
     form.submit();
@@ -113,6 +83,7 @@ const AddProductPage = () => {
   useEffect(() => {
     form.setFieldsValue({ images: multipleFile.fileList });
   }, [multipleFile, form]);
+  console.log(form.getFieldValue());
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -180,13 +151,20 @@ const AddProductPage = () => {
                     </div>
                   </div>
                 </Col>
-                <Col lg={5}>
+                <Col lg={5} style={{ paddingRight: "0" }}>
                   <AttributeForm form={form} />
                 </Col>
               </Row>
             </Container>
           </div>
         </Form>
+      </div>
+      <div
+        className={`loading ${
+          loadingState ? "loading-active" : ""
+        }`}
+      >
+        <Loading color="#FF5F17" />
       </div>
     </div>
   );

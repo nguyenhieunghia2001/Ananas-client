@@ -39,9 +39,16 @@ const createProduct = async ({
 }) => {
   try {
     let formData = new FormData();
+    formData.append('name', name);
+    formData.append('category', category);
+    formData.append('status', status);
+    formData.append('gender', gender);
+    formData.append('price', price);
     images?.map(({ originFileObj }) => {
       formData.append("images", originFileObj);
     });
+    formData.append('sizes', JSON.stringify(sizes));
+
     const res = await api.post("/product/create", formData, {
       headers: {
         "Content-Type": "multipart/form-data",

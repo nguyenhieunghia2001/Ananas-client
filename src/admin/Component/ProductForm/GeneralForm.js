@@ -26,7 +26,6 @@ const GeneralForm = () => {
     }
     fetch();
   }, []);
-  console.log(info);
   return (
     <div className="product-edit product-edit-general">
       <h5 className="title">Thông tin chung</h5>

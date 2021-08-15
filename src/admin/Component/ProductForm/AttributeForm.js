@@ -1,29 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
-import { Input, Select, Table } from "antd";
-
-const { Option } = Select;
-const columns = [
-  {
-    title: "Kích thước",
-    dataIndex: "size",
-  },
-  {
-    title: "Số lượng",
-    className: "column-money",
-    dataIndex: "quantity",
-  },
-  {
-    title: "",
-    dataIndex: "edit",
-    render: (_, record) => <div onClick={() => {console.log(record)}}>xóa</div>
-  },
-];
+import { Select, Table, Form, InputNumber  } from "antd";
+import { getAllSize } from "../../../api/SizeApi";
 
 const AttributeForm = ({ form }) => {
+  const [sizes, setSizes] = useState([]);
+  const [dataTable, setDataTable] = useState([]);
   const [quantitysize, setQuantitysize] = useState({
-    key: "",
-    size: "",
+    size: {},
     quantity: "",
     errorSize: function () {
       return this.size ? true : false;
@@ -32,31 +16,47 @@ const AttributeForm = ({ form }) => {
       return this.quantity ? true : false;
     },
   });
-  const onChangeSize = (e) => {
+
+  useEffect(() => {
+    async function fetch() {
+      const data = await getAllSize();
+      setSizes(
+        data?.map(({ _id, name }) => ({
+          label: name,
+          value: _id,
+        }))
+      );
+    }
+    fetch();
+  }, []);
+  const onChangeSize = (_, item) => {
     setQuantitysize((pre) => {
       return {
         ...pre,
-        size: e,
+        size: item,
       };
     });
   };
-  const onChangeQuantity = (e) => {
+  const onChangeQuantity = (value) => {
     setQuantitysize((pre) => {
       return {
         ...pre,
-        quantity: e.target.value,
+        quantity: value,
       };
     });
   };
   const onSubmitAttribute = async () => {
     if (!quantitysize.errorQuantity() || !quantitysize.errorSize()) return;
-    const { sizes } = form.getFieldValue();
-    console.log(sizes);
-    await form.setFieldsValue({
-      ...form.getFieldValue(),
-      sizes: !sizes
-        ? [{ ...quantitysize, key: 1 }]
-        : [...sizes, { ...quantitysize, key: sizes.length + 1 }],
+    await setDataTable((pre) => {
+      return [
+        ...pre,
+        {
+          key: dataTable.length,
+          quantity: quantitysize.quantity,
+          size: quantitysize.size?.value,
+          sizeName: quantitysize.size?.label,
+        },
+      ];
     });
     setQuantitysize((pre) => {
       return {
@@ -65,8 +65,46 @@ const AttributeForm = ({ form }) => {
         size: "",
       };
     });
-    console.log(form.getFieldValue());
   };
+  const removeAttribute = async (value) => {
+    const index = dataTable.findIndex((item) => item.key === value.key);
+    await setDataTable([
+      ...dataTable.slice(0, index),
+      ...dataTable.slice(index + 1, dataTable.length),
+    ]);
+  };
+  useEffect(() => {
+    form.setFieldsValue({
+      sizes: dataTable.map((item) => ({
+        quantity: item?.quantity,
+        size: item?.size,
+      })),
+    });
+  }, [form, dataTable]);
+  const columns = [
+    {
+      title: "Kích thước",
+      dataIndex: "sizeName",
+    },
+    {
+      title: "Số lượng",
+      className: "column-money",
+      dataIndex: "quantity",
+    },
+    {
+      title: "",
+      dataIndex: "edit",
+      render: (_, record) => (
+        <div
+          onClick={() => removeAttribute(record)}
+          style={{ color: "#ff5f17" }}
+        >
+          xóa
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="product-edit product-edit-attribute">
       <h5 className="title">Kích thước và số lượng</h5>
@@ -75,27 +113,29 @@ const AttributeForm = ({ form }) => {
           <div className="input-group">
             <span className="lable">Kích thước</span>
             <Select
+              allowClear
               placeholder="Kích thước"
-              value={quantitysize?.size}
               style={{ width: "100%" }}
+              value={quantitysize.size?.label}
               onChange={onChangeSize}
               className={quantitysize.errorSize() ? "" : "error-border"}
-            >
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
-              <Option value="disabled" disabled>
-                Disabled
-              </Option>
-              <Option value="Yiminghe">yiminghe</Option>
-            </Select>
+              options={sizes}
+              optionFilterProp="label"
+              filterOption={(input, option) =>
+                option.label?.toLowerCase().indexOf(input?.toLowerCase()) >= 0
+              }
+            />
           </div>
           <div className="input-group">
             <span className="lable">Số lượng</span>
-            <Input
+            <InputNumber 
               name="quantity"
               value={quantitysize?.quantity}
+              min={1} max={9999}
+              defaultValue={1}
               onChange={onChangeQuantity}
               className={quantitysize.errorQuantity() ? "" : "error-border"}
+              style={{width: '100%'}}
             />
           </div>
           <button
@@ -107,7 +147,9 @@ const AttributeForm = ({ form }) => {
           </button>
         </div>
         <div className="table-attribute">
-          <Table dataSource={form.getFieldValue()?.sizes} columns={columns} />
+          <Form.Item name="sizes">
+            <Table dataSource={dataTable} columns={columns} />
+          </Form.Item>
         </div>
       </div>
     </div>

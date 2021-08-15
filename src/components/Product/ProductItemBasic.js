@@ -5,6 +5,7 @@ import ProductLove from "../LoveList/ProductLove";
 import { convertStringtoMoney } from "../../utits/index";
 
 const ProductItem = ({ product }) => {
+  console.log(product);
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
@@ -27,12 +28,12 @@ const ProductItem = ({ product }) => {
         {/* <AiFillHeart className="thumbnail__bg-icon" /> */}
       </div>
       <div className="thumbnail__caption">
-        <p className="thumbnail__caption-type">{product.statuses.name}</p>
+        <p className="thumbnail__caption-type">{product.status?.name}</p>
         <div className="divider-img"></div>
         <h4 className="thumbnail__caption-name">
           <Link to={`/product/${product._id}`}>{product.name}</Link>
         </h4>
-        <p className="thumbnail__caption-color">{product.colors.name}</p>
+        <p className="thumbnail__caption-color">{product.colors?.name}</p>
         <h4 className="thumbnail__caption-price">
           {convertStringtoMoney(product.price)}
         </h4>
