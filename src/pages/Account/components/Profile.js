@@ -55,6 +55,7 @@ const Profile = () => {
         };
       });
     }
+    console.log(fileInput.current.files[0]);
   };
   const handleInputChange = (e) => {
     const inputTag = e.target;

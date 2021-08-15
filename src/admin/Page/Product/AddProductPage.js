@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BiPlus } from "react-icons/bi";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import {
 } from "@ant-design/icons";
 import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
+import { createProduct } from "../../../api/ProductApi";
 
 const { Option } = Select;
 const columns = [
@@ -59,14 +60,7 @@ const AddProductPage = () => {
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
-    fileList: [
-      {
-        uid: "-1",
-        name: "image.png",
-        status: "done",
-        url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-      },
-    ],
+    fileList: [],
   });
 
   const handleCancel = () =>
@@ -75,7 +69,6 @@ const AddProductPage = () => {
     });
 
   const handlePreview = async (file) => {
-    let test;
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
@@ -108,12 +101,18 @@ const AddProductPage = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-  const onFinish = (value) => {
+  const onFinish = async (value) => {
     console.log(value);
+    const res = await createProduct(value);
+    console.log(res);
   };
   const onSubmit = () => {
     form.submit();
   };
+  // on change images
+  useEffect(() => {
+    form.setFieldsValue({ images: multipleFile.fileList });
+  }, [multipleFile, form]);
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -150,29 +149,34 @@ const AddProductPage = () => {
                   <div className="product-edit product-edit-image">
                     <h5 className="title">Hình ảnh</h5>
                     <div className="image-group">
-                      <Upload
-                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        listType="picture-card"
-                        fileList={multipleFile?.fileList}
-                        onPreview={handlePreview}
-                        onChange={handleChange}
+                      <Form.Item
+                        name="images"
+                        label="Images"
+                        extra="Tối đa 6 ảnh, dung lượng 1,24MB"
                       >
-                        {multipleFile?.fileList.length >= 8
-                          ? null
-                          : uploadButton}
-                      </Upload>
-                      <Modal
-                        visible={multipleFile.previewVisible}
-                        title={multipleFile.previewTitle}
-                        footer={null}
-                        onCancel={handleCancel}
-                      >
-                        <img
-                          alt="example"
-                          style={{ width: "100%" }}
-                          src={multipleFile.previewImage}
-                        />
-                      </Modal>
+                        <Upload
+                          listType="picture-card"
+                          fileList={multipleFile?.fileList}
+                          onPreview={handlePreview}
+                          onChange={handleChange}
+                        >
+                          {multipleFile?.fileList.length >= 6
+                            ? null
+                            : uploadButton}
+                        </Upload>
+                        <Modal
+                          visible={multipleFile.previewVisible}
+                          title={multipleFile.previewTitle}
+                          footer={null}
+                          onCancel={handleCancel}
+                        >
+                          <img
+                            alt="example"
+                            style={{ width: "100%" }}
+                            src={multipleFile.previewImage}
+                          />
+                        </Modal>
+                      </Form.Item>
                     </div>
                   </div>
                 </Col>

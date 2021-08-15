@@ -1,8 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Select, Form } from "antd";
+import { getAllCategory } from "../../../api/CategoryApi";
+import { getAllStatus } from "../../../api/StatusApi";
 const { Option } = Select;
 
 const GeneralForm = () => {
+  const [info, setInfo] = useState({
+    categorys: [],
+    statuses: [],
+  });
+  useEffect(() => {
+    async function fetch() {
+      const dataCat = await getAllCategory();
+      const dataStatus = await getAllStatus();
+      setInfo({
+        categorys: dataCat?.map(({ _id, name }) => ({
+          label: name,
+          value: _id,
+        })),
+        statuses: dataStatus?.map(({ _id, name }) => ({
+          label: name,
+          value: _id,
+        })),
+      });
+    }
+    fetch();
+  }, []);
+  console.log(info);
   return (
     <div className="product-edit product-edit-general">
       <h5 className="title">Thông tin chung</h5>
@@ -29,18 +53,16 @@ const GeneralForm = () => {
           ]}
         >
           <Select
-            placeholder="Select a option and change input text above"
+            placeholder="Chọn danh mục"
             allowClear
             style={{ width: "100%" }}
             // onChange={handleChange}
-          >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="disabled" disabled>
-              Disabled
-            </Option>
-            <Option value="Yiminghe">yiminghe</Option>
-          </Select>
+            options={info?.categorys}
+            optionFilterProp="label"
+            filterOption={(input, option) =>
+              option.label?.toLowerCase().indexOf(input?.toLowerCase()) >= 0
+            }
+          />
         </Form.Item>
 
         <Form.Item
@@ -57,14 +79,12 @@ const GeneralForm = () => {
             allowClear
             style={{ width: "100%" }}
             // onChange={handleChange}
-          >
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="disabled" disabled>
-              Disabled
-            </Option>
-            <Option value="Yiminghe">yiminghe</Option>
-          </Select>
+            options={info?.statuses}
+            optionFilterProp="label"
+            filterOption={(input, option) =>
+              option.label?.toLowerCase().indexOf(input?.toLowerCase()) >= 0
+            }
+          />
         </Form.Item>
 
         <Form.Item

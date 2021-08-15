@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/admin">
+        <Route path="/admin/:slug">
           <Switch>
             <Route path="/" component={Routes} />
           </Switch>

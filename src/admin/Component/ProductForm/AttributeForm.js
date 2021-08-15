@@ -13,6 +13,11 @@ const columns = [
     className: "column-money",
     dataIndex: "quantity",
   },
+  {
+    title: "",
+    dataIndex: "edit",
+    render: (_, record) => <div onClick={() => {console.log(record)}}>xóa</div>
+  },
 ];
 
 const AttributeForm = ({ form }) => {
