@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router";
 import LayoutAdmin from "./Layout/Layout";
 import LoginPage from "./Page/Auth/LoginPage";
 import AddProductPage from "./Page/Product/AddProductPage";
+import EditProductPage from "./Page/Product/EditProductPage";
 import ProductPage from "./Page/Product/ProductPage";
 import PrivateRoute from "./PrivateRoute";
 const Routes = () => {
@@ -23,6 +24,11 @@ const Routes = () => {
           path="/admin/product/add"
           exact
           component={AddProductPage}
+        />
+        <PrivateRoute
+          path="/admin/product/edit/:id"
+          exact
+          component={EditProductPage}
         />
         {/* </Switch> */}
       </LayoutAdmin>

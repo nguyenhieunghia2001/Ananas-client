@@ -58,7 +58,7 @@ const ImagesForm = ({ form }) => {
   );
   // on change images
   useEffect(() => {
-    console.log(multipleFile.fileList);
+    // console.log(multipleFile.fileList);
     form.setFieldsValue({ images: multipleFile.fileList });
   }, [multipleFile, form]);
   return (

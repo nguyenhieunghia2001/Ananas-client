@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
-import { Select, Table, Form, InputNumber  } from "antd";
+import { Select, Table, Form, InputNumber } from "antd";
 import { getAllSize } from "../../../api/SizeApi";
 
-const AttributeForm = ({ form }) => {
+const AttributeForm = ({ form, sizeList }) => {
   const [sizes, setSizes] = useState([]);
   const [dataTable, setDataTable] = useState([]);
   const [quantitysize, setQuantitysize] = useState({
@@ -26,9 +26,17 @@ const AttributeForm = ({ form }) => {
           value: _id,
         }))
       );
+      setDataTable(
+        sizeList?.map((item, index) => ({
+          key: index + 1,
+          quantity: item.quantity,
+          size: item.size._id,
+          sizeName: item.size.name,
+        }))
+      );
     }
     fetch();
-  }, []);
+  }, [form]);
   const onChangeSize = (_, item) => {
     setQuantitysize((pre) => {
       return {
@@ -51,7 +59,7 @@ const AttributeForm = ({ form }) => {
       return [
         ...pre,
         {
-          key: dataTable.length,
+          key: +dataTable.length + 1,
           quantity: quantitysize.quantity,
           size: quantitysize.size?.value,
           sizeName: quantitysize.size?.label,
@@ -128,14 +136,15 @@ const AttributeForm = ({ form }) => {
           </div>
           <div className="input-group">
             <span className="lable">Số lượng</span>
-            <InputNumber 
+            <InputNumber
               name="quantity"
               value={quantitysize?.quantity}
-              min={1} max={9999}
+              min={1}
+              max={9999}
               defaultValue={1}
               onChange={onChangeQuantity}
               className={quantitysize.errorQuantity() ? "" : "error-border"}
-              style={{width: '100%'}}
+              style={{ width: "100%" }}
             />
           </div>
           <button

@@ -5,7 +5,6 @@ import { Col, Container, Row } from "reactstrap";
 import { Form } from "antd";
 import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
-import { createProduct } from "../../../api/ProductApi";
 import Loading from "../../../components/Loading/LoadingSpinning";
 import ImagesForm from "../../Component/ProductForm/ImagesForm";
 

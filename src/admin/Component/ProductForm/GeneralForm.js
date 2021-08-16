@@ -131,8 +131,8 @@ const GeneralForm = ({ form }) => {
           <CKEditor
             // style={{ width: "100%" }}
             editor={ClassicEditor}
-            data="<p>Hello from CKEditor 5!</p>"
-            onChange={(event, editor) => {
+            data={form?.getFieldValue("detail")}
+            onChange={(_, editor) => {
               const data = editor.getData();
               form.setFieldsValue({ detail: data });
             }}

@@ -1,16 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { Form } from "antd";
 import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
 import Loading from "../../../components/Loading/LoadingSpinning";
 import ImagesForm from "../../Component/ProductForm/ImagesForm";
+import { getProductById } from "../../../api/ProductApi";
 
 const EditProductPage = () => {
+  const { id } = useParams();
+  console.log(id);
   const [loadingState, setLoadingState] = useState(false);
   const [form] = Form.useForm();
+  const [sizeList, setSizeList] = useState();
+  useEffect(() => {
+    async function fetch() {
+      const data = await getProductById(id);
+      await form.setFieldsValue({
+        name: data?.name,
+        category: data?.category?.name,
+        status: data?.status?.name,
+        gender: data?.gender,
+        price: data?.price,
+        detail: data?.des,
+        // images: ,
+        sizes: data?.sizes,
+      });
+      setSizeList(form.getFieldValue("sizes"));
+    }
+    fetch();
+  }, [id, form]);
   const onFinish = async (value) => {
     setLoadingState(true);
     // const res = await createProduct(value);
@@ -21,11 +42,11 @@ const EditProductPage = () => {
   const onSubmit = () => {
     form.submit();
   };
-  // console.log(form.getFieldValue());
+  console.log(form.getFieldValue());
   return (
     <div className="wrapper wrapper-product">
       <header>
-        <h5 className="title">Thêm sản phẩm</h5>
+        <h5 className="title">Chỉnh sửa sản phẩm</h5>
         <div className="header-right"></div>
       </header>
 
@@ -63,7 +84,7 @@ const EditProductPage = () => {
                   </div>
                 </Col>
                 <Col lg={5} style={{ paddingRight: "0" }}>
-                  <AttributeForm form={form} />
+                  {sizeList && <AttributeForm form={form} sizeList={sizeList} />}
                 </Col>
               </Row>
             </Container>
