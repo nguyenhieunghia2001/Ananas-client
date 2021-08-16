@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import "./style.scss";
 import { Link } from "react-router-dom";
+import { getAllProduct } from "../../../api/ProductApi";
+import { convertStringtoMoney } from "../../../utits/index";
+import {FiEdit} from 'react-icons/fi'
 
 const columns = [
   {
     title: "STT",
-    dataIndex: "key",
-    defaultSortOrder: "descend",
-    sorter: (a, b) => a.key - b.key,
+    dataIndex: "index",
+    render: (_, __, index) => +index + 1,
   },
   {
     title: "Tên sản phẩm",
-    dataIndex: ["name", 'txt'],
+    dataIndex: "name",
   },
   {
     title: "Danh mục",
-    dataIndex: "category",
+    dataIndex: ["category", "name"],
   },
   {
     title: "Trạng thái",
-    dataIndex: "status",
+    dataIndex: ["status", "name"],
   },
   {
     title: "Giới tính",
@@ -29,52 +31,36 @@ const columns = [
   {
     title: "Giá",
     dataIndex: "price",
-  },
-];
-
-const data = [
-  {
-    key: "1",
-    name: {
-      age: 12,
-      txt: "nghiadx",
-    },
-    age: 32,
-    address: "New York No. 1 Lake Park",
+    render: (text) => (
+      <p style={{ color: "#ff5f17", fontWeight: "700" }}>
+        {convertStringtoMoney(text)}
+      </p>
+    ),
+    sorter: (a, b) => +a.price - +b.price,
   },
   {
-    key: "2",
-    name: {
-      age: 12,
-      txt: "nghiadx",
-    },
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: {
-      age: 12,
-      txt: "nghiadx",
-    },
-    age: 32,
-    address: "Sidney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: {
-      age: 12,
-      txt: "nghiadx",
-    },
-    age: 32,
-    address: "London No. 2 Lake Park",
+    title: "TT",
+    render: (_, record) => (
+      <Link to={`/admin/edit/${record._id}`} style={{ color: "#ff5f17" }}>
+        <FiEdit />
+      </Link>
+    ),
   },
 ];
 
 const ProductPage = () => {
+  const [products, setProducts] = useState();
+  useEffect(() => {
+    async function fetch() {
+      const data = await getAllProduct();
+      setProducts(data);
+    }
+    fetch();
+  }, []);
   const onChange = (pagination, filters, sorter, extra) => {
     // console.log("params", pagination, filters, sorter, extra);
   };
+  console.log(products);
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -87,7 +73,12 @@ const ProductPage = () => {
       </header>
       <div className="content">
         <div className="table">
-          <Table columns={columns} dataSource={data} onChange={onChange} />
+          <Table
+            columns={columns}
+            dataSource={products}
+            onChange={onChange}
+            rowKey={(record) => record._id}
+          />
         </div>
       </div>
     </div>

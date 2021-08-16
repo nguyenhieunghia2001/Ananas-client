@@ -120,7 +120,8 @@ const PrdDetail = () => {
                 </div>
                 <div className="divider-img"></div>
                 <div className="prdDetail-des detail-space">
-                  <span>{productState?.des}</span>
+                  <span dangerouslySetInnerHTML={{__html: productState?.des}} />
+                  {/* <span>{productState?.des}</span> */}
                 </div>
                 <div className="divider-img"></div>
 

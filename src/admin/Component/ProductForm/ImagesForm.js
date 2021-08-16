@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Modal, Upload } from "antd";
-import {
-    PlusOutlined,
-  } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -44,14 +42,12 @@ const ImagesForm = ({ form }) => {
   };
 
   const handleChange = ({ fileList }) => {
-    console.log(fileList);
     setMultipleFile((pre) => {
       return {
         ...pre,
         fileList,
       };
     });
-    console.log(multipleFile);
   };
 
   const uploadButton = (
@@ -62,16 +58,13 @@ const ImagesForm = ({ form }) => {
   );
   // on change images
   useEffect(() => {
+    console.log(multipleFile.fileList);
     form.setFieldsValue({ images: multipleFile.fileList });
   }, [multipleFile, form]);
-  console.log(form.getFieldValue());
   return (
-    <Form.Item
-      name="images"
-      label="Images"
-      extra="Tối đa 6 ảnh, dung lượng 1,24MB"
-    >
+    <Form.Item name="images" extra="Tối đa 6 ảnh">
       <Upload
+        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={multipleFile?.fileList}
         onPreview={handlePreview}

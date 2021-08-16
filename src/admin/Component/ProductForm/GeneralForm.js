@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Input, Select, Form } from "antd";
 import { getAllCategory } from "../../../api/CategoryApi";
 import { getAllStatus } from "../../../api/StatusApi";
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 const { Option } = Select;
 
-const GeneralForm = ({form}) => {
+const GeneralForm = ({ form }) => {
   const [info, setInfo] = useState({
     categorys: [],
     statuses: [],
@@ -33,8 +33,8 @@ const GeneralForm = ({form}) => {
       <h5 className="title">Thông tin chung</h5>
       <div className="form">
         <Form.Item
-          name="name"
           label="Tên sản phẩm"
+          name="name"
           rules={[
             {
               required: true,
@@ -45,8 +45,8 @@ const GeneralForm = ({form}) => {
         </Form.Item>
 
         <Form.Item
-          name="category"
           label="Danh mục"
+          name="category"
           rules={[
             {
               required: true,
@@ -67,8 +67,8 @@ const GeneralForm = ({form}) => {
         </Form.Item>
 
         <Form.Item
-          name="status"
           label="Trạng thái"
+          name="status"
           rules={[
             {
               required: true,
@@ -76,7 +76,7 @@ const GeneralForm = ({form}) => {
           ]}
         >
           <Select
-            placeholder="Select a option and change input text above"
+            placeholder="Chọn trạng thái"
             allowClear
             style={{ width: "100%" }}
             // onChange={handleChange}
@@ -89,8 +89,8 @@ const GeneralForm = ({form}) => {
         </Form.Item>
 
         <Form.Item
-          name="gender"
           label="Giới tính"
+          name="gender"
           rules={[
             {
               required: true,
@@ -98,7 +98,7 @@ const GeneralForm = ({form}) => {
           ]}
         >
           <Select
-            placeholder="Select a option and change input text above"
+            placeholder="Chọn giới tính"
             allowClear
             style={{ width: "100%" }}
             // onChange={handleChange}
@@ -109,8 +109,8 @@ const GeneralForm = ({form}) => {
           </Select>
         </Form.Item>
         <Form.Item
-          name="price"
           label="Giá"
+          name="price"
           rules={[
             {
               required: true,
@@ -120,8 +120,8 @@ const GeneralForm = ({form}) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="detail"
           label="Chi tiết"
+          name="detail"
           rules={[
             {
               required: true,
@@ -134,7 +134,7 @@ const GeneralForm = ({form}) => {
             data="<p>Hello from CKEditor 5!</p>"
             onChange={(event, editor) => {
               const data = editor.getData();
-              form.setFieldsValue({detail: data})
+              form.setFieldsValue({ detail: data });
             }}
           />
         </Form.Item>
