@@ -36,6 +36,7 @@ const createProduct = async ({
   gender,
   price,
   sizes,
+  detail
 }) => {
   try {
     let formData = new FormData();
@@ -44,6 +45,7 @@ const createProduct = async ({
     formData.append('status', status);
     formData.append('gender', gender);
     formData.append('price', price);
+    formData.append('detail', detail);
     images?.map(({ originFileObj }) => {
       formData.append("images", originFileObj);
     });

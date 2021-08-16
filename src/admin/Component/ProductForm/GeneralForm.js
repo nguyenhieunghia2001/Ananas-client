@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Input, Select, Form } from "antd";
 import { getAllCategory } from "../../../api/CategoryApi";
 import { getAllStatus } from "../../../api/StatusApi";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 const { Option } = Select;
 
-const GeneralForm = () => {
+const GeneralForm = ({form}) => {
   const [info, setInfo] = useState({
     categorys: [],
     statuses: [],
@@ -126,7 +128,15 @@ const GeneralForm = () => {
             },
           ]}
         >
-          <Input />
+          <CKEditor
+            // style={{ width: "100%" }}
+            editor={ClassicEditor}
+            data="<p>Hello from CKEditor 5!</p>"
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              form.setFieldsValue({detail: data})
+            }}
+          />
         </Form.Item>
       </div>
     </div>
