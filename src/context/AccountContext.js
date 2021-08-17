@@ -8,7 +8,7 @@ const AccountProvider = ({ children }) => {
   const [userCurrentState, setUserCurrentState] = useState({});
   const [loaddingUserState, setLoaddingUserState] = useState(false);
   useEffect(() => {
-    (async function () {
+    async function fetch() {
       try {
         const { data, status } = await checkIsAuthWithInfo();
         status === 200 &&
@@ -17,11 +17,12 @@ const AccountProvider = ({ children }) => {
             public_Id: data?.public_Id,
           }));
         setLoaddingUserState(true);
+        console.log("loadding>", loaddingUserState);
       } catch (error) {
         console.log(error);
       }
-    })();
-
+    }
+    fetch();
   }, [loaddingUserState]);
   return (
     <AccountContext.Provider
@@ -29,6 +30,7 @@ const AccountProvider = ({ children }) => {
         userCurrentState,
         setUserCurrentState,
         loaddingUserState,
+        setLoaddingUserState,
       }}
     >
       {children}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { Link, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-import { Form } from "antd";
+import { Form, message } from "antd";
 import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
 import Loading from "../../../components/Loading/LoadingSpinning";
@@ -11,6 +11,7 @@ import { editProduct, getProductById } from "../../../api/ProductApi";
 import { CLOUDINARY_LINK } from "../../../utits/base";
 
 const EditProductPage = () => {
+  let history = useHistory();
   const { id } = useParams();
   const [loadingState, setLoadingState] = useState(false);
   const [form] = Form.useForm();
@@ -48,10 +49,11 @@ const EditProductPage = () => {
   const onFinish = async (value) => {
     console.log(value);
     setLoadingState(true);
-    await editProduct(value, fileList, id);
-    // console.log(value, fileList);
-
+    const responce = await editProduct(value, fileList, id);
+    if (responce) message.success("Cập nhật thành công");
+    else message.error("Có lỗi xảy ra vui lòng thử lại");
     setLoadingState(false);
+    history.push("/admin/product");
   };
   const onSubmit = () => {
     form.submit();

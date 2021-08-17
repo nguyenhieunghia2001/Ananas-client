@@ -88,7 +88,7 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
       >
         {multipleFile?.fileList.length >= 6 ? null : uploadButton}
       </Upload>
-      {/* <Modal
+      <Modal
         visible={multipleFile.previewVisible}
         title={multipleFile.previewTitle}
         footer={null}
@@ -99,7 +99,7 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
           style={{ width: "100%" }}
           src={multipleFile.previewImage}
         />
-      </Modal> */}
+      </Modal>
     </Form.Item>
   );
 };

@@ -2,13 +2,14 @@ import React from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import { convertStringtoMoney } from "../../utits";
+import { CLOUDINARY_LINK } from "../../utits/base";
 
 const ProductItem = ({ product }) => {
   return (
     <div className="thumbnail">
       <Link to={`/product/${product?._id}`}>
         <div className="thumbnail__img">
-          <img src={product?.images[0]?.urlPublic} alt="sản phẩm" />
+          <img src={`${CLOUDINARY_LINK}${product?.images[0]?.urlPublic}`} alt="sản phẩm" />
         </div>
         <div className="thumbnail__caption">
           <h4 className="thumbnail__caption-name">{product?.name}</h4>

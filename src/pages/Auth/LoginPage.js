@@ -8,7 +8,7 @@ import "./style.scss";
 
 const HomePage = () => {
   let history = useHistory();
-  const { setUserCurrentState } = useContext(AccountContext);
+  const { setUserCurrentState, setLoaddingUserState } = useContext(AccountContext);
   const [errorFormState, setErrorFormState] = useState([]);
   const [formState, setFormState] = useState({
     email: "",
@@ -19,11 +19,14 @@ const HomePage = () => {
       const login = await loginAuth(formState.email, formState.password);
       if (login.status === 200) {
         setUserCurrentState({
-          username: login.data?.username
-        })
+          username: login.data?.username,
+        });
         history.push("/");
       }
-      if (login.status === 422) setErrorFormState(login.data);
+      if (login.status === 422) {
+        setErrorFormState(login.data);
+        setLoaddingUserState(true);
+      }
     } catch (error) {
       console.log(error);
     }

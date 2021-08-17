@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Row } from "reactstrap";
 import "../style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
+import { CLOUDINARY_LINK } from "../../../utits/base";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -56,7 +57,10 @@ const ImageGroup = ({ images }) => {
     <div className="imggroup">
       <Row>
         <div className="imggroup__primary">
-          <img src={imgSelectedState} alt="Foo eating a sandwich." />
+          <img
+            src={`${CLOUDINARY_LINK}${imgSelectedState}`}
+            alt="Foo eating a sandwich."
+          />
         </div>
       </Row>
       <Row>
@@ -66,7 +70,7 @@ const ImageGroup = ({ images }) => {
               images.map((image) => (
                 <div key={image._id}>
                   <img
-                    src={image?.urlPublic}
+                    src={`${CLOUDINARY_LINK}${image?.urlPublic}`}
                     alt="product detail item"
                     onClick={() => setImgSelectedState(image.urlPublic)}
                   />

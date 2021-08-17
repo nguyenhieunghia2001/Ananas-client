@@ -3,19 +3,23 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 import ProductLove from "../LoveList/ProductLove";
 import { convertStringtoMoney } from "../../utits/index";
+import { CLOUDINARY_LINK } from "../../utits/base";
 
 const ProductItem = ({ product }) => {
-  console.log(product);
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
         <img
-          src={product?.images[0]?.urlPublic}
+          src={`${CLOUDINARY_LINK}${product?.images[0]?.urlPublic}`}
           alt="sản phẩm"
           className="thumbnail__bg-img"
         />
         <img
-          src={product?.images[1]?.urlPublic || product?.images[0]?.urlPublic}
+          src={
+            product?.images[1]?.urlPublic
+              ? `${CLOUDINARY_LINK}${product?.images[1]?.urlPublic}`
+              : `${CLOUDINARY_LINK}${product?.images[0]?.urlPublic}`
+          }
           alt="sản phẩm"
           className="thumbnail__bg-img--hover"
         />

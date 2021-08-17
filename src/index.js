@@ -3,20 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
-import AccountProvider from "./context/AccountContext";
-import ProductLoveProvider from "./context/ProductLoveContext";
-import CartProvider from "./context/CartContext";
-require('dotenv').config()
+require("dotenv").config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <AccountProvider>
-      <ProductLoveProvider>
-        <CartProvider>
-          <App />
-        </CartProvider>
-      </ProductLoveProvider>
-    </AccountProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

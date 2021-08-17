@@ -9,6 +9,7 @@ import { ProductLoveContext } from "../../context/ProductLoveContext";
 import ProductLove from "../LoveList/ProductLove";
 import { CartContext } from "../../context/CartContext";
 import Combobox from "../Properties/Combobox";
+import {CLOUDINARY_LINK} from '../../utits/base'
 
 const ProductItemCart = ({ product, fromPage }) => {
   const { removeLove } = useContext(ProductLoveContext);
@@ -37,7 +38,7 @@ const ProductItemCart = ({ product, fromPage }) => {
             <Col lg="3" xs={3}>
               <div className="prdCart__img">
                 <Link to={`/product/${productRender._id}`}>
-                  <img src={productRender.images[0]?.urlPublic} alt="prd" />
+                  <img src={`${CLOUDINARY_LINK}${productRender.images[0]?.urlPublic}`} alt="prd" />
                 </Link>
               </div>
             </Col>

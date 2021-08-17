@@ -6,6 +6,7 @@ import "./style.scss";
 import { ProductLoveContext } from "../../context/ProductLoveContext";
 
 const LovePage = () => {
+  console.log('object');
   const { productLoveState } = useContext(ProductLoveContext);
   return (
     <Container>

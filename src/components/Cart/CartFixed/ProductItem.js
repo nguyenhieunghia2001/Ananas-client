@@ -1,5 +1,6 @@
 import React from "react";
 import { convertStringtoMoney } from "../../../utits/index";
+import { CLOUDINARY_LINK } from "../../../utits/base";
 import "../style.scss";
 
 const ProductItemCart = ({cartProduct}) => {
@@ -7,7 +8,7 @@ const ProductItemCart = ({cartProduct}) => {
   return (
     <div className="products__item">
       <div className="products__img">
-        <img src={product?.images[0].urlPublic} alt="product" />
+        <img src={`${CLOUDINARY_LINK}${product?.images[0].urlPublic}`} alt="product" />
       </div>
       <div className="products__info">
         <h6>{product.name}</h6>
