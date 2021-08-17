@@ -36,20 +36,22 @@ const createProduct = async ({
   gender,
   price,
   sizes,
-  detail
+  detail,
 }) => {
+  console.log("create product ");
   try {
     let formData = new FormData();
-    formData.append('name', name);
-    formData.append('category', category);
-    formData.append('status', status);
-    formData.append('gender', gender);
-    formData.append('price', price);
-    formData.append('detail', detail);
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("status", status);
+    formData.append("gender", gender);
+    formData.append("price", price);
+    formData.append("detail", detail);
     images?.map(({ originFileObj }) => {
       formData.append("images", originFileObj);
+      return 0;
     });
-    formData.append('sizes', JSON.stringify(sizes));
+    formData.append("sizes", JSON.stringify(sizes));
 
     const res = await api.post("/product/create", formData, {
       headers: {
@@ -61,4 +63,41 @@ const createProduct = async ({
     return error;
   }
 };
-export { getAllProduct, getProductById, getAllProductByQuery, createProduct };
+const editProduct = async (
+  { images, name, category, status, gender, price, sizes, detail },
+  imagesRemove,
+  id
+) => {
+  // console.log(images);
+  try {
+    let formData = new FormData();
+    formData.append("name", name);
+    formData.append("category", category);
+    formData.append("status", status);
+    formData.append("gender", gender);
+    formData.append("price", price);
+    formData.append("detail", detail);
+
+    images?.map(({ originFileObj }) => {
+      if (originFileObj) formData.append("images", originFileObj);
+      return 0;
+    });
+    formData.append("sizes", JSON.stringify(sizes));
+    formData.append("imagesRemove", JSON.stringify(imagesRemove));
+    const res = await api.post(`/product/edit/${id}`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+export {
+  getAllProduct,
+  getProductById,
+  getAllProductByQuery,
+  createProduct,
+  editProduct,
+};

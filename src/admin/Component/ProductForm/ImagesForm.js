@@ -11,12 +11,13 @@ function getBase64(file) {
   });
 }
 
-const ImagesForm = ({ form }) => {
+const ImagesForm = ({ form, fileList, setFileList }) => {
+  console.log(fileList);
   const [multipleFile, setMultipleFile] = useState({
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
-    fileList: [],
+    fileList: fileList,
   });
 
   const handleCancel = () => {
@@ -49,7 +50,17 @@ const ImagesForm = ({ form }) => {
       };
     });
   };
-
+  const handleRemove = (value) => {
+    // console.log(value);
+    if (value._id) {
+      setFileList((pre) => {
+        return {
+          ...pre,
+          removeFiles: [...pre.removeFiles, value],
+        };
+      });
+    }
+  };
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -58,7 +69,6 @@ const ImagesForm = ({ form }) => {
   );
   // on change images
   useEffect(() => {
-    // console.log(multipleFile.fileList);
     form.setFieldsValue({ images: multipleFile.fileList });
   }, [multipleFile, form]);
   return (
@@ -69,6 +79,7 @@ const ImagesForm = ({ form }) => {
         fileList={multipleFile?.fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        onRemove={handleRemove}
       >
         {multipleFile?.fileList.length >= 6 ? null : uploadButton}
       </Upload>

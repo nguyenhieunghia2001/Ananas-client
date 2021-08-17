@@ -7,42 +7,55 @@ import GeneralForm from "../../Component/ProductForm/GeneralForm";
 import AttributeForm from "../../Component/ProductForm/AttributeForm";
 import Loading from "../../../components/Loading/LoadingSpinning";
 import ImagesForm from "../../Component/ProductForm/ImagesForm";
-import { getProductById } from "../../../api/ProductApi";
+import { editProduct, getProductById } from "../../../api/ProductApi";
+import { CLOUDINARY_LINK } from "../../../utits/base";
 
 const EditProductPage = () => {
   const { id } = useParams();
-  console.log(id);
   const [loadingState, setLoadingState] = useState(false);
   const [form] = Form.useForm();
   const [sizeList, setSizeList] = useState();
+  const [fileList, setFileList] = useState({
+    default: [],
+    removeFiles: [],
+  });
   useEffect(() => {
     async function fetch() {
       const data = await getProductById(id);
+      console.log(data);
       await form.setFieldsValue({
         name: data?.name,
-        category: data?.category?.name,
-        status: data?.status?.name,
+        category: data?.category?._id,
+        status: data?.status?._id,
         gender: data?.gender,
         price: data?.price,
         detail: data?.des,
-        // images: ,
+        images: data?.images,
         sizes: data?.sizes,
       });
-      setSizeList(form.getFieldValue("sizes"));
+      setSizeList(data?.sizes);
+      setFileList({
+        default: data?.images?.map((item) => ({
+          uid: item.uid,
+          _id: item._id,
+          url: `${CLOUDINARY_LINK}${item.urlPublic}`,
+        })),
+        removeFiles: [],
+      });
     }
     fetch();
   }, [id, form]);
   const onFinish = async (value) => {
-    setLoadingState(true);
-    // const res = await createProduct(value);
     console.log(value);
+    setLoadingState(true);
+    await editProduct(value, fileList, id);
+    // console.log(value, fileList);
 
     setLoadingState(false);
   };
   const onSubmit = () => {
     form.submit();
   };
-  console.log(form.getFieldValue());
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -79,12 +92,20 @@ const EditProductPage = () => {
                   <div className="product-edit product-edit-image">
                     <h5 className="title">Hình ảnh</h5>
                     <div className="image-group">
-                      <ImagesForm form={form} />
+                      {fileList && (
+                        <ImagesForm
+                          form={form}
+                          fileList={fileList.default}
+                          setFileList={setFileList}
+                        />
+                      )}
                     </div>
                   </div>
                 </Col>
                 <Col lg={5} style={{ paddingRight: "0" }}>
-                  {sizeList && <AttributeForm form={form} sizeList={sizeList} />}
+                  {sizeList && (
+                    <AttributeForm form={form} sizeList={sizeList} />
+                  )}
                 </Col>
               </Row>
             </Container>

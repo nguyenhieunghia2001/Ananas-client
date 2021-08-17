@@ -20,6 +20,7 @@ const AttributeForm = ({ form, sizeList }) => {
   useEffect(() => {
     async function fetch() {
       const data = await getAllSize();
+
       setSizes(
         data?.map(({ _id, name }) => ({
           label: name,
@@ -36,7 +37,7 @@ const AttributeForm = ({ form, sizeList }) => {
       );
     }
     fetch();
-  }, [form]);
+  }, [sizeList]);
   const onChangeSize = (_, item) => {
     setQuantitysize((pre) => {
       return {
