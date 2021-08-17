@@ -12,12 +12,11 @@ function getBase64(file) {
 }
 
 const ImagesForm = ({ form, fileList, setFileList }) => {
-  console.log(fileList);
   const [multipleFile, setMultipleFile] = useState({
     previewVisible: false,
     previewImage: "",
     previewTitle: "",
-    fileList: fileList,
+    fileList: [],
   });
 
   const handleCancel = () => {
@@ -67,10 +66,16 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+  useEffect(() => {
+    setMultipleFile((pre) => {
+      return { ...pre, fileList: fileList };
+    });
+  }, [fileList]);
   // on change images
   useEffect(() => {
     form.setFieldsValue({ images: multipleFile.fileList });
   }, [multipleFile, form]);
+
   return (
     <Form.Item name="images" extra="Tối đa 6 ảnh">
       <Upload
@@ -83,7 +88,7 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
       >
         {multipleFile?.fileList.length >= 6 ? null : uploadButton}
       </Upload>
-      <Modal
+      {/* <Modal
         visible={multipleFile.previewVisible}
         title={multipleFile.previewTitle}
         footer={null}
@@ -94,7 +99,7 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
           style={{ width: "100%" }}
           src={multipleFile.previewImage}
         />
-      </Modal>
+      </Modal> */}
     </Form.Item>
   );
 };
