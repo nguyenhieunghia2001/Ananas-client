@@ -22,6 +22,12 @@ const Sidebar = ({ openSidebar }) => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/admin/general" activeClassName="active">
+              <AiOutlineProfile />
+              <p>Thuộc tính</p>
+            </NavLink>
+          </li>
+          <li>
             <NavLink to="/admin/customer" activeClassName="active">
               <RiCustomerService2Fill />
               <p>Khách hàng</p>
