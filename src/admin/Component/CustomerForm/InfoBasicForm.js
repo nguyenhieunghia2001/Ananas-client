@@ -18,6 +18,11 @@ const InfoBasicForm = ({ validate }) => {
                     required: true,
                   },
                 ]}
+                {...(validate && {
+                  hasFeedback: true,
+                  help: validate?.username,
+                  validateStatus: validate?.username ? "error" : "success",
+                })}
               >
                 <Input />
               </Form.Item>
@@ -28,10 +33,10 @@ const InfoBasicForm = ({ validate }) => {
                 {...(validate && {
                   hasFeedback: true,
                   help: validate?.email,
-                  validateStatus: validate.username ? "success" : "error",
+                  validateStatus: validate?.email ? "error" : "success",
                 })}
               >
-                <Input />
+                <Input type="email" />
               </Form.Item>
               <Form.Item
                 label="Mật khẩu"
@@ -41,8 +46,13 @@ const InfoBasicForm = ({ validate }) => {
                     required: true,
                   },
                 ]}
+                {...(validate && {
+                  hasFeedback: true,
+                  help: validate?.password,
+                  validateStatus: validate?.password ? "error" : "success",
+                })}
               >
-                <Input />
+                <Input.Password />
               </Form.Item>
               <Form.Item
                 label="Phân quyền"
@@ -54,24 +64,20 @@ const InfoBasicForm = ({ validate }) => {
                 ]}
               >
                 <Select
-                  placeholder="Chọn phân quyền"
+                  placeholder="Trạng thái tài khoản"
                   allowClear
                   style={{ width: "100%" }}
                 >
-                  <Option value="user">Khách hàng</Option>
-                  <Option value="admin">Quản trị viên</Option>
+                  <Option value="true">Đã kích hoạt</Option>
+                  <Option value="false">Chưa kích hoạt</Option>
                 </Select>
               </Form.Item>
             </div>
           </Col>
           <Col lg={5} style={{ padding: "0 30px" }}>
             <p style={{ marginTop: "25px" }}>
-              <strong>Lưu ý: </strong>Khi tạo người dùng có thể chọn phân quyền
-              (người dùng hoặc quản trị viên)
-            </p>
-            <p>
-              <strong>Quản trị viên</strong> có thể tạo quản lý toàn bọ trang
-              web!
+              <strong>Lưu ý: </strong>Trạng thái tài khoản là nếu là chưa kích
+              hoạt thì tài khoản người dùng cần xác thực lại!
             </p>
           </Col>
         </Row>

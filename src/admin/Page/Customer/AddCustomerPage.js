@@ -1,34 +1,34 @@
 import React, { useState } from "react";
 import { BsArrowLeftShort } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import { Form } from "antd";
+import { Link, useHistory } from "react-router-dom";
+import { Form, message } from "antd";
 import Loading from "../../../components/Loading/LoadingSpinning";
 import InfoBasicForm from "../../Component/CustomerForm/InfoBasicForm";
+import { registerAuth } from "../../../api/authApi";
 
 const AddCustomerPage = () => {
+  let history = useHistory();
   const [loadingState, setLoadingState] = useState(false);
   const [validate, setValidate] = useState();
   const [form] = Form.useForm();
   const onFinish = async (value) => {
-    setValidate({})
+    setValidate({});
     setLoadingState(true);
-    // const res = await createProduct(value);
-    // console.log(value);
-    // form
-    //   .validateFields()
-    //   .then((er) => {
-    //     console.log(er);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    setValidate({ email: "email đã dc đăng kí" });
+    const res = await registerAuth(value.email, value.password, value.username);
+    if (res?.status === 422) {
+      const valid = res.data?.reduce((result, item) => {
+        return (result = { ...result, [item.param]: item.msg });
+      }, {});
+      setValidate(valid);
+    } else {
+      message.success("Thêm tài khoản thành công");
+    }
     setLoadingState(false);
+    history.push("/admin/product");
   };
   const onSubmit = () => {
     form.submit();
   };
-  // console.log(form.getFieldValue());
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -39,7 +39,7 @@ const AddCustomerPage = () => {
       <div className="content">
         <div className="header-sticky">
           <div className="left">
-            <Link to="/admin/product" className="">
+            <Link to="/admin/customer" className="">
               <BsArrowLeftShort />
               <span>Khách hàng</span>
             </Link>
