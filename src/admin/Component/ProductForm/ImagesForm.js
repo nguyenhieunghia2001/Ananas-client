@@ -86,7 +86,7 @@ const ImagesForm = ({ form, fileList, setFileList }) => {
         onChange={handleChange}
         onRemove={handleRemove}
       >
-        {multipleFile?.fileList.length >= 6 ? null : uploadButton}
+        {multipleFile?.fileList?.length >= 6 ? null : uploadButton}
       </Upload>
       <Modal
         visible={multipleFile.previewVisible}

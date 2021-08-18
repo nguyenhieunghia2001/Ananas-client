@@ -2,6 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import LayoutAdmin from "./Layout/Layout";
 import LoginPage from "./Page/Auth/LoginPage";
+import AddCustomerPage from "./Page/Customer/AddCustomerPage";
+import CustomerPage from "./Page/Customer/CustomerPage";
 import AddProductPage from "./Page/Product/AddProductPage";
 import EditProductPage from "./Page/Product/EditProductPage";
 import ProductPage from "./Page/Product/ProductPage";
@@ -29,6 +31,16 @@ const Routes = () => {
           path="/admin/product/edit/:id"
           exact
           component={EditProductPage}
+        />
+        <PrivateRoute
+          path="/admin/customer"
+          exact
+          component={CustomerPage}
+        />
+        <PrivateRoute
+          path="/admin/customer/add"
+          exact
+          component={AddCustomerPage}
         />
         {/* </Switch> */}
       </LayoutAdmin>

@@ -84,7 +84,7 @@ const AttributeForm = ({ form, sizeList }) => {
   };
   useEffect(() => {
     form.setFieldsValue({
-      sizes: dataTable.map((item) => ({
+      sizes: dataTable?.map((item) => ({
         quantity: item?.quantity,
         size: item?.size,
       })),

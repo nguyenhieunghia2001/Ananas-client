@@ -1,5 +1,13 @@
 import api from "./index";
 
+const getAllAccount = async () => {
+  try {
+    const res = await api.get("/account/getall");
+    return res.data.accounts;
+  } catch (error) {
+    return error;
+  }
+};
 const getInfo = async () => {
   try {
     const res = await api.get("/account/getinfo");
@@ -33,13 +41,13 @@ const updatePass = async (oldPass, newPass, confirmPass) => {
     });
     return {
       status: res.status,
-      data: res.data
-    }
+      data: res.data,
+    };
   } catch (error) {
     return {
       status: error.response.status,
       data: error.response.data.errors,
-    }
+    };
   }
 };
-export { getInfo, updateInfo, updatePass };
+export { getInfo, updateInfo, updatePass, getAllAccount };
