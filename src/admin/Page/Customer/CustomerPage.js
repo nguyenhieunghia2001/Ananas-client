@@ -22,12 +22,13 @@ const columns = [
   {
     title: "Số điện thoại",
     dataIndex: 'phone',
+    render: text => <div >{text ? text : 'Chưa cập nhật'}</div>
   },
   {
     title: "TT",
     render: (_, record) => (
       <Link
-        to={`/admin/product/edit/${record._id}`}
+        to={`/admin/customer/edit/${record._id}`}
         style={{ color: "#ff5f17" }}
       >
         <FiEdit />

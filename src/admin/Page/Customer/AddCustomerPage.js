@@ -32,7 +32,7 @@ const AddCustomerPage = () => {
   return (
     <div className="wrapper wrapper-product">
       <header>
-        <h5 className="title">Thêm sản phẩm</h5>
+        <h5 className="title">Thêm khách hàng</h5>
         <div className="header-right"></div>
       </header>
 

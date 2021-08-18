@@ -4,6 +4,7 @@ import LayoutAdmin from "./Layout/Layout";
 import LoginPage from "./Page/Auth/LoginPage";
 import AddCustomerPage from "./Page/Customer/AddCustomerPage";
 import CustomerPage from "./Page/Customer/CustomerPage";
+import EditCustomerPage from "./Page/Customer/EditCustomerPage";
 import AddProductPage from "./Page/Product/AddProductPage";
 import EditProductPage from "./Page/Product/EditProductPage";
 import ProductPage from "./Page/Product/ProductPage";
@@ -41,6 +42,11 @@ const Routes = () => {
           path="/admin/customer/add"
           exact
           component={AddCustomerPage}
+        />
+        <PrivateRoute
+          path="/admin/customer/edit/:id"
+          exact
+          component={EditCustomerPage}
         />
         {/* </Switch> */}
       </LayoutAdmin>

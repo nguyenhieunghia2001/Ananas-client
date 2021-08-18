@@ -3,7 +3,7 @@ import React from "react";
 import { Container, Col, Row } from "reactstrap";
 
 const { Option } = Select;
-const InfoBasicForm = ({ validate }) => {
+const InfoBasicForm = ({ validate, formPage = 'ADD' }) => {
   return (
     <div className="product-edit product-edit-general">
       <Container fluid={true}>
@@ -52,7 +52,7 @@ const InfoBasicForm = ({ validate }) => {
                   validateStatus: validate?.password ? "error" : "success",
                 })}
               >
-                <Input.Password />
+                <Input.Password value="oke" />
               </Form.Item>
               <Form.Item
                 label="Phân quyền"

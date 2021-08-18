@@ -8,6 +8,14 @@ const getAllAccount = async () => {
     return error;
   }
 };
+const getInfoById = async (id) => {
+  try {
+    const res = await api.get(`/account/getinfobyid/${id}`);
+    return res.data.account;
+  } catch (error) {
+    return error;
+  }
+};
 const getInfo = async () => {
   try {
     const res = await api.get("/account/getinfo");
@@ -50,4 +58,29 @@ const updatePass = async (oldPass, newPass, confirmPass) => {
     };
   }
 };
-export { getInfo, updateInfo, updatePass, getAllAccount };
+const editAccountByAdmin = async ({ email, username, password }) => {
+  try {
+    const res = await api.post(`/account/editbyadmin`, {
+      email,
+      username,
+      password,
+    });
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response.status,
+      data: error.response.data.errors,
+    };
+  }
+};
+export {
+  getInfo,
+  updateInfo,
+  updatePass,
+  getAllAccount,
+  editAccountByAdmin,
+  getInfoById,
+};
