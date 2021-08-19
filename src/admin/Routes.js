@@ -6,6 +6,7 @@ import AddCustomerPage from "./Page/Customer/AddCustomerPage";
 import CustomerPage from "./Page/Customer/CustomerPage";
 import EditCustomerPage from "./Page/Customer/EditCustomerPage";
 import GeneralPage from "./Page/General/GeneralPage";
+import OrderPage from "./Page/Order/OrderPage";
 import AddProductPage from "./Page/Product/AddProductPage";
 import EditProductPage from "./Page/Product/EditProductPage";
 import ProductPage from "./Page/Product/ProductPage";
@@ -53,6 +54,11 @@ const Routes = () => {
           path="/admin/general"
           exact
           component={GeneralPage}
+        />
+        <PrivateRoute
+          path="/admin/order"
+          exact
+          component={OrderPage}
         />
         {/* </Switch> */}
       </LayoutAdmin>
