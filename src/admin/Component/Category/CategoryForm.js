@@ -11,7 +11,7 @@ const CategoryForm = () => {
   const [isModalAdd, setIsModalAdd] = useState(false);
   const [modalEdit, setModalEdit] = useState({
     isShow: false,
-    id: ''
+    id: "",
   });
   useEffect(() => {
     async function fetch() {
@@ -27,8 +27,8 @@ const CategoryForm = () => {
   const showModalEdit = (id) => {
     setModalEdit({
       isShow: true,
-      id
-    })
+      id,
+    });
   };
   const categoryColumn = [
     {
@@ -43,7 +43,10 @@ const CategoryForm = () => {
     {
       title: "TT",
       render: (_, record) => (
-        <div style={{ color: "#ff5f17", cursor: 'pointer' }} onClick={() => showModalEdit(record._id)}>
+        <div
+          style={{ color: "#ff5f17", cursor: "pointer" }}
+          onClick={() => showModalEdit(record._id)}
+        >
           <FiEdit />
         </div>
       ),
@@ -51,8 +54,17 @@ const CategoryForm = () => {
   ];
   return (
     <div className="product-edit product-edit-general">
-      <AddCategoryForm isModalAdd={isModalAdd} setIsModalAdd={setIsModalAdd} setCategories={setCategories}/>
-      <EditCategoryForm modalEdit={modalEdit?.isShow} setModalEdit={setModalEdit} id={modalEdit?.id}/>
+      <AddCategoryForm
+        isModalAdd={isModalAdd}
+        setIsModalAdd={setIsModalAdd}
+        setCategories={setCategories}
+      />
+      <EditCategoryForm
+        modalEdit={modalEdit?.isShow}
+        setModalEdit={setModalEdit}
+        id={modalEdit?.id}
+        setCategories={setCategories}
+      />
 
       <div className="top">
         <h5 className="title">Danh mục</h5>

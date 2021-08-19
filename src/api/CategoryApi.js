@@ -20,7 +20,7 @@ const getCategoryById = async (id) => {
 const addCategory = async (name) => {
   try {
     const res = await api.post("categories/add", { name });
-    return res.data;
+    return res;
   } catch (error) {
     return {
       status: error.response.status,
@@ -28,12 +28,15 @@ const addCategory = async (name) => {
     };
   }
 };
-const editCategory = async ({ id, name }) => {
+const editCategory = async (id, name) => {
   try {
     const res = await api.post("categories/edit", { id, name });
-    return res.data;
+    return res;
   } catch (error) {
-    return error;
+    return {
+      status: error.response.status,
+      data: error.response.data.errors,
+    };
   }
 };
 

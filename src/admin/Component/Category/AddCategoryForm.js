@@ -9,23 +9,20 @@ const AddCategoryForm = ({ isModalAdd, setIsModalAdd, setCategories }) => {
     const res = await addCategory(values.name);
     setValidate({});
     if (res.status === 200) {
-      setIsModalAdd(false);
       message.success("Thêm thành công");
       setCategories((pre) => {
         return [...pre, res.category];
       });
+      setIsModalAdd(false);
     } else {
       const valid = res.data?.reduce((result, item) => {
         return (result = { ...result, [item.param]: item.msg });
       }, {});
-      // console.log(valid);
       setValidate(valid);
-      // console.log(validate);
     }
   };
   const handleOk = () => {
     form.submit();
-    console.log(form.getFieldValue());
   };
   const handleCancel = () => {
     setIsModalAdd(false);
