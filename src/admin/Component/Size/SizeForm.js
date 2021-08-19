@@ -21,7 +21,7 @@ const SizeForm = () => {
       render: (_, __, index) => +index + 1,
     },
     {
-      title: "Tên sản phẩm",
+      title: "Kích thước",
       dataIndex: "name",
     },
     {
@@ -38,7 +38,10 @@ const SizeForm = () => {
   ];
   return (
     <div className="product-edit product-edit-general">
-      <h5 className="title">Kích thước</h5>
+      <div className="top">
+        <h5 className="title">Kích thước</h5>
+        <button className="btn btn-header">Kích thước mới</button>
+      </div>
       <div className="form">
         <Table
           columns={sizeColumn}

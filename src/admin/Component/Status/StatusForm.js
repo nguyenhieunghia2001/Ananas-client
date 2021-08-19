@@ -21,7 +21,7 @@ const StatusForm = () => {
       render: (_, __, index) => +index + 1,
     },
     {
-      title: "Tên sản phẩm",
+      title: "Trạng thái",
       dataIndex: "name",
     },
     {
@@ -38,7 +38,11 @@ const StatusForm = () => {
   ];
   return (
     <div className="product-edit product-edit-general">
-      <h5 className="title">Trạng thái</h5>
+      <div className="top">
+        <h5 className="title">Trạng thái</h5>
+        <button className="btn btn-header">Trạng thái mới</button>
+      </div>
+
       <div className="form">
         <Table
           columns={statusColumn}

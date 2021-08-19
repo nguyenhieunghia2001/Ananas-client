@@ -2,7 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FiHome, FiShoppingCart } from "react-icons/fi";
 import { RiCustomerService2Fill } from "react-icons/ri";
-import { AiOutlineProfile } from "react-icons/ai";
+import { CgAttribution } from "react-icons/cg";
+import { GiSonicShoes } from "react-icons/gi";
 
 const Sidebar = ({ openSidebar }) => {
   return (
@@ -17,13 +18,13 @@ const Sidebar = ({ openSidebar }) => {
           </li>
           <li>
             <NavLink to="/admin/product" activeClassName="active">
-              <AiOutlineProfile />
+              <GiSonicShoes />
               <p>Sản phẩm</p>
             </NavLink>
           </li>
           <li>
             <NavLink to="/admin/general" activeClassName="active">
-              <AiOutlineProfile />
+              <CgAttribution />
               <p>Thuộc tính</p>
             </NavLink>
           </li>
