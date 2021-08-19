@@ -1,11 +1,17 @@
 import { Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { getAllStatus } from "../../../api/StatusApi";
+import AddStatusForm from "./AddStatusForm";
+import EditStatusForm from "./EditStatusForm";
 
 const StatusForm = () => {
   const [statuses, setStatuses] = useState();
+  const [isModalAdd, setIsModalAdd] = useState(false);
+  const [modalEdit, setModalEdit] = useState({
+    isShow: false,
+    id: "",
+  });
   useEffect(() => {
     async function fetch() {
       const data = await getAllStatus();
@@ -13,7 +19,15 @@ const StatusForm = () => {
     }
     fetch();
   }, []);
-
+  const showModalAdd = () => {
+    setIsModalAdd(true);
+  };
+  const showModalEdit = (id) => {
+    setModalEdit({
+      isShow: true,
+      id,
+    });
+  };
   const statusColumn = [
     {
       title: "STT",
@@ -27,20 +41,37 @@ const StatusForm = () => {
     {
       title: "TT",
       render: (_, record) => (
-        <Link
-          to={`/admin/product/edit/${record._id}`}
-          style={{ color: "#ff5f17" }}
+        <div
+          style={{ color: "#ff5f17", cursor: "pointer" }}
+          onClick={() => showModalEdit(record._id)}
         >
           <FiEdit />
-        </Link>
+        </div>
       ),
     },
   ];
   return (
     <div className="product-edit product-edit-general">
+      <AddStatusForm
+        isModalAdd={isModalAdd}
+        setIsModalAdd={setIsModalAdd}
+        setStatuses={setStatuses}
+      />
+      <EditStatusForm
+        modalEdit={modalEdit?.isShow}
+        setModalEdit={setModalEdit}
+        id={modalEdit?.id}
+        setStatuses={setStatuses}
+      />
       <div className="top">
         <h5 className="title">Trạng thái</h5>
-        <button className="btn btn-header">Trạng thái mới</button>
+        <button
+          className="btn btn-header"
+          type="primary"
+          onClick={showModalAdd}
+        >
+          Trạng thái mới
+        </button>
       </div>
 
       <div className="form">
