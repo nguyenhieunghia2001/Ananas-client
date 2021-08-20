@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {getAllOrder} from '../../../api/orderApi'
-import {FiEdit} from 'react-icons/fi'
+import { getAllOrder } from "../../../api/orderApi";
+import { FiEdit } from "react-icons/fi";
 import { Table } from "antd";
+import { convertStringtoMoney } from "../../../utits/index";
 
 const orderColumn = [
   {
@@ -12,18 +13,39 @@ const orderColumn = [
   },
   {
     title: "Email",
-    dataIndex: 'email',
+    dataIndex: "email",
   },
   {
-    title: "Số điện thoại",
-    dataIndex: 'phone',
-    render: text => <div >{text ? text : 'Chưa cập nhật'}</div>
+    title: "Sản phẩm",
+    dataIndex: "products",
+    render: (text) => <div>{text.length}</div>,
+  },
+  {
+    title: "Tổng tiền",
+    dataIndex: "totalPrice",
+    render: (text) => (
+      <div style={{ color: "#ff5f17", fontWeight: "700" }}>
+        {convertStringtoMoney(text)}
+      </div>
+    ),
+    sorter: (a, b) => +a.totalPrice - +b.totalPrice,
+  },
+  {
+    title: "Tình trạng",
+    render: (_, record) => (
+      <Link
+        to={`/admin/customer/edit/${record._id}`}
+        style={{ color: "#ff5f17" }}
+      >
+        <FiEdit />
+      </Link>
+    ),
   },
   {
     title: "TT",
     render: (_, record) => (
       <Link
-        to={`/admin/customer/edit/${record._id}`}
+        to={`/admin/order/detail/${record._id}`}
         style={{ color: "#ff5f17" }}
       >
         <FiEdit />
@@ -34,13 +56,12 @@ const orderColumn = [
 const OrderPage = () => {
   const [orders, setOrder] = useState();
   useEffect(() => {
-    async function fetch( ){
+    async function fetch() {
       const data = await getAllOrder();
       setOrder(data);
     }
-    fetch ();
-  }, [])
-  console.log(orders);
+    fetch();
+  }, []);
   return (
     <div className="wrapper wrapper-product">
       <header>

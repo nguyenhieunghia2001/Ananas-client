@@ -6,6 +6,7 @@ import AddCustomerPage from "./Page/Customer/AddCustomerPage";
 import CustomerPage from "./Page/Customer/CustomerPage";
 import EditCustomerPage from "./Page/Customer/EditCustomerPage";
 import GeneralPage from "./Page/General/GeneralPage";
+import DetailOrderPage from "./Page/Order/DetailOrderPage";
 import OrderPage from "./Page/Order/OrderPage";
 import AddProductPage from "./Page/Product/AddProductPage";
 import EditProductPage from "./Page/Product/EditProductPage";
@@ -35,11 +36,7 @@ const Routes = () => {
           exact
           component={EditProductPage}
         />
-        <PrivateRoute
-          path="/admin/customer"
-          exact
-          component={CustomerPage}
-        />
+        <PrivateRoute path="/admin/customer" exact component={CustomerPage} />
         <PrivateRoute
           path="/admin/customer/add"
           exact
@@ -50,15 +47,12 @@ const Routes = () => {
           exact
           component={EditCustomerPage}
         />
+        <PrivateRoute path="/admin/general" exact component={GeneralPage} />
+        <PrivateRoute path="/admin/order" exact component={OrderPage} />
         <PrivateRoute
-          path="/admin/general"
+          path="/admin/order/detail/:id"
           exact
-          component={GeneralPage}
-        />
-        <PrivateRoute
-          path="/admin/order"
-          exact
-          component={OrderPage}
+          component={DetailOrderPage}
         />
         {/* </Switch> */}
       </LayoutAdmin>

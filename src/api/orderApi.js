@@ -8,5 +8,13 @@ const getAllOrder = async () => {
     return error;
   }
 };
+const getOrderById = async (id) => {
+  try {
+    const res = await api.get(`/order/${id}`);
+    return res.data?.order;
+  } catch (error) {
+    return error;
+  }
+};
 
-export { getAllOrder };
+export { getAllOrder, getOrderById };
