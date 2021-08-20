@@ -29,6 +29,11 @@
     .left {
       a {
         color: $bg-Orange;
+        display: flex;
+        align-items: center;
+        svg{
+          font-size: 25px;
+        }
       }
     }
     .right {

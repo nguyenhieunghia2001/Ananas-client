@@ -15,6 +15,22 @@
       .child {
         padding: 3px 0;
       }
+      .group {
+        font-size: 16px;
+        display: flex;
+        justify-content: space-between;
+        span {
+          font-weight: 600;
+          color: #808080;
+        }
+        p {
+          font-weight: 800;
+          color: $bg-Black !important;
+        }
+        .total {
+          font-weight: 800;
+        }
+      }
     }
   }
   .product__item {
@@ -49,6 +65,40 @@
       span {
         color: $bg-Orange;
         font-size: 18px;
+      }
+    }
+  }
+  .wizard-status {
+    ul {
+      list-style-type: none;
+      padding: 0;
+      li {
+        position: relative;
+        padding: 5px 20px 5px;
+        &::before {
+          position: absolute;
+          content: "";
+          width: 3px;
+          left: 0;
+          top: 0;
+          background-color: #bdbdbd;
+          height: 100%;
+        }
+        span {
+          font-size: 16px;
+        }
+        .time {
+          margin-left: 20px;
+          color: #bdbdbd;
+          font-size: 14px;
+          float: right;
+        }
+      }
+      .active {
+        color: $bg-Orange;
+        &::before {
+          background-color: $bg-Orange;
+        }
       }
     }
   }

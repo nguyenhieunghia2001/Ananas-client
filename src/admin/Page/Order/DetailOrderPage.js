@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { BsArrowLeftShort } from "react-icons/bs";
+import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { getOrderById } from "../../../api/orderApi";
 import ProductItem from "../../../components/Purchase/ProductItem";
+import { convertStringtoMoney } from "../../../utits";
+import WizardStatus from "../../Component/Order/WizardStatus";
 import "./style.scss";
 
 const DetailOrderPage = () => {
@@ -23,6 +26,14 @@ const DetailOrderPage = () => {
         <div className="header-right"></div>
       </header>
       <div className="content">
+        <div className="header-sticky">
+          <div className="left">
+            <Link to="/admin/order" className="">
+              <BsArrowLeftShort />
+              <span>Đơn hàng</span>
+            </Link>
+          </div>
+        </div>
         <div className="wrapper-order">
           <Container>
             <Row>
@@ -31,7 +42,7 @@ const DetailOrderPage = () => {
                   <div className="item-group">
                     <h5 className="title">
                       Mã đơn hàng:{" "}
-                      <strong style={{ color: "#ff5f17" }}>#TRRDDOJC</strong>
+                      <strong style={{ color: "#ff5f17" }}>#{id}</strong>
                     </h5>
                   </div>
                 </div>
@@ -78,9 +89,45 @@ const DetailOrderPage = () => {
                 </div>
               </Col>
               <Col lg={5}>
-                <div className="wrapper-white">
+                <div className="wrapper-white" style={{height: '234px'}}>
                   <div className="item-group">
                     <h5 className="title">Trạng thái đơn hàng</h5>
+                    <WizardStatus />
+                  </div>
+                </div>
+                <div className="wrapper-white">
+                  <div className="item-group">
+                    <h5 className="title">Thanh toán</h5>
+                    <div className="content">
+                      <div className="group">
+                        <span>Trị giá đơn hàng:</span>
+                        <p>
+                          {order && convertStringtoMoney(order?.totalPrice)}
+                        </p>
+                      </div>
+                      <div className="group">
+                        <span>Giảm giá:</span>
+                        <p>0 VND</p>
+                      </div>
+                      <div className="group">
+                        <span>Phí giao hàng:</span>
+                        <p>40.000 VND</p>
+                      </div>
+                      <div className="group">
+                        <span>Phí thanh toán:</span>
+                        <p>0 VND</p>
+                      </div>
+                      <div className="divider-img"></div>
+                      <div className="bottom">
+                        <div className="group">
+                          <span className="total">Tổng thanh toán:</span>
+                          <p>
+                            {order &&
+                              convertStringtoMoney(+order?.totalPrice + 40000)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Col>
