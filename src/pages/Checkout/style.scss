@@ -15,6 +15,9 @@
         margin: 0;
         font-weight: 900;
         font-size: $font-big;
+        @media (max-width: $sm) {
+          font-size: 16px;
+        }
       }
       span {
         color: $bg-Orange;
@@ -25,6 +28,9 @@
       }
     }
     .choose-address {
+      .ant-radio-group{
+        width: 100%;
+      }
       ul {
         padding: 0 0 0 15px;
         li {

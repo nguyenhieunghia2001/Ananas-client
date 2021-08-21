@@ -55,7 +55,7 @@ const Profile = () => {
         };
       });
     }
-    console.log(fileInput.current.files[0]);
+    // console.log(fileInput.current.files[0]);
   };
   const handleInputChange = (e) => {
     const inputTag = e.target;
@@ -165,9 +165,11 @@ const Profile = () => {
               <div className="image">
                 <img
                   src={
-                    accountState.avatarLocal ||
-                    `${CLOUDINARY_LINK}${accountState.public_Id}` ||
-                    MeImage
+                    accountState.avatarLocal
+                      ? accountState.avatarLocal
+                      : accountState.public_Id
+                      ? `${CLOUDINARY_LINK}${accountState.public_Id}`
+                      : MeImage
                   }
                   alt="hình người dùng"
                 />

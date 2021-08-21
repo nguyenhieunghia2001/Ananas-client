@@ -1,8 +1,5 @@
 @import "../../assets/variable.scss";
 
-body{
-  background-color: #f3f4f7;
-}
 .navbar {
   position: fixed;
   display: flex;
@@ -124,7 +121,7 @@ body{
     }
   }
 }
-.body {
+.bodyadmin {
   margin-left: 250px;
   margin-top: 70px;
   .wrapper{

@@ -14,50 +14,60 @@ import ProductPage from "./Page/Product/ProductPage";
 import PrivateRoute from "./PrivateRoute";
 const Routes = () => {
   return (
-    <Switch>
-      <Route exact path="/admin/login">
-        <LoginPage />
-      </Route>
-      {/* <Route> */}
+    <div
+      className="admin"
+      style={{
+        position: "relative",
+        background: "#f3f4f7",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <Switch>
+        <Route exact path="/admin/login">
+          <LoginPage />
+        </Route>
+        {/* <Route> */}
 
-      <LayoutAdmin>
-        {/* <Switch> */}
-        <PrivateRoute path="/admin/dashboard" exact component={LoginPage} />
-        {/* </Switch>
+        <LayoutAdmin>
+          {/* <Switch> */}
+          <PrivateRoute path="/admin/dashboard" exact component={LoginPage} />
+          {/* </Switch>
         <Switch> */}
-        <PrivateRoute path="/admin/product" exact component={ProductPage} />
-        <PrivateRoute
-          path="/admin/product/add"
-          exact
-          component={AddProductPage}
-        />
-        <PrivateRoute
-          path="/admin/product/edit/:id"
-          exact
-          component={EditProductPage}
-        />
-        <PrivateRoute path="/admin/customer" exact component={CustomerPage} />
-        <PrivateRoute
-          path="/admin/customer/add"
-          exact
-          component={AddCustomerPage}
-        />
-        <PrivateRoute
-          path="/admin/customer/edit/:id"
-          exact
-          component={EditCustomerPage}
-        />
-        <PrivateRoute path="/admin/general" exact component={GeneralPage} />
-        <PrivateRoute path="/admin/order" exact component={OrderPage} />
-        <PrivateRoute
-          path="/admin/order/detail/:id"
-          exact
-          component={DetailOrderPage}
-        />
-        {/* </Switch> */}
-      </LayoutAdmin>
-      {/* </Route> */}
-    </Switch>
+          <PrivateRoute path="/admin/product" exact component={ProductPage} />
+          <PrivateRoute
+            path="/admin/product/add"
+            exact
+            component={AddProductPage}
+          />
+          <PrivateRoute
+            path="/admin/product/edit/:id"
+            exact
+            component={EditProductPage}
+          />
+          <PrivateRoute path="/admin/customer" exact component={CustomerPage} />
+          <PrivateRoute
+            path="/admin/customer/add"
+            exact
+            component={AddCustomerPage}
+          />
+          <PrivateRoute
+            path="/admin/customer/edit/:id"
+            exact
+            component={EditCustomerPage}
+          />
+          <PrivateRoute path="/admin/general" exact component={GeneralPage} />
+          <PrivateRoute path="/admin/order" exact component={OrderPage} />
+          <PrivateRoute
+            path="/admin/order/detail/:id"
+            exact
+            component={DetailOrderPage}
+          />
+          {/* </Switch> */}
+        </LayoutAdmin>
+        {/* </Route> */}
+      </Switch>
+    </div>
   );
 };
 

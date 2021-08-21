@@ -98,7 +98,7 @@ const CheckoutPage = () => {
                           </li>
                         ))}
 
-                      <li>
+                      <li style={{float: 'right'}}>
                         <button
                           className="btn btn-address btn-address--finish"
                           onClick={chooseAddress}

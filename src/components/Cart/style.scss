@@ -7,19 +7,9 @@
   width: 40px;
   height: 75px;
   background-color: $bg-Orange;
-  // &::before {
-  //   position: absolute;
-  //   content: "";
-  //   width: 0;
-  //   height: 0;
-  //   border-top: 8px solid transparent;
-  //   border-bottom: 8px solid transparent;
-  //   border-right: 8px solid $bg-Orange;
-  //   margin-top: 15px;
-  //   margin-top: 15px;
-  //   left: -7px;
-  //   z-index: 10;
-  // }
+  @media (max-width: $md) {
+    display: none;
+  }
   &__cont {
     cursor: pointer;
 
@@ -45,18 +35,18 @@
     background: #f1f1f1;
     right: 100%;
     top: 0px;
-    &::before{
+    &::before {
       position: absolute;
-        content: "";
-        width: 0;
-        height: 0;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        border-right: 8px solid $bg-Orange;
-        margin-top: 15px;
-        margin-top: 15px;
-        right: 0;;
-        z-index: 10;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid $bg-Orange;
+      margin-top: 15px;
+      margin-top: 15px;
+      right: 0;
+      z-index: 10;
     }
     &-title {
       font-size: 20px;

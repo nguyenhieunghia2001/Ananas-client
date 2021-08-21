@@ -8,7 +8,7 @@ const LayoutAdmin = ({ children }) => {
     <>
       <Header openSidebar={toggleSidebar} setOpenSidebar={setToggleSidebar} />
       <Sidebar openSidebar={toggleSidebar} />
-      <div className="body">{children}</div>
+      <div className="bodyadmin">{children}</div>
     </>
   );
 };
