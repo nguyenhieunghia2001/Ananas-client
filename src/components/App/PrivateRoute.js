@@ -3,14 +3,14 @@ import { Redirect, Route } from "react-router-dom";
 import { AccountContext } from "../../context/AccountContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { userCurrentState, loaddingUserState } = useContext(AccountContext);
-  console.log(userCurrentState?.username, loaddingUserState);
+  const { userCurrentState } = useContext(AccountContext);
+  // console.log(userCurrentState?.user?.username, userCurrentState.loading);
   return (
     <Route
       {...rest}
       render={(props) =>
-        loaddingUserState &&
-        (userCurrentState?.username ? (
+        userCurrentState.loading &&
+        (userCurrentState.user.username ? (
           <Component {...props} />
         ) : (
           <Redirect to="/auth/login" />

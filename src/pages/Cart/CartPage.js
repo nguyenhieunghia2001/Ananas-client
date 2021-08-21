@@ -7,7 +7,8 @@ import { convertStringtoMoney } from "../../utits/index";
 import "./style.scss";
 
 const CartPage = () => {
-  const { CartState } = useContext(CartContext);
+  const { CartState, loading } = useContext(CartContext);
+  console.log(loading);
   return (
     <Container>
       <div className="cart">

@@ -23,7 +23,7 @@ const cart = {
 const CartProvider = ({ children }) => {
   const [CartState, setCartState] = useState(cart);
   const { userCurrentState } = useContext(AccountContext);
-  useEffect(() => console.log('account oke'),[]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     async function fetch() {
       const { data, status } = await getAllProductCart();
@@ -32,25 +32,27 @@ const CartProvider = ({ children }) => {
           return {
             ...pre,
             account: data?.account,
-            products: data?.products?.reduce(
-              (result, item) => [
-                ...result,
-                {
-                  product: item?.product,
-                  quantity: item?.quantity,
-                  size: item?.size,
-                  total: function () {
-                    return this.product?.price * this.quantity || 0;
+            products:
+              data?.products?.reduce(
+                (result, item) => [
+                  ...result,
+                  {
+                    product: item?.product,
+                    quantity: item?.quantity,
+                    size: item?.size,
+                    total: function () {
+                      return this.product?.price * this.quantity || 0;
+                    },
                   },
-                },
-              ],
-              []
-            ) || [],
+                ],
+                []
+              ) || [],
           };
         });
     }
     fetch();
-  }, [userCurrentState]);
+    setLoading(true);
+  }, [userCurrentState, loading]);
   const removeCart = async (productId, size) => {
     const index = CartState.products?.findIndex(
       (item) => item.product._id === productId && item.size === size
@@ -131,6 +133,7 @@ const CartProvider = ({ children }) => {
         removeCart,
         updateQuantity,
         addCart,
+        loading,
       }}
     >
       {children}

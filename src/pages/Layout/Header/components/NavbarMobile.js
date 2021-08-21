@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   AiOutlineMenu,
   AiOutlineShoppingCart,
@@ -12,8 +12,10 @@ import { GoLocation } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import LogoSvg from "../../../../assets/images/logo.svg";
+import { AccountContext } from "../../../../context/AccountContext";
 
 const NavbarMobile = () => {
+  const { userCurrentState } = useContext(AccountContext);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="navbarmobile">
@@ -64,12 +66,18 @@ const NavbarMobile = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/products?gender=MALE" onClick={() => setToggle(false)}>
+                <Link
+                  to="/products?gender=MALE"
+                  onClick={() => setToggle(false)}
+                >
                   <div>NAM</div>
                 </Link>
               </li>
               <li>
-                <Link to="/products?gender=FEMALE" onClick={() => setToggle(false)}>
+                <Link
+                  to="/products?gender=FEMALE"
+                  onClick={() => setToggle(false)}
+                >
                   <div>NỮ</div>
                 </Link>
               </li>
@@ -88,25 +96,50 @@ const NavbarMobile = () => {
           <div className="page">
             <ul>
               <li>
-                <Link to="/auth/login" className="menu-item--group" onClick={() => setToggle(false)}>
+                <Link
+                  to={
+                    userCurrentState.user.username
+                      ? "/account/profile"
+                      : "/auth/login"
+                  }
+                  className="menu-item--group"
+                  onClick={() => setToggle(false)}
+                >
                   <FaUserAlt className="icon" />
-                  <span>Đăng nhập</span>
+                  {userCurrentState.user.username ? (
+                    <span>{userCurrentState.user?.username}</span>
+                  ) : (
+                    <span>Đăng nhập</span>
+                  )}
                 </Link>
               </li>
               <li>
-                <Link to="/love" className="menu-item--group" onClick={() => setToggle(false)}>
+                <Link
+                  to="/love"
+                  className="menu-item--group"
+                  onClick={() => setToggle(false)}
+                >
                   <AiFillHeart className="icon" />
+
                   <span>Yêu thích</span>
                 </Link>
               </li>
               <li>
-                <Link to="" className="menu-item--group" onClick={() => setToggle(false)}>
+                <Link
+                  to=""
+                  className="menu-item--group"
+                  onClick={() => setToggle(false)}
+                >
                   <GoLocation className="icon" />
                   <span>Tìm cửa hàng</span>
                 </Link>
               </li>
               <li>
-                <Link to="/purchases" className="menu-item--group" onClick={() => setToggle(false)}>
+                <Link
+                  to="/purchases"
+                  className="menu-item--group"
+                  onClick={() => setToggle(false)}
+                >
                   <RiSearchEyeLine className="icon" />
                   <span>Tra cứu đơn hàng</span>
                 </Link>

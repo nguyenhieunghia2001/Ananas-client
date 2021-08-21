@@ -51,20 +51,20 @@ const Navbar = () => {
             </div>
           </form>
         </div>
-        {Object.keys(userCurrentState).length > 0 && (
+        {userCurrentState.user.username && (
           <div className="nav__account">
             <div className="nav__account-avatar">
               <img
                 src={
-                  userCurrentState.public_Id
-                    ? `${CLOUDINARY_LINK}${userCurrentState.public_Id}`
+                  userCurrentState.user.public_Id
+                    ? `${CLOUDINARY_LINK}${userCurrentState.user.public_Id}`
                     : MeImage
                 }
                 alt="ảnh đại diện"
               />
             </div>
             <div className="nav__account-select">
-              <h4>{userCurrentState.username}</h4>
+              <h4>{userCurrentState.user.username}</h4>
               <div className="dropdown">
                 <ul>
                   <li>

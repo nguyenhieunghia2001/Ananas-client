@@ -33,13 +33,17 @@ const HeaderTop = () => {
           <div className="headerTop__item">
             <FaUserAlt className="icon-sm" />
             <span>
-              {Object.keys(userCurrentState).length > 0 && (
-                <Link to="/account/profile">{userCurrentState.username}</Link>
+              {userCurrentState.user.username ? (
+                <Link to="/account/profile">
+                  {userCurrentState.user.username}
+                </Link>
+              ) : (
+                <Link to="/auth/login">Đăng nhập</Link>
               )}
-              {!userCurrentState ||
-                (Object.keys(userCurrentState).length < 1 && (
+              {/* {!userCurrentState.user.username ||
+                (Object.keys(userCurrentState.user).length < 1 && (
                   <Link to="/auth/login">Đăng nhập</Link>
-                ))}
+                ))} */}
             </span>
           </div>
           <div className="headerTop__item">
