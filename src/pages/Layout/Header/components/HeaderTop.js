@@ -33,9 +33,9 @@ const HeaderTop = () => {
           <div className="headerTop__item">
             <FaUserAlt className="icon-sm" />
             <span>
-              {userCurrentState.user.username ? (
+              {userCurrentState.user?.username ? (
                 <Link to="/account/profile">
-                  {userCurrentState.user.username}
+                  {userCurrentState.user?.username}
                 </Link>
               ) : (
                 <Link to="/auth/login">Đăng nhập</Link>

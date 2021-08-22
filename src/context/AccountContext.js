@@ -11,7 +11,7 @@ const AccountProvider = ({ children }) => {
   });
   useEffect(() => {
     async function fetch() {
-      const { data, status } = await checkIsAuthWithInfo();
+      const { data } = await checkIsAuthWithInfo();
 
       setUserCurrentState({
         loading: true,
@@ -23,12 +23,32 @@ const AccountProvider = ({ children }) => {
     }
     fetch();
   }, []);
+  const resetUser = () => {
+    setUserCurrentState((pre) => {
+      return {
+        ...pre,
+        user: {},
+      };
+    });
+  };
+  const setUser = (account) => {
+    setUserCurrentState((pre) => {
+      return {
+        ...pre,
+        user: {
+          username: account?.username,
+          public_Id: account?.public_Id,
+        },
+      };
+    });
+  };
   console.log(userCurrentState);
   return (
     <AccountContext.Provider
       value={{
         userCurrentState,
-        setUserCurrentState,
+        resetUser,
+        setUser,
       }}
     >
       {children}

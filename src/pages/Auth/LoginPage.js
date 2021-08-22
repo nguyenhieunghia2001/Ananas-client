@@ -8,7 +8,7 @@ import "./style.scss";
 
 const HomePage = () => {
   let history = useHistory();
-  const { setUserCurrentState, setLoaddingUserState } = useContext(AccountContext);
+  const { setUser, setLoaddingUserState } = useContext(AccountContext);
   const [errorFormState, setErrorFormState] = useState([]);
   const [formState, setFormState] = useState({
     email: "",
@@ -16,11 +16,11 @@ const HomePage = () => {
   });
   const handleSubmitRegister = async () => {
     try {
+      console.log(formState);
       const login = await loginAuth(formState.email, formState.password);
+      console.log(login);
       if (login.status === 200) {
-        setUserCurrentState({
-          username: login.data?.username,
-        });
+        await setUser(login.data?.account);
         history.push("/");
       }
       if (login.status === 422) {

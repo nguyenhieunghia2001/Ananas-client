@@ -20,22 +20,28 @@ const registerAuth = async (email, password, username) => {
   return result;
 };
 const loginAuth = async (email, password) => {
-  let result = {};
-  await api
-    .post("/auth/login", {
+  try {
+    const res = await api.post("/auth/login", {
       email,
       password,
-    })
-    .then((res) => {
-      result["status"] = res.status;
-      result["data"] = res.data;
-    })
-    .catch((error) => {
-      // console.log(Promise.reject(error));
-      result["status"] = error.response.status;
-      result["data"] = error.response.data.errors;
     });
-  return result;
+    return res;
+  } catch (error) {
+    return {
+      status: error.response.status,
+      data: error.response.data.errors,
+    };
+  }
+};
+const logoutAuth = async () => {
+  let result = {};
+  try {
+    const res = await api.get("/auth/logout");
+    return res;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 const checkIsAuthWithInfo = async () => {
   try {
@@ -57,4 +63,4 @@ const checkIsAuthWithInfo = async () => {
   }
 };
 
-export { registerAuth, loginAuth, checkIsAuthWithInfo };
+export { registerAuth, loginAuth, checkIsAuthWithInfo, logoutAuth };

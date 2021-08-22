@@ -8,9 +8,14 @@ import { Link } from "react-router-dom";
 import { AccountContext } from "../../../../context/AccountContext";
 import MeImage from "../../../../assets/images/me.jpg";
 import { CLOUDINARY_LINK } from "../../../../utits/base";
+import { logoutAuth } from "../../../../api/authApi";
 
 const Navbar = () => {
-  const { userCurrentState } = useContext(AccountContext);
+  const { userCurrentState, resetUser } = useContext(AccountContext);
+  const handleLogout = async () => {
+    await logoutAuth();
+    resetUser();
+  };
   return (
     <Container>
       <div className="nav nav-big d-flex justify-content-between align-items-center">
@@ -71,7 +76,7 @@ const Navbar = () => {
                     <Link to="/account/profile">Tài khoản</Link>
                   </li>
                   <li>
-                    <Link to="/auth/logout">Đăng Xuất</Link>
+                    <div onClick={handleLogout}>Đăng Xuất</div>
                   </li>
                 </ul>
               </div>
