@@ -3,6 +3,8 @@ import { Col, Container, Row } from "reactstrap";
 import { useQuery } from "../../hooks";
 import { getPurchaseById } from "../../api/PurchaseApi";
 import { convertStringtoMoney } from "../../utits/index";
+import { CLOUDINARY_LINK } from "../../utits/base";
+import moment from "moment";
 import "./style.scss";
 
 const PurchaseDetail = () => {
@@ -16,6 +18,21 @@ const PurchaseDetail = () => {
     }
     fetch();
   }, [id]);
+  const getTime = (value) => {
+    const index = purchase?.status?.findIndex((item) => item.name === value);
+    if (index > -1) {
+      const pur = purchase?.status[index]?.name;
+      return `Vào lúc ${moment(pur).format("h:mm")} - ${moment(pur).format(
+        "DD/MM/YYYY"
+      )}`;
+    } else return "";
+  };
+  const checkActiveProgess = (value) => {
+    const pos = purchase?.status.find((item) => item.name === value);
+    if (pos) return "active";
+    return "";
+  };
+  console.log(purchase);
   return (
     <div className="purchasedetail">
       <Container>
@@ -25,15 +42,17 @@ const PurchaseDetail = () => {
         <div className="progress-status">
           <div className="top">
             <h4>
-              TRẠNG THÁI ĐƠN HÀNG <span className="id">W0221924</span>
+              TRẠNG THÁI ĐƠN HÀNG <span className="id">#{purchase?._id}</span>
             </h4>
             <span>Thanh toán COD - Tốc độ tiêu chuẩn</span>
           </div>
           <Row style={{ margin: "0" }}>
             <Col lg={3} md={6} sm={6} xs={12}>
-              <div className="progress-1 active">ĐẶT HÀNG THÀNH CÔNG</div>
-              <div className="cont active">
-                <span className="time">Vào lúc 10:04 - 02/08/2021</span>
+              <div className={`progress-1 ${checkActiveProgess("0")}`}>
+                ĐẶT HÀNG THÀNH CÔNG
+              </div>
+              <div className={`cont ${checkActiveProgess("0")}`}>
+                <span className="time">{purchase && getTime("0")}</span>
                 <span>
                   Thời gian xử lý đơn hàng có thể từ 1-2 ngày làm việc. Vui lòng
                   gọi đến hotline 0963 429 749 (trong giờ hành chính) nếu bạn
@@ -43,9 +62,11 @@ const PurchaseDetail = () => {
               </div>
             </Col>
             <Col lg={3} md={6} sm={6} xs={12}>
-              <div className="progress-2">ĐƠN HÀNG ĐÃ HỦY</div>
-              <div className="cont">
-                <span className="time">Vào lúc 10:06 - 02/08/2021</span>
+              <div className={`progress-2 ${checkActiveProgess("-1")}`}>
+                ĐƠN HÀNG ĐÃ HỦY
+              </div>
+              <div className={`cont ${checkActiveProgess("-1")}`}>
+                <span className="time">{purchase && getTime("-1")}</span>
                 <span>
                   Đơn hàng của bạn đã bị huỷ bởi một trong những lí do sau: -
                   Bạn chủ động huỷ nó. - Thẻ thanh toán của bạn không được chấp
@@ -57,8 +78,11 @@ const PurchaseDetail = () => {
               </div>
             </Col>
             <Col lg={3} md={6} sm={6} xs={12}>
-              <div className="progress-3">ĐANG GIAO HÀNG</div>
-              <div className="cont ">
+              <div className={`progress-3 ${checkActiveProgess("1")}`}>
+                ĐANG GIAO HÀNG
+              </div>
+              <div className={`cont ${checkActiveProgess("1")}`}>
+                <span className="time">{purchase && getTime("1")}</span>
                 <span>
                   Thời gian giao hàng tuỳ thuộc vào địa điểm và phương thức giao
                   hàng bạn đã chọn. Hãy tin rắng chúng tôi luôn cố gắng để hàng
@@ -67,8 +91,11 @@ const PurchaseDetail = () => {
               </div>
             </Col>
             <Col lg={3} md={6} sm={6} xs={12}>
-              <div className="progress-4">GIAO HÀNG THÀNH CÔNG</div>
-              <div className="cont ">
+              <div className={`progress-4 ${checkActiveProgess("2")}`}>
+                GIAO HÀNG THÀNH CÔNG
+              </div>
+              <div className={`cont ${checkActiveProgess("2")}`}>
+                <span className="time">{purchase && getTime("2")}</span>
                 <span>
                   Đơn hàng đã được giao thành công ! Chúc bạn có một trải nghiệm
                   thú vị ^^
@@ -137,7 +164,7 @@ const PurchaseDetail = () => {
                         >
                           <div className="product-img">
                             <img
-                              src={product?.product?.images[0].urlPublic}
+                              src={`${CLOUDINARY_LINK}${product?.product?.images[0].urlPublic}`}
                               alt="product"
                             />
                           </div>
@@ -147,7 +174,9 @@ const PurchaseDetail = () => {
                             <h6>{product?.product?.name}</h6>
                             <div className="cont">
                               <span className="title">Giá: </span>
-                              <span>{convertStringtoMoney(product?.product?.price)}</span>
+                              <span>
+                                {convertStringtoMoney(product?.product?.price)}
+                              </span>
                             </div>
                             <div className="cont">
                               <span className="title">Size: </span>
@@ -157,7 +186,9 @@ const PurchaseDetail = () => {
                               <span className="title">Số lượng: </span>
                               <span>{product?.quantity}</span>
                             </div>
-                            <h6 className="total">{convertStringtoMoney(product?.total)}</h6>
+                            <h6 className="total">
+                              {convertStringtoMoney(product?.total)}
+                            </h6>
                           </div>
                         </Col>
                       </Row>

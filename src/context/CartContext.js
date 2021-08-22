@@ -1,3 +1,4 @@
+import { message } from "antd";
 import React, { useEffect, useState, useContext } from "react";
 import {
   getAllProductCart,
@@ -124,6 +125,7 @@ const CartProvider = ({ children }) => {
     }
 
     await addProductCart(product._id, size, quantity);
+    message.success("Thêm vào giỏ hàng thành công");
   };
   return (
     <CartContext.Provider

@@ -5,6 +5,23 @@ import { Link } from "react-router-dom";
 import ProductItem from "../../components/Purchase/ProductItem";
 
 const PurchaseItem = ({ purchase }) => {
+  const getStatusName = () => {
+    if (purchase?.status?.find((item) => item.name === "-1")) return "ĐÃ HỦY";
+    const pos = purchase?.status?.reduce(
+      (result, item) => (+item.name > result ? +item.name : result),
+      0
+    );
+    switch (pos) {
+      case 0:
+        return "ĐÃ ĐẶT HÀNG";
+      case 1:
+        return "ĐANG GIA0";
+      case 2:
+        return "ĐÃ GIAO";
+      default:
+        break;
+    }
+  };
   return (
     <div className="purchase__item">
       <div className="header">
@@ -12,7 +29,7 @@ const PurchaseItem = ({ purchase }) => {
           <FaShippingFast />
           <span>Chi tiết đơn hàng</span>
         </Link>
-        <div className="status">ĐÃ GIAO</div>
+        <div className="status">{getStatusName()}</div>
       </div>
       <div className="content">
         {purchase &&
