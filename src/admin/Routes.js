@@ -5,6 +5,7 @@ import LoginPage from "./Page/Auth/LoginPage";
 import AddCustomerPage from "./Page/Customer/AddCustomerPage";
 import CustomerPage from "./Page/Customer/CustomerPage";
 import EditCustomerPage from "./Page/Customer/EditCustomerPage";
+import DashboardPage from "./Page/Dashboards/DashboardPage";
 import GeneralPage from "./Page/General/GeneralPage";
 import DetailOrderPage from "./Page/Order/DetailOrderPage";
 import OrderPage from "./Page/Order/OrderPage";
@@ -31,7 +32,7 @@ const Routes = () => {
 
         <LayoutAdmin>
           {/* <Switch> */}
-          <PrivateRoute path="/admin/dashboard" exact component={LoginPage} />
+          <PrivateRoute path="/admin/dashboard" exact component={DashboardPage} />
           {/* </Switch>
         <Switch> */}
           <PrivateRoute path="/admin/product" exact component={ProductPage} />
