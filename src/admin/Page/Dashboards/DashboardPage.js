@@ -3,7 +3,6 @@ import { Col, Container, Row } from "reactstrap";
 import RevenueChart from "../../Component/Dashboard/ReveneChart";
 import RevenueOrder from "../../Component/Dashboard/RevenueOrder";
 import Selling from "../../Component/Dashboard/Selling";
-import { BiMenuAltLeft } from "react-icons/bi";
 import "./style.scss";
 
 const DashboardPage = () => {

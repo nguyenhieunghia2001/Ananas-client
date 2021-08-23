@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { BiMenuAltLeft } from "react-icons/bi";
-import { getRevenueDay, getRevenueMonth } from "../../../api/orderApi";
+import {
+  getRevenueDay,
+  getRevenueMonth,
+  getRevenueWeek,
+} from "../../../api/orderApi";
 
 const options = {
   scales: {
@@ -22,17 +26,16 @@ const RevenueChart = () => {
   });
 
   const setRevenueFromApi = (value) => {
-    console.log(value);
     setValueRevenue((pre) => {
       return {
         ...pre,
-        labels: value?.labels,
+        labels: value?.labels?.map((item) => item.substring(0, 5)),
         datasets: [
           {
             label: value?.label,
             data: value?.data,
-            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-            borderColor: ["rgba(255, 99, 132, 1)"],
+            backgroundColor: ["rgba(255, 95, 23, 0.2)"],
+            borderColor: ["rgba(255, 95, 23, 1)"],
             borderWidth: 1,
           },
         ],
@@ -50,8 +53,8 @@ const RevenueChart = () => {
     const targetApi = e.target.getAttribute("data");
     let res;
     if (targetApi === "day") res = await getRevenueDay();
-    else if (targetApi === "month") res = await getRevenueMonth();
-    else res = await getRevenueDay();
+    else if (targetApi === "week") res = await getRevenueWeek();
+    else res = await getRevenueMonth();
     await setRevenueFromApi(res);
   };
   return (
@@ -66,8 +69,12 @@ const RevenueChart = () => {
             <li data="day" onClick={handleChangeRevenue}>
               Hôm nay
             </li>
-            <li data="month" onClick={handleChangeRevenue}>Tuần này</li>
-            <li>Tháng này</li>
+            <li data="week" onClick={handleChangeRevenue}>
+              Tuần này
+            </li>
+            <li data="month" onClick={handleChangeRevenue}>
+              Tháng này
+            </li>
           </ul>
         </div>
       </div>
