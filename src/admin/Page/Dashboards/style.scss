@@ -28,3 +28,58 @@
     }
   }
 }
+.wrapper-white {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .options {
+      position: relative;
+      .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        line-height: 40px;
+        text-align: center;
+        svg {
+          font-size: 25px;
+        }
+      }
+      &:hover {
+        .options-list {
+          display: block !important;
+        }
+      }
+      &-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: -30%;
+        width: 100px;
+        list-style-type: none;
+        background-color: #fff;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 0;
+        margin-top: 10px;
+        li {
+          padding: 5px 10px;
+          border-bottom: 1px solid #f1f1f1;
+          cursor: pointer;
+          &:hover {
+            background-color: #f1f1f1;
+          }
+          &:last-child {
+            border: none;
+          }
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          height: 15px;
+          top: -10px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

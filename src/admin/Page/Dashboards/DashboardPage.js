@@ -1,11 +1,13 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
 import RevenueChart from "../../Component/Dashboard/ReveneChart";
-import "./style.scss";
 import RevenueOrder from "../../Component/Dashboard/RevenueOrder";
 import Selling from "../../Component/Dashboard/Selling";
+import { BiMenuAltLeft } from "react-icons/bi";
+import "./style.scss";
 
 const DashboardPage = () => {
+  
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -19,7 +21,6 @@ const DashboardPage = () => {
               <Col lg={8}>
                 <div className="wrapper-white">
                   <div className="item-group">
-                    <h5 className="title">Doanh thu</h5>
                     <div className="content ">
                       <RevenueChart />
                     </div>

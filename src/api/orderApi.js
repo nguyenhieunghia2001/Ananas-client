@@ -16,5 +16,28 @@ const getOrderById = async (id) => {
     return error;
   }
 };
-
-export { getAllOrder, getOrderById };
+const getRevenueDay = async () => {
+  try {
+    const res = await api.get(`/order/revenue/day`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+const getRevenueWeek = async () => {
+  try {
+    const res = await api.get(`/order/revenue/week`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+const getRevenueMonth = async () => {
+  try {
+    const res = await api.get(`/order/revenue/month`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+export { getAllOrder, getOrderById, getRevenueDay, getRevenueWeek, getRevenueMonth };
