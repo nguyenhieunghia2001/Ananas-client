@@ -1,5 +1,6 @@
 import { message } from "antd";
 import React, { useEffect, useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import {
   getAllProductCart,
   addProductCart,
@@ -22,6 +23,7 @@ const cart = {
 };
 
 const CartProvider = ({ children }) => {
+  const history = useHistory();
   const [CartState, setCartState] = useState(cart);
   const { userCurrentState } = useContext(AccountContext);
   const [loading, setLoading] = useState(false);
@@ -88,6 +90,11 @@ const CartProvider = ({ children }) => {
     await updateProductCart(productId, size, quantity);
   };
   const addCart = async (product, size, quantity) => {
+    const res = await addProductCart(product._id, size, quantity);
+    if (!res?.success) {
+      history.push('/auth/login');
+      return;
+    }
     const checkPrdExist = CartState?.products?.find(
       (ct) => ct.product._id === product._id && ct.size === size
     );
@@ -124,7 +131,6 @@ const CartProvider = ({ children }) => {
       });
     }
 
-    await addProductCart(product._id, size, quantity);
     message.success("Thêm vào giỏ hàng thành công");
   };
   return (

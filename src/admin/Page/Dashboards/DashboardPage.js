@@ -6,7 +6,6 @@ import Selling from "../../Component/Dashboard/Selling";
 import "./style.scss";
 
 const DashboardPage = () => {
-  
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -38,14 +37,16 @@ const DashboardPage = () => {
               </Col>
             </Row>
             <Row>
-              <div className="wrapper-white">
-                <div className="item-group">
-                  <h5 className="title">Bán chạy</h5>
-                  <div className="content ">
-                    <Selling />
+              <Col lg={12}>
+                <div className="wrapper-white">
+                  <div className="item-group">
+                    <h5 className="title">Bán chạy</h5>
+                    <div className="content ">
+                      <Selling />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Col>
             </Row>
           </Container>
         </div>

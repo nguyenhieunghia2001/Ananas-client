@@ -45,7 +45,6 @@ const PrdDetail = () => {
       }
     })();
   }, [id]);
-
   const handleSetValueSelect = (value, type) => {
     if (type === "SIZE") {
       const sizeItem = productState?.sizes?.find((v) => v.size?.name === value);

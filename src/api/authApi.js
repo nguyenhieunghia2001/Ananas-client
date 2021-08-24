@@ -52,13 +52,9 @@ const checkIsAuthWithInfo = async () => {
       data: auth.data,
     };
   } catch (error) {
-    console.log({
-      status: error.response.status,
-      data: error.response.data.errors,
-    });
     return {
-      status: error.response.status,
-      data: error.response.data.errors,
+      status: error.response?.status,
+      data: error.response?.data?.errors,
     };
   }
 };

@@ -8,10 +8,19 @@ const getAllProduct = async () => {
     return error;
   }
 };
+const getAllProductSelling = async () => {
+  try {
+    const res = await api.get("/product/all/selling");
+    return res.data.products;
+  } catch (error) {
+    return error;
+  }
+};
 
 const getProductById = async (id) => {
   try {
     const res = await api.get(`/product/detail/${id}`);
+    console.log(res);
     return res.data.product;
   } catch (error) {
     return error;
@@ -100,4 +109,5 @@ export {
   getAllProductByQuery,
   createProduct,
   editProduct,
+  getAllProductSelling,
 };
