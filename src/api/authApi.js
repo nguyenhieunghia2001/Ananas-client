@@ -33,6 +33,23 @@ const loginAuth = async (email, password) => {
     };
   }
 };
+const loginAdmin = async (email, password) => {
+  try {
+    const res = await api.post("/auth/loginadmin", {
+      email,
+      password,
+    });
+    return {
+      status: res.status,
+      data: res.data,
+    };
+  } catch (error) {
+    return {
+      status: error.response.status,
+      data: error.response.data?.errors,
+    };
+  }
+};
 const logoutAuth = async () => {
   let result = {};
   try {
@@ -59,4 +76,4 @@ const checkIsAuthWithInfo = async () => {
   }
 };
 
-export { registerAuth, loginAuth, checkIsAuthWithInfo, logoutAuth };
+export { registerAuth, loginAuth, checkIsAuthWithInfo, logoutAuth, loginAdmin };

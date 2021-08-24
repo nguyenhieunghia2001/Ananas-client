@@ -27,10 +27,12 @@ import Routes from "../../admin/Routes";
 import AccountProvider from "../../context/AccountContext";
 import ProductLoveProvider from "../../context/ProductLoveContext";
 import CartProvider from "../../context/CartContext";
+import ScrollToTop from "../ScrollTotop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Switch>
         <Route path="/admin/:slug">
           <Switch>

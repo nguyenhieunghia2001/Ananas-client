@@ -34,12 +34,6 @@ const PrdDetail = () => {
         //them vao lich su da xem
         await addProductHistory(id);
         setProductState(product);
-        //scroll to top
-        window.scroll({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
       } catch (error) {
         setProductState({});
       }
@@ -106,10 +100,10 @@ const PrdDetail = () => {
                 </h4>
                 <div className="prdDetail-detail detail-space">
                   <span>
-                    Mã sản phẩm: <strong> {productState?._id}</strong>
+                    Mã sản phẩm: <strong> Đã ẩn</strong>
                   </span>
                   <span>
-                    Tình trạng: <strong> {productState?.statuses?.name}</strong>
+                    Tình trạng: <strong> {productState?.status?.name}</strong>
                   </span>
                 </div>
                 <div className="prdDetail-price detail-space">

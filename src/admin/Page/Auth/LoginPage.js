@@ -1,14 +1,24 @@
-import React from "react";
-import { Form, Input, Button } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, message } from "antd";
 import "./style.scss";
+import { useHistory } from "react-router-dom";
+import { loginAdmin } from "../../../api/authApi";
 
 const LoginPage = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+  const history = useHistory();
+  const [validate, setValidate] = useState();
+  const onFinish = async (values) => {
+    // console.log("Success:", values);
+    const res = await loginAdmin(values?.email, values?.password);
+    if (res?.status === 422) {
+      const valid = res.data?.reduce((result, item) => {
+        return { ...result, [item.param]: item.msg };
+      }, {});
+      setValidate(valid);
+    } else {
+      history.push("/admin/dashboard");
+      message.success("Chào quản trị viên");
+    }
   };
 
   return (
@@ -26,17 +36,21 @@ const LoginPage = () => {
           remember: true,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Form.Item
           label="Tên tài khoản: "
-          name="username"
+          name="email"
           rules={[
             {
               required: true,
               message: "Vui lòng nhập tên tài khoản!",
             },
           ]}
+          {...(validate && {
+            hasFeedback: true,
+            help: validate?.email,
+            validateStatus: validate?.email ? "error" : "success",
+          })}
         >
           <Input />
         </Form.Item>
@@ -51,6 +65,11 @@ const LoginPage = () => {
               message: "Vui lòng nhập mật khẩu!",
             },
           ]}
+          {...(validate && {
+            hasFeedback: true,
+            help: validate?.password,
+            validateStatus: validate?.password ? "error" : "success",
+          })}
         >
           <Input.Password />
         </Form.Item>
