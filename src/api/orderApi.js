@@ -40,4 +40,12 @@ const getRevenueMonth = async () => {
     return error;
   }
 };
-export { getAllOrder, getOrderById, getRevenueDay, getRevenueWeek, getRevenueMonth };
+const getCountStatusOrder = async () => {
+  try {
+    const res = await api.get(`/order/countstatus`);
+    return res.data;
+  } catch (error) {
+    return error;
+  }
+};
+export { getAllOrder, getOrderById, getRevenueDay, getRevenueWeek, getRevenueMonth, getCountStatusOrder };
