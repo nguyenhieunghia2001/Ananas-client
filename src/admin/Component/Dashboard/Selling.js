@@ -32,7 +32,6 @@ const Selling = () => {
     }
     fetch();
   }, []);
-  console.log(products);
   return (
     <div className="selling">
       <Table

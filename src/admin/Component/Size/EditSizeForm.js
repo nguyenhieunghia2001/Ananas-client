@@ -13,7 +13,7 @@ const EditSizeForm = ({ modalEdit, setModalEdit, id, setSizes }) => {
       }
     }
     fetch();
-  }, [id]);
+  }, [id, form]);
 
   const onFinish = async (values) => {
     const res = await editSize(id, values.name);

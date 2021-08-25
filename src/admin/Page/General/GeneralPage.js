@@ -1,6 +1,5 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
-import Loading from "../../../components/Loading/LoadingSpinning";
 import CategoryForm from "../../Component/Category/CategoryForm";
 import SizeForm from "../../Component/Size/SizeForm";
 import StatusForm from "../../Component/Status/StatusForm";

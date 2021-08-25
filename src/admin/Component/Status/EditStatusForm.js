@@ -13,7 +13,7 @@ const EditStatusForm = ({ modalEdit, setModalEdit, id, setStatuses }) => {
       }
     }
     fetch();
-  }, [id]);
+  }, [id, form]);
 
   const onFinish = async (values) => {
     const res = await editStatus(id, values.name);

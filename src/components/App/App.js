@@ -69,12 +69,16 @@ function App() {
                     <Route path="/checkout/ordersuccess" exact>
                       <OrderSuccessPage />
                     </Route>
-                    <Route path="/purchase" exact>
-                      <PurchasePage />
-                    </Route>
-                    <Route path="/purchase/detail" exact>
-                      <PurchaseDetailPage />
-                    </Route>
+                    <PrivateRoute
+                      path="/purchase"
+                      exact
+                      component={PurchasePage}
+                    />
+                    <PrivateRoute
+                      path="/purchase/detail"
+                      exact
+                      component={PurchaseDetailPage}
+                    />
                   </Switch>
                 </Layout>
                 <CartFixed />

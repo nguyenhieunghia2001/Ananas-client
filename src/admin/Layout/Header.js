@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiMenu, FiSettings, FiChevronDown } from "react-icons/fi";
 import Logo from "../../assets/images/logo.svg";
+import { AccountAdminContext } from "../context/accountAdmin";
 import "./style.scss";
 
 const Header = ({ openSidebar, setOpenSidebar }) => {
+  const { resetUser } = useContext(AccountAdminContext);
   return (
     <div className={`navbar ${!openSidebar && "navbar-close"}`}>
       <div className="logo ">
@@ -17,7 +19,7 @@ const Header = ({ openSidebar, setOpenSidebar }) => {
           </div>
         </div>
         <div className="right">
-          <ul>
+          <ul className="nav-list-right">
             <li>
               <div className="account">
                 <img
@@ -28,6 +30,12 @@ const Header = ({ openSidebar, setOpenSidebar }) => {
                   Nghĩa dx
                   <FiChevronDown />
                 </span>
+                <div className="tabList">
+                  <ul className="tabList-menu">
+                    <li>Cá nhân</li>
+                    <li onClick={resetUser}>Đăng xuất</li>
+                  </ul>
+                </div>
               </div>
             </li>
             <li>

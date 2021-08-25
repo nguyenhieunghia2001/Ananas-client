@@ -76,7 +76,7 @@ const Navbar = () => {
                     <Link to="/account/profile">Tài khoản</Link>
                   </li>
                   <li>
-                    <div onClick={handleLogout}>Đăng Xuất</div>
+                    <div onClick={handleLogout} >Đăng Xuất</div>
                   </li>
                 </ul>
               </div>

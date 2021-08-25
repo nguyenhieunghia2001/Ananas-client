@@ -15,7 +15,7 @@ import LogoSvg from "../../../../assets/images/logo.svg";
 import { AccountContext } from "../../../../context/AccountContext";
 
 const NavbarMobile = () => {
-  const { userCurrentState } = useContext(AccountContext);
+  const { userCurrentState, resetUser } = useContext(AccountContext);
   const [toggle, setToggle] = useState(false);
   return (
     <div className="navbarmobile">
@@ -112,6 +112,23 @@ const NavbarMobile = () => {
                     <span>Đăng nhập</span>
                   )}
                 </Link>
+                {userCurrentState.user.username && (
+                  <span
+                    style={{
+                      float: "right",
+                      color: "#fff",
+                      fontSize: "5vw",
+                      width: "46%",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      setToggle(false);
+                      resetUser();
+                    }}
+                  >
+                    Đăng xuất
+                  </span>
+                )}
               </li>
               <li>
                 <Link

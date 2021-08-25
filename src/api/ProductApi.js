@@ -20,7 +20,6 @@ const getAllProductSelling = async () => {
 const getProductById = async (id) => {
   try {
     const res = await api.get(`/product/detail/${id}`);
-    console.log(res);
     return res.data.product;
   } catch (error) {
     return error;

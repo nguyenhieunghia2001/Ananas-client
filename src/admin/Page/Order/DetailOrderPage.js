@@ -17,7 +17,7 @@ const DetailOrderPage = () => {
       setOrder(data);
     }
     fetch();
-  }, []);
+  }, [id]);
   console.log(order);
   return (
     <div className="wrapper wrapper-product">

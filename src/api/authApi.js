@@ -51,7 +51,6 @@ const loginAdmin = async (email, password) => {
   }
 };
 const logoutAuth = async () => {
-  let result = {};
   try {
     const res = await api.get("/auth/logout");
     return res;

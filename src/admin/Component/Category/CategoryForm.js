@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Table, Modal } from "antd";
+import { Table } from "antd";
 import { FiEdit } from "react-icons/fi";
-import { Link } from "react-router-dom";
 import { getAllCategory } from "../../../api/CategoryApi";
 import AddCategoryForm from "./AddCategoryForm";
 import EditCategoryForm from "./EditCategoryForm";

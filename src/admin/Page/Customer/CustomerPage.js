@@ -41,14 +41,10 @@ const CustomerPage = () => {
   useEffect(() => {
     async function fetch() {
       const data = await getAllAccount();
-       console.log(data);
       setAccounts(data);
     }
     fetch();
   }, []);
-  const onChange = (pagination, filters, sorter, extra) => {
-    // console.log("params", pagination, filters, sorter, extra);
-  };
   return (
     <div className="wrapper wrapper-product">
       <header>
@@ -64,7 +60,6 @@ const CustomerPage = () => {
           <Table
             columns={columns}
             dataSource={accounts}
-            onChange={onChange}
             rowKey={(record) => record._id}
           />
         </div>

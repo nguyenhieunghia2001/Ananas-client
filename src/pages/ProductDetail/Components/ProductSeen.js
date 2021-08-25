@@ -13,14 +13,17 @@ const ProductSeen = () => {
     }
     fetch();
   }, []);
-
   return (
     <div className="products-seen detail-space">
       <Container>
-        <div className="products-seen--title">
-          <h4>SẢN PHẨM ĐÃ XEM</h4>
-        </div>
-        {history && <ProductCarousel products={history} />}
+        {history && (
+          <>
+            <div className="products-seen--title">
+              <h4>SẢN PHẨM ĐÃ XEM</h4>
+            </div>
+            <ProductCarousel products={history} />
+          </>
+        )}
       </Container>
     </div>
   );

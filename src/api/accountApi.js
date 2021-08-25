@@ -2,7 +2,7 @@ import api from "./index";
 
 const getAllAccount = async () => {
   try {
-    const res = await api.get("/account/getall");
+    const res = await api.get("/accountadmin/getall");
     return res.data.accounts;
   } catch (error) {
     return error;
@@ -10,7 +10,7 @@ const getAllAccount = async () => {
 };
 const getInfoById = async (id) => {
   try {
-    const res = await api.get(`/account/getinfobyid/${id}`);
+    const res = await api.get(`/accountadmin/getinfobyid/${id}`);
     return res.data.account;
   } catch (error) {
     return error;
@@ -60,7 +60,7 @@ const updatePass = async (oldPass, newPass, confirmPass) => {
 };
 const editAccountByAdmin = async ({ email, username, password }) => {
   try {
-    const res = await api.post(`/account/editbyadmin`, {
+    const res = await api.post(`/accountadmin/editbyadmin`, {
       email,
       username,
       password,

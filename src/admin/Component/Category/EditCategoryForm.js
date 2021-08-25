@@ -15,7 +15,7 @@ const EditCategoryForm = ({ modalEdit, setModalEdit, id, setCategories }) => {
       }
     }
     fetch();
-  }, [id]);
+  }, [id, form]);
 
   const onFinish = async (values) => {
     const res = await editCategory(id, values.name);

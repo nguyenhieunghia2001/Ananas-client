@@ -4,7 +4,6 @@ import { AccountContext } from "../../context/AccountContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { userCurrentState } = useContext(AccountContext);
-  // console.log(userCurrentState?.user?.username, userCurrentState.loading);
   return (
     <Route
       {...rest}

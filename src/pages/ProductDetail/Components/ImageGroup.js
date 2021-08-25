@@ -54,7 +54,7 @@ const ImageGroup = ({ images }) => {
     ),
   };
   return (
-    <div className="imggroup">
+    <div className="prd-imggroup">
       <Row>
         <div className="imggroup__primary">
           <img

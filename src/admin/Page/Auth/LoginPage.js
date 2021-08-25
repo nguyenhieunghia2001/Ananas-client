@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import "./style.scss";
 import { useHistory } from "react-router-dom";
 import { loginAdmin } from "../../../api/authApi";
+import { AccountAdminContext } from "../../context/accountAdmin";
 
 const LoginPage = () => {
   const history = useHistory();
+  const { setUser } = useContext(AccountAdminContext);
   const [validate, setValidate] = useState();
   const onFinish = async (values) => {
     // console.log("Success:", values);
-    const res = await loginAdmin(values?.email, values?.password);
-    if (res?.status === 422) {
-      const valid = res.data?.reduce((result, item) => {
+    const { data, status } = await loginAdmin(values?.email, values?.password);
+    if (status === 422) {
+      const valid = data?.reduce((result, item) => {
         return { ...result, [item.param]: item.msg };
       }, {});
       setValidate(valid);
     } else {
+      await setUser(data.account);
       history.push("/admin/dashboard");
       message.success("Chào quản trị viên");
     }

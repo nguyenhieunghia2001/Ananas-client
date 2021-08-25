@@ -25,7 +25,6 @@ const ProductPage = () => {
       setproductsState(products);
     })();
   }, [genderQuery, catQuery, statusQuery]);
-  console.log("check loop product-page");
   //hàm set lại sp khi filter
   const handleFilter = async (getGender, getCat, getStatus) => {
     const products = await getAllProductByQuery(getGender, getCat, getStatus);

@@ -187,10 +187,11 @@ $colorFont-priary: #fff;
             background-color: #fffefe;
           }
         }
-        a {
+        a, div {
           text-decoration: none;
           color: $bg-Black;
           font-weight: 700;
+          cursor: pointer;
         }
       }
     }
@@ -279,6 +280,7 @@ $colorFont-priary: #fff;
       }
       li {
         padding: 20px 0 20px 20px;
+        display: flex;
         a {
           color: $bg-White;
           font-size: 5vw;
