@@ -16,9 +16,7 @@ const HomePage = () => {
   });
   const handleSubmitRegister = async () => {
     try {
-      console.log(formState);
       const login = await loginAuth(formState.email, formState.password);
-      console.log(login);
       if (login.status === 200) {
         await setUser(login.data?.account);
         history.push("/");

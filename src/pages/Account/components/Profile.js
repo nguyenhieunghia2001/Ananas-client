@@ -9,7 +9,7 @@ import { AccountContext } from "../../../context/AccountContext";
 
 const Profile = () => {
   const fileInput = useRef();
-  const { setUserCurrentState } = useContext(AccountContext);
+  const { setUser } = useContext(AccountContext);
   const [loadingState, setLoadingState] = useState(false);
   const [accountState, setAccountState] = useState({
     username: "",
@@ -74,14 +74,8 @@ const Profile = () => {
     };
     setLoadingState(true);
     const { username, public_Id } = await updateInfo(formData);
-    console.log(username, public_Id);
-    await setUserCurrentState((pre) => {
-      return {
-        ...pre,
-        username,
-        public_Id,
-      };
-    });
+    // console.log(username, public_Id);
+    await setUser({ username, public_Id });
     setLoadingState(false);
   };
   return (

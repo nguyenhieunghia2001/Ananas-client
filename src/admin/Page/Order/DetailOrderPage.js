@@ -18,7 +18,6 @@ const DetailOrderPage = () => {
     }
     fetch();
   }, [id]);
-  console.log(order);
   return (
     <div className="wrapper wrapper-product">
       <header>

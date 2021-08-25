@@ -62,7 +62,6 @@ const logoutAuth = async () => {
 const checkIsAuthWithInfo = async () => {
   try {
     const auth = await api.get("/auth/getInfoUserCurrent");
-    console.log(auth);
     return {
       status: 200,
       data: auth.data,

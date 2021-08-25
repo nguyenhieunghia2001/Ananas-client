@@ -42,7 +42,6 @@ const AccountProvider = ({ children }) => {
       };
     });
   };
-  console.log(userCurrentState);
   return (
     <AccountContext.Provider
       value={{

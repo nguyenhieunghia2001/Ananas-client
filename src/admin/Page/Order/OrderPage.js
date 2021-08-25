@@ -32,14 +32,17 @@ const orderColumn = [
   },
   {
     title: "Tình trạng",
-    render: (_, record) => (
-      <Link
-        to={`/admin/customer/edit/${record._id}`}
-        style={{ color: "#ff5f17" }}
-      >
-        <FiEdit />
-      </Link>
-    ),
+    dataIndex: "status",
+    render: (_, record) => {
+      if (record?.status?.find((item) => item.name === "-1")) return "ĐÃ HỦY";
+      const pos = record?.status?.reduce(
+        (result, item) => (+item.name > result ? +item.name : result),
+        0
+      );
+      if (pos === 2) return "ĐÃ GIAO";
+      if (pos === 1) return "ĐANG GIA0";
+      if (pos === 0) return "ĐÃ ĐẶT HÀNG";
+    },
   },
   {
     title: "TT",

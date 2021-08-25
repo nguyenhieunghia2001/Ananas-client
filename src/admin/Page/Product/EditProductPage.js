@@ -23,7 +23,6 @@ const EditProductPage = () => {
   useEffect(() => {
     async function fetch() {
       const data = await getProductById(id);
-      console.log(data);
       await form.setFieldsValue({
         name: data?.name,
         category: data?.category?._id,
