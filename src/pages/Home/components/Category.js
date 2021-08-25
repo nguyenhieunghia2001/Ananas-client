@@ -19,7 +19,7 @@ const Category = () => {
                     </div>
                     <div className="item__group">
                         {/* <a href="" className="item__group-title">GIÀY NAM</a> */}
-                        <Link to="" className="item__group-title">GIÀY NAM</Link>
+                        <Link to="/products/gender=MALE" className="item__group-title">GIÀY NAM</Link>
                         <Link to="" className="item__group-sub">New Arrivals</Link>
                         <Link to="" className="item__group-sub">Best Seller</Link>
                         <Link to="" className="item__group-sub">Sale-off</Link>
@@ -33,7 +33,7 @@ const Category = () => {
                         <img src={Cat2Img} alt="cat" />
                     </div>
                     <div className="item__group">
-                        <Link to="" className="item__group-title">GIÀY NỮ</Link>
+                        <Link to="/products/gender=FEMALE" className="item__group-title">GIÀY NỮ</Link>
                         <Link to="" className="item__group-sub">New Arrivals</Link>
                         <Link to="" className="item__group-sub">Best Seller</Link>
                         <Link to="" className="item__group-sub">Sale-off</Link>

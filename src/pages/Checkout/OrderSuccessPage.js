@@ -21,10 +21,9 @@ const OrderSuccessPage = () => {
               </div>
               <div className="bottom">
                 <span>
-                  Mã đơn hàng của bạn là W0222078, hãy lưu lại để tra cứu đơn
-                  hàng khi cần thiết. Vui lòng check mail để xác nhận kiểm tra
+                  Vui lòng check mail để xác nhận kiểm tra
                   thông tin hoặc tra cứu tình trạng đơn hàng tại đây. Gọi ngay
-                  hotline 0947094472 trước khi đơn hàng được chuyển qua giao
+                  hotline 0947094422 trước khi đơn hàng được chuyển qua giao
                   nhận nếu bạn muốn thay đổi thông tin
                 </span>
               </div>
@@ -34,7 +33,7 @@ const OrderSuccessPage = () => {
               <img src={OrderSuccesSvg} alt="svg order success" />
               <div className="content">
                 <span>
-                  CUỘC SỐ CÓ NHIỀU LỰA CHỌN. CẢM ƠN BẠN ĐÃ CHỌN ANANAS
+                  CUỘC SỐNG CÓ NHIỀU LỰA CHỌN. CẢM ƠN BẠN ĐÃ CHỌN ANANAS
                 </span>
               </div>
               <div className="button-group">
