@@ -28,7 +28,7 @@
       }
     }
     .choose-address {
-      .ant-radio-group{
+      .ant-radio-group {
         width: 100%;
       }
       ul {
@@ -92,6 +92,10 @@
           font-size: 20px;
           color: $bg-Black;
           font-weight: 900;
+          @media (max-width: $sm) {
+            width: 175px;
+            font-size: 17px;
+          }
         }
       }
     }
@@ -151,17 +155,11 @@
       }
       &-item {
         margin: 15px 0;
-        // display: flex;
-        // img {
-        //   width: 40px;
-        //   height: 40px;
-        // }
         .top {
           font-size: 18px;
           color: #808080;
           .name {
             font-weight: 800;
-            width: 60%;
           }
           .price {
             float: right;
@@ -169,11 +167,9 @@
         }
         .bottom {
           display: flex;
+          justify-content: space-between;
           font-size: 18px;
           color: #808080;
-          .size {
-            width: 60%;
-          }
         }
       }
     }
@@ -218,8 +214,9 @@
           font-size: 30px;
           margin: 0;
         }
-        @media only screen and (max-width: 540px){
-          h1, p{
+        @media only screen and (max-width: 540px) {
+          h1,
+          p {
             font-size: 16px;
           }
         }

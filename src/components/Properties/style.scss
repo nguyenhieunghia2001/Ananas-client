@@ -74,6 +74,10 @@
     &-open{
       display: block !important;
     }
+    @media (max-width: $sm) {
+      width: 200px;
+      left: 45%;
+    }
   }
 }
 .btn:disabled{

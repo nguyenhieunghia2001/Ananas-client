@@ -15,6 +15,9 @@
       font-size: 16px;
       text-align: center;
       color: $bg-Black;
+      @media (max-width: $sm) {
+        font-size: 12px;
+      }
     }
     h4 {
       font-weight: 800;
@@ -38,11 +41,17 @@
     &::before {
       content: "";
     }
+    @media (max-width: $sm) {
+      display: none !important;
+    }
   }
 }
 .carousel-control {
   font-size: 55px;
   margin: -105px 0 0 -18px;
+  @media (max-width: $sm) {
+    display: none;
+  }
 }
 
 //product list basic
@@ -81,8 +90,11 @@
         display: none;
         font-size: 16px;
         width: 125px;
-        @media (min-width:$md) and (max-width: $lg) {
+        @media (min-width: $md) and (max-width: $lg) {
           top: 91%;
+        }
+        @media (max-width: $sm) {
+          display: none !important;
         }
       }
       &-img {

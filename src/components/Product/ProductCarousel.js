@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "./style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
@@ -38,6 +38,20 @@ const Banner = ({ products }) => {
     cssEase: "linear",
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+    ],
     appendDots: (dots) => (
       <div
         style={{
@@ -49,13 +63,19 @@ const Banner = ({ products }) => {
       </div>
     ),
   };
+  // useEffect(() => {
+  //   window.addEventListener("resize", () => {
+  //     const { innerWidth: width, innerHeight: height } = window;
+  //     if(width === 720)
+  //   });
+  // }, []);
   return (
     <div className="carousel-product">
       <Slider {...settings}>
         {products &&
           Array.isArray(products) &&
           products.map((prd) => (
-            <div style={{ marginRight: "10px" }} key={prd?._id} >
+            <div style={{ marginRight: "10px" }} key={prd?._id}>
               <ProductItem product={prd} />
             </div>
           ))}

@@ -54,7 +54,7 @@ const ProductItemCart = ({ product, fromPage }) => {
                   </span>
                 </div>
                 <Row>
-                  <Col lg="4" xs={4}>
+                  <Col lg="6" xs={6}>
                     <Combobox
                       type="SIZE"
                       selected={product?.size}
@@ -63,7 +63,7 @@ const ProductItemCart = ({ product, fromPage }) => {
                       disabled={true}
                     />
                   </Col>
-                  <Col lg="4" xs={4}>
+                  <Col lg="6" xs={6}>
                     <Combobox
                       type="QUANTITY"
                       selected={product?.quantity}
