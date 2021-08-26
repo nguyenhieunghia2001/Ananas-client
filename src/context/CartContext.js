@@ -30,7 +30,7 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     async function fetch() {
       const { data, status } = await getAllProductCart();
-      status === 200 &&
+      if (status === 200)
         setCartState((pre) => {
           return {
             ...pre,
@@ -52,6 +52,9 @@ const CartProvider = ({ children }) => {
               ) || [],
           };
         });
+      else {
+        setCartState(cart);
+      }
     }
     fetch();
     setLoading(true);
@@ -92,7 +95,7 @@ const CartProvider = ({ children }) => {
   const addCart = async (product, size, quantity) => {
     const res = await addProductCart(product._id, size, quantity);
     if (!res?.success) {
-      history.push('/auth/login');
+      history.push("/auth/login");
       return;
     }
     const checkPrdExist = CartState?.products?.find(
