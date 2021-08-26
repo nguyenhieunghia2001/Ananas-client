@@ -74,19 +74,22 @@ const Sidebar = ({ handleProduct }) => {
       <div className="sidebar__expander">
         <ExpanderSidebar title="DÒNG SẢN PHẨM">
           <ul className="nav nav-stacked">
-            {categoriesState && Array.isArray(categoriesState) &&
+            {categoriesState &&
+              Array.isArray(categoriesState) &&
               categoriesState.map((cat) => (
                 <li
                   key={cat._id}
                   className={catQuery && (catQuery === cat._id ? "active" : "")}
                 >
                   <Link
-                    to={`products?gender=${genderQuery}&cat=${cat._id}&status=${statusQuery}`}
+                    to={`products?gender=${genderQuery}&cat=${
+                      cat._id === catQuery ? "" : cat._id
+                    }&status=${statusQuery}`}
                     onClick={() =>
                       handleProduct(genderQuery, cat._id, statusQuery)
                     }
                   >
-                    {cat.name}
+                    <div style={{ width: "100%" }}> {cat.name}</div>
                   </Link>
                 </li>
               ))}
@@ -97,7 +100,8 @@ const Sidebar = ({ handleProduct }) => {
       <div className="sidebar__expander">
         <ExpanderSidebar title="TRẠNG THÁI">
           <ul className="nav nav-stacked">
-            {statuesState && Array.isArray(statuesState) &&
+            {statuesState &&
+              Array.isArray(statuesState) &&
               statuesState.map((sta) => (
                 <li
                   key={sta._id}

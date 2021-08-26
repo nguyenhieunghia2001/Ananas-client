@@ -31,7 +31,7 @@ function SamplePrevArrow({ className, style, onClick }) {
 const Banner = ({ products }) => {
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     slidesToShow: 4,
     slidesToScroll: 1,
     speed: 200,
@@ -43,12 +43,14 @@ const Banner = ({ products }) => {
         breakpoint: 992,
         settings: {
           slidesToShow: 3,
+          slidesToScroll: 3,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
+          slidesToScroll: 2,
         }
       },
     ],
