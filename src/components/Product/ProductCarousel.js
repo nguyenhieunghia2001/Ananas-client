@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Slider from "react-slick";
 import "./style.scss";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
@@ -63,12 +63,6 @@ const Banner = ({ products }) => {
       </div>
     ),
   };
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     const { innerWidth: width, innerHeight: height } = window;
-  //     if(width === 720)
-  //   });
-  // }, []);
   return (
     <div className="carousel-product">
       <Slider {...settings}>
