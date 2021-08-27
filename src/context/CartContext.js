@@ -31,7 +31,7 @@ const CartProvider = ({ children }) => {
     async function fetch() {
       const { data, status } = await getAllProductCart();
       console.log(data, status, userCurrentState);
-      if (status === 200)
+      if (status === 200 && userCurrentState.user.username)
         setCartState((pre) => {
           return {
             ...pre,

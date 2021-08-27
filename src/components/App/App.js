@@ -28,10 +28,15 @@ import AccountProvider from "../../context/AccountContext";
 import ProductLoveProvider from "../../context/ProductLoveContext";
 import CartProvider from "../../context/CartContext";
 import ScrollToTop from "../ScrollTotop";
+import { Helmet } from "react-helmet";
+const TITLE = 'Ananas - Cảm ơn bạn đã chọn tôi!!'
 
 function App() {
   return (
     <Router>
+      <Helmet>
+        <title>{TITLE}</title>
+      </Helmet>
       <ScrollToTop />
       <Switch>
         <Route path="/admin/:slug">
