@@ -44,7 +44,9 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
   };
   const checkDisabled = (item) => {
     if (type === "SIZE") {
-      return values?.some((v) => v?.size?.name === item) ? false : true;
+      return values?.some((v) => v?.size?.name === item && v?.quantity > 0)
+        ? false
+        : true;
     } else {
       return +values >= +item ? false : true;
     }
@@ -64,7 +66,7 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
     };
   }, [wrapperRef]);
   return (
-    <>
+    <div className="wrapper-select" ref={wrapperRef}>
       <div
         className={`select__isSelected ${disabled ? "select-disabled" : ""}`}
         onClick={() => !disabled && setToggleState(!toggleState)}
@@ -76,7 +78,6 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
         className={
           toggleState ? "select__option select__option-open" : "select__option"
         }
-        ref={wrapperRef}
       >
         <ul>
           {component.map((item, index) => (
@@ -93,7 +94,7 @@ const Combobox = ({ type, values, setValue, disabled, selected }) => {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

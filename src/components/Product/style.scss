@@ -67,7 +67,26 @@
     }
     &__bg {
       position: relative;
-
+      .soldout {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #00000073;
+        &::before {
+          text-align: center;
+          content: "HẾT HÀNG";
+          position: absolute;
+          color: #fff;
+          font-size: 30px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-weight: 700;
+          width: 100%;
+        }
+      }
       &-icon {
         position: absolute;
         top: 86%;

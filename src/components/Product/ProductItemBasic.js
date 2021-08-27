@@ -9,6 +9,9 @@ const ProductItem = ({ product }) => {
   return (
     <div className="thumbnail">
       <div className="thumbnail__bg">
+        {(!product.stock || product.stock < 0) && (
+          <div className="soldout"></div>
+        )}
         <img
           src={`${CLOUDINARY_LINK}${product?.images[0]?.urlPublic}`}
           alt="sản phẩm"
