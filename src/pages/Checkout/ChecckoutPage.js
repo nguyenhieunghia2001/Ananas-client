@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
-import { Checkbox, Radio } from "antd";
+import { Checkbox, message, Radio } from "antd";
 import "./component/ProductList";
 import "./style.scss";
 import ProductList from "./component/ProductList";
@@ -9,7 +9,7 @@ import { addPurchase } from "../../api/PurchaseApi";
 import { CartContext } from "../../context/CartContext";
 import { convertStringtoMoney } from "../../utits/index";
 import Loading from "../../components/Loading/LoadingSpinning";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const CheckoutPage = () => {
   let history = useHistory();
@@ -45,6 +45,12 @@ const CheckoutPage = () => {
   };
   const handleSubmitCheckout = async () => {
     setLoadingState(true);
+    if(!addressSelected)
+    {
+      message.error('Bạn chưa chọn địa chỉ giao hàng');
+      setLoadingState(false);
+      return
+    }
     const formData = {
       addressId: addressSelected?._id,
       cartId: CartState?._id,
@@ -98,7 +104,14 @@ const CheckoutPage = () => {
                           </li>
                         ))}
 
-                      <li style={{float: 'right'}}>
+                      <li style={{ float: "right" }}>
+                        <Link
+                          to="/account/address"
+                          className="btn btn-address btn-address--finish"
+                        >
+                          Thêm địa chỉ
+                        </Link>
+
                         <button
                           className="btn btn-address btn-address--finish"
                           onClick={chooseAddress}
@@ -126,7 +139,6 @@ const CheckoutPage = () => {
                     defaultValue={addressSelected?.username}
                     readOnly
                   />
-                  {/* <div className="error-msg">Vui lòng nhập họ tên</div> */}
                 </div>
                 <div className="input-group">
                   <input
