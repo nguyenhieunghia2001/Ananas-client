@@ -8,6 +8,15 @@
 * Bootstrap - version 5.1
 * Slick Carousel
 
+## Environment
+```
+REACT_APP_CLOUDINARY_LINK
+REACT_APP_API_URL
+```
+Explain:
+    * link cloundinary=https://res.cloudinary.com/nguyenhieunghia/image/upload/v1627378637/
+    * api_url: url api local
+
 ## Setup
 To run this project, install is locally using npm:
 
