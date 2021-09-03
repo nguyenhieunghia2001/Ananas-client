@@ -16,8 +16,5 @@ npm install
 npm start
 ```
 
-!
-
-
 
  
